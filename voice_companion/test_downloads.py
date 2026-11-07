@@ -585,7 +585,7 @@ class ScreenTests(unittest.TestCase):
         self.press('Enter', mode)
         self.assertEqual(self.said[-1], 'big.iso, 50 percent, downloading. 512 kilobytes of 1 megabytes. Folder: '
                          + self.root.name + '. From files.test. Embedded Edge. Space pauses or resumes it.')
-        self.assertEqual(self.app.navigation_key('F1', mode), 'help with downloads')
+        self.assertEqual(self.app.navigation_key('Double:F1', mode), 'help with downloads')   # F1 twice quickly
         self.assertEqual(self.app.handle('help with downloads', mode), 'help')
         self.assertEqual(self.app.help_session.topics[self.app.help_session.topic_index]['name'], 'Download Files')
 

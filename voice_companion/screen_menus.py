@@ -74,7 +74,7 @@ MENUS = {
             ('Messages per page', '', 'email list size'),
             ('Show Thunderbird', '', 'show thunderbird'),
             ('Hide Thunderbird', '', 'hide thunderbird'),
-            ('Email help', 'F1', 'help with email'),
+            ('Email help', 'Double:F1', 'help with email'),
             ('Main menu', '', 'main menu')]),
         # Last, so the Alt paths people learned for the groups above stay the same. A menu has
         # at most 9 groups, so the header lines (Alt+1 to Alt+6) join the attachments here.
@@ -110,7 +110,7 @@ MENUS = {
             ('List contacts', 'Ctrl+K', 'list contacts'),
             ('Add contact', '', 'add contact {value}'),
             ('Email options', '', '@options:Email'),
-            ('Writing email help', 'F1', 'help with writing email')]),
+            ('Writing email help', 'Double:F1', 'help with writing email')]),
         ('Attachments', [
             ('Attach a file', 'Ctrl+O', 'attach a file'),
             ('Attach the last download', '', 'attach the last download'),
@@ -136,7 +136,7 @@ MENUS = {
             ('Read note', 'Ctrl+R', 'read from top'),
             ('Saved notes', 'Ctrl+O', 'list notes'),
             ('Notepad options', '', '@options:Notepad'),
-            ('Notepad help', 'F1', 'help with notepad'),
+            ('Notepad help', 'Double:F1', 'help with notepad'),
             ('Main menu', '', 'main menu')]),
         ('Edit', [
             ('New line', '', 'new line'),
@@ -168,7 +168,7 @@ MENUS = {
             ('Set up Chrome', '', 'set up chrome'),
             ('Show browser window', '', 'show browser window'),
             ('Hide browser window', '', 'hide browser window'),
-            ('Web help', 'F1', 'help with web')]),
+            ('Web help', 'Double:F1', 'help with web')]),
     ]),
     'downloads': ('Downloads menu', [
         ('Download', [
@@ -183,10 +183,10 @@ MENUS = {
             ('Move later', 'Ctrl+Down', 'move download later')]),
         ('Options and help', [
             ('Download folder', '', '@options:Web browser'),
-            ('Downloads help', 'F1', 'help with downloads'),
+            ('Downloads help', 'Double:F1', 'help with downloads'),
             ('Close downloads', 'Escape', 'close downloads')]),
     ]),
-    'contacts': ('Contacts menu', [
+    'contacts': ('Address manager menu', [
         ('Contact', [
             ('Email this person', 'Ctrl+E', 'email contact'),
             ('Open details', 'Enter', 'open contact'),
@@ -194,16 +194,16 @@ MENUS = {
             ('Phone number', '', 'call details'),
             ('Edit contact', 'F2', 'edit contact'),
             ('Delete contact', 'Delete', 'delete contact')]),
-        ('Contacts', [
+        ('Address manager', [
             ('Add contact', 'Ctrl+N', 'add contact'),
             ('Find contact', 'Ctrl+F', 'find contact {value}'),
             ('Refresh contacts', '', 'refresh contacts'),
-            ('Contacts help', 'F1', 'help with contacts'),
+            ('Address manager help', 'Double:F1', 'help with contacts'),
             ('Main menu', '', 'main menu'),
             # Last, so hiding it (one email account) moves no other item.
             ('Choose address book', 'Ctrl+L', 'choose address book')]),
     ]),
-    'calendar': ('Calendar menu', [
+    'calendar': ('Schedule manager menu', [
         ('Event', [
             ('Read event', 'Enter', 'read event'),
             ('Next event', 'Down', 'next event'),
@@ -218,9 +218,9 @@ MENUS = {
             ('Next week', 'Page Down', 'next week'),
             ('Previous week', 'Page Up', 'previous week'),
             ('Go to a date', 'Ctrl+G', 'go to date')]),
-        ('Calendar', [
+        ('Schedule manager', [
             ('Refresh calendar', '', 'refresh calendar'),
-            ('Calendar help', 'F1', 'help with calendar'),
+            ('Schedule manager help', 'Double:F1', 'help with calendar'),
             ('Main menu', '', 'main menu'),
             # Last, so hiding it (one email account) moves no other item.
             ('Choose calendar', 'Ctrl+L', 'choose calendar')]),
@@ -244,7 +244,7 @@ MENUS = {
             ('Previous lesson', '', 'previous lesson'),
             ('Find lesson', 'Ctrl+F', 'find lesson {value}'),
             ('Explain a command', 'Ctrl+E', 'explain command {value}'),
-            ('List commands', 'F1', 'list commands'),
+            ('List commands', 'Double:F1', 'list commands'),
             ('Main menu', '', 'main menu')]),
     ]),
     'attachments': ('Attachments menu', [
@@ -256,7 +256,7 @@ MENUS = {
             ('Details', 'Ctrl+I', 'read attachment details'),
             ('Remove from this email', 'Delete', 'remove attachment'),
             ('Attach another file', 'Ctrl+O', 'attach a file'),
-            ('Attachments help', 'F1', 'help with attachments'),
+            ('Attachments help', 'Double:F1', 'help with attachments'),
             ('Close the list', 'Escape', 'close attachments')]),
         # Tags, as in File manager (Will, November 4, 2026); the guide says this menu has every choice.
         ('Tags', [
@@ -287,7 +287,7 @@ MENUS = {
         ('Leave and help', [
             ('Back to files', 'Escape', 'back to files'),
             ('Main menu', '', 'main menu'),
-            ('Document reader help', 'F1', 'help with document reader')]),
+            ('Document reader help', 'Double:F1', 'help with document reader')]),
     ]),
     # YouTube (youtube_screen.py). Each key is the same on the screen without the menu.
     'youtube': ('YouTube actions menu', [
@@ -349,7 +349,7 @@ MENUS = {
             ('Load the list again', 'F5', 'refresh youtube')]),
         ('Leave and help', [
             ('Go back', 'Escape', 'go back'),
-            ('YouTube help', 'F1', 'help with youtube'),
+            ('YouTube help', 'Double:F1', 'help with youtube'),
             ('Media menu', '', 'media menu'),
             ('Main menu', '', 'main menu')]),
     ]),
@@ -362,7 +362,7 @@ ALT_SCREENS = frozenset(MENUS) | {'awake', 'browser_menu', 'media', 'podcast'}
 OPEN_PHRASES = {'mailbox': ('menu', 'open menu', 'mail menu'), 'file_reader': ('menu', 'open menu', 'reader menu', 'document reader menu'),
                 'email_draft': ('draft menu',), 'web': ('page menu',), 'help': (), 'note': ('notepad menu',),
                 'tutorial': ('tutorial menu', 'lesson menu'), 'downloads': ('menu', 'open menu', 'download menu'),
-                'contacts': ('menu', 'open menu', 'contact menu'), 'calendar': ('menu', 'open menu'),
+                'contacts': ('menu', 'open menu', 'contact menu', 'contacts menu'), 'calendar': ('menu', 'open menu', 'calendar menu'),
                 'attachments': ('menu', 'open menu', 'attachment menu'), 'youtube': ('menu', 'open menu', 'actions menu')}
 NUMBER_WORDS = {'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5', 'six': '6', 'seven': '7', 'eight': '8', 'nine': '9'}
 # Context flags that mean a text box, list or question owns the keyboard.

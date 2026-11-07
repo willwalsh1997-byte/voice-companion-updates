@@ -277,7 +277,7 @@ class ScreenTests(unittest.TestCase):
     def test_main_menu_shows_every_item_and_the_selected_one(self):
         context = self.shown('awake')
         self.assertEqual(context['display_title'], 'Main menu')
-        self.assertEqual(context['display_items'][:3], ['Office tools', 'Web browser', 'Media'])
+        self.assertEqual(context['display_items'][:3], ['File manager', 'Office tools', 'Organizer'])
         self.assertIsNone(context['display_index'])
         app.MAIN_MENU_INDEX = 4
         context = self.shown('awake')
@@ -345,7 +345,7 @@ class ScreenTests(unittest.TestCase):
         with patch.object(calendar_screen, 'DAY', date(2026, 10, 26)), patch.object(calendar_screen, 'EVENTS', [event]), \
                 patch.object(calendar_screen, 'INDEX', 0), patch.object(app, 'CLOCK', lambda: __import__('datetime').datetime(2026, 10, 26, 9)):
             context = self.shown('calendar')
-        self.assertEqual(context['display_title'], 'Calendar: Today, Monday, October 26')
+        self.assertEqual(context['display_title'], 'Schedule manager: Today, Monday, October 26')
         self.assertEqual(context['display_items'], ['Ten AM to eleven AM, Doctor, Google'])
 
     def test_a_display_problem_never_stops_the_window_update(self):

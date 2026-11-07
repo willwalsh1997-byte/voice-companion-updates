@@ -30,7 +30,7 @@ You do this setup once. It takes about 20 minutes. A helper can do it with you.
    ```
    PROJECT_ID=voice-companion-store-4821
    ACCOUNT=chrome-store-publisher@$PROJECT_ID.iam.gserviceaccount.com
-   REPO=willwalsh14-hub/voice-companion-updates
+   REPO=willwalsh1997-byte/voice-companion-updates
    ```
 
 3. Make the project:
@@ -82,7 +82,7 @@ A service account is a Google account for a program, not a person. The release u
 
 ## Part 4: Let GitHub sign in without a key
 
-This makes a "workload identity pool". GitHub proves which repository and branch is asking. Google lets in only the main branch of willwalsh14-hub/voice-companion-updates. No password or key is stored anywhere.
+This makes a "workload identity pool". GitHub proves which repository and branch is asking. Google lets in only the main branch of willwalsh1997-byte/voice-companion-updates. No password or key is stored anywhere.
 
 1. Make the pool:
 
@@ -118,7 +118,7 @@ This makes a "workload identity pool". GitHub proves which repository and branch
 
 None of these is a secret. They are names, not passwords.
 
-1. On GitHub, open the repository settings page: [Actions variables for voice-companion-updates](https://github.com/willwalsh14-hub/voice-companion-updates/settings/variables/actions).
+1. On GitHub, open the repository settings page: [Actions variables for voice-companion-updates](https://github.com/willwalsh1997-byte/voice-companion-updates/settings/variables/actions).
 2. Choose New repository variable. Name: CWS_PUBLISHER_ID. Value: the publisher ID from Part 3. Choose Add variable.
 3. Choose New repository variable. Name: CWS_SERVICE_ACCOUNT. Value: the service account email from Part 2. Choose Add variable.
 4. Choose New repository variable. Name: CWS_WORKLOAD_IDENTITY_PROVIDER. Value: the line from Part 4, step 5. It starts with projects/ and ends with providers/voice-companion. Choose Add variable.
@@ -126,9 +126,9 @@ None of these is a secret. They are names, not passwords.
 If you prefer the GitHub command line on your computer, these three commands do the same. Put your own values between the quotes.
 
 ```
-gh variable set CWS_PUBLISHER_ID --repo willwalsh14-hub/voice-companion-updates --body "YOUR PUBLISHER ID"
-gh variable set CWS_SERVICE_ACCOUNT --repo willwalsh14-hub/voice-companion-updates --body "YOUR SERVICE ACCOUNT EMAIL"
-gh variable set CWS_WORKLOAD_IDENTITY_PROVIDER --repo willwalsh14-hub/voice-companion-updates --body "projects/NUMBER/locations/global/workloadIdentityPools/github/providers/voice-companion"
+gh variable set CWS_PUBLISHER_ID --repo willwalsh1997-byte/voice-companion-updates --body "YOUR PUBLISHER ID"
+gh variable set CWS_SERVICE_ACCOUNT --repo willwalsh1997-byte/voice-companion-updates --body "YOUR SERVICE ACCOUNT EMAIL"
+gh variable set CWS_WORKLOAD_IDENTITY_PROVIDER --repo willwalsh1997-byte/voice-companion-updates --body "projects/NUMBER/locations/global/workloadIdentityPools/github/providers/voice-companion"
 ```
 
 ## Part 6: Check that it works
@@ -136,14 +136,14 @@ gh variable set CWS_WORKLOAD_IDENTITY_PROVIDER --repo willwalsh14-hub/voice-comp
 1. Run the daily store check now, with the GitHub command line on your computer:
 
    ```
-   gh workflow run chrome-store-check.yml --repo willwalsh14-hub/voice-companion-updates
+   gh workflow run chrome-store-check.yml --repo willwalsh1997-byte/voice-companion-updates
    ```
 
-   Or open the [Chrome Web Store check workflow page](https://github.com/willwalsh14-hub/voice-companion-updates/actions/workflows/chrome-store-check.yml) and choose Run workflow.
+   Or open the [Chrome Web Store check workflow page](https://github.com/willwalsh1997-byte/voice-companion-updates/actions/workflows/chrome-store-check.yml) and choose Run workflow.
 2. Wait about two minutes. Then read the result:
 
    ```
-   gh run view --repo willwalsh14-hub/voice-companion-updates $(gh run list --repo willwalsh14-hub/voice-companion-updates --workflow chrome-store-check.yml --limit 1 --json databaseId --jq ".[0].databaseId")
+   gh run view --repo willwalsh1997-byte/voice-companion-updates $(gh run list --repo willwalsh1997-byte/voice-companion-updates --workflow chrome-store-check.yml --limit 1 --json databaseId --jq ".[0].databaseId")
    ```
 
 3. The result is one note, named Chrome Web Store, then one of these:
@@ -170,7 +170,7 @@ Keyless sign-in in Part 4 is safer. Use a key only if Part 4 cannot be done.
    cat key.json
    ```
 
-3. On GitHub, open [Actions secrets for voice-companion-updates](https://github.com/willwalsh14-hub/voice-companion-updates/settings/secrets/actions). Choose New repository secret. Name: CWS_SERVICE_ACCOUNT_KEY. Paste the whole key as the value. Choose Add secret.
+3. On GitHub, open [Actions secrets for voice-companion-updates](https://github.com/willwalsh1997-byte/voice-companion-updates/settings/secrets/actions). Choose New repository secret. Name: CWS_SERVICE_ACCOUNT_KEY. Paste the whole key as the value. Choose Add secret.
 4. Delete the key file from Cloud Shell:
 
    ```

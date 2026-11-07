@@ -1,18 +1,54 @@
+import contextlib
 import hashlib
+import io
 import json
-import shutil
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
-from publish_release import publish, gh_call
+import publish_release
+from publish_release import publish, publish_from_environment
+from r2_storage import MemoryStore, NO_CACHE, FOREVER
+
+BASE = 'https://updates.example.org/'
+FOLDER = 'releases/v1.2.3-test/'
+
+
+class PublicSite:
+    """The bucket as installed copies see it over HTTPS: what the store holds, after the
+    custom domain. `broken` stands for a custom domain that is not connected."""
+    def __init__(self, store):
+        self.store = store; self.broken = False; self.stale_feed = None; self.requests = []
+
+    def __call__(self, request, timeout=None):
+        url = request.full_url; self.requests.append(url)
+        if self.broken: raise OSError('Name or service not known')
+        key = url[len(BASE):].split('?')[0]
+        if key == 'voice-companion-update.json' and self.stale_feed is not None:
+            body = self.stale_feed
+        else:
+            body = self.store.objects.get(key)
+        if body is None: raise OSError('HTTP Error 404: Not Found')
+        status, headers = 200, {'Content-Length': str(len(body))}
+        if request.get_header('Range') == 'bytes=0-1':
+            status, headers = 206, {'Content-Range': 'bytes 0-1/' + str(len(body))}
+            body = body[:2]
+        return Response(status, headers, body)
+
+
+class Response:
+    def __init__(self, status, headers, body): self.status = status; self.headers = headers; self.body = body
+    def __enter__(self): return self
+    def __exit__(self, *args): pass
+    def read(self, size=-1): return self.body if size < 0 else self.body[:size]
+
 
 class PublishingTests(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name);self.setup=self.root/'VoiceCompanion-Setup.exe';self.setup.write_bytes(b'MZtested installer')
         (self.root/'companion.py').write_text("APP_VERSION = '1.2.3-test'\n")
-        (self.root/'update-settings.json').write_text(json.dumps({'manifest_url':'https://github.com/owner/repository/releases/latest/download/voice-companion-update.json'}))
+        (self.root/'update-settings.json').write_text(json.dumps({'manifest_url':BASE+'voice-companion-update.json'}))
         (self.root/'VoiceCompanion-Build-Passed.json').write_text(json.dumps({'version':'1.2.3-test','sha256':hashlib.sha256(self.setup.read_bytes()).hexdigest(),'size':self.setup.stat().st_size}),encoding='utf-8-sig')
         (self.root/'espeak').mkdir()
         for name in ('espeak-ng-1.52.0-source.tar.gz','COPYING'): (self.root/'espeak'/name).write_bytes(b'source or license')
@@ -23,107 +59,122 @@ class PublishingTests(unittest.TestCase):
             if not (self.root/name).exists():(self.root/name).write_bytes(b'fixture manual')
         from guide_files import write_manifest
         write_manifest(self.root,'1.2.3-test')
-        self.commands=[];self.existing=None;self.latest=None;self.corrupt=False;self.fail_upload=False
-        self.metadata={'private':False,'permissions':{'push':True}}
-    def gh(self, executable, *args, **kwargs):
-        self.commands.append(args)
-        if args[0]=='api':
-            if args[1]=='repos/owner/repository':return json.dumps(self.metadata)
-            if 'tags/' in args[1]:return json.dumps(self.existing) if self.existing else None
-            if any(cmd[:2]==('release','edit') for cmd in self.commands):return json.dumps({'tag_name':'v1.2.3-test','draft':False,'prerelease':False,'html_url':'https://github.com/owner/repository/releases/tag/v1.2.3-test'})
-            return json.dumps(self.latest) if self.latest else None
-        if args[1]=='upload' and self.fail_upload:raise RuntimeError('offline')
-        if args[1]=='download':
-            name=args[args.index('--pattern')+1];target=Path(args[args.index('--dir')+1])/name
-            local=self.root/'release-upload'/name
-            if not local.exists():local=self.root/'espeak'/name
-            shutil.copy2(local,target)
-            if self.corrupt:target.write_bytes(b'corrupted')
-        return ''
-    def run_publish(self):
-        with patch('publish_release.gh_call',side_effect=self.gh):return publish(self.setup,root=self.root)
-    def test_complete_release_is_verified_before_latest(self):
-        self.assertTrue(self.run_publish().endswith('v1.2.3-test'))
-        edit=next(i for i,c in enumerate(self.commands) if c[:2]==('release','edit'))
-        downloads=[i for i,c in enumerate(self.commands) if c[:2]==('release','download')]
-        self.assertEqual(len(downloads),16);self.assertTrue(all(i<edit for i in downloads))
-        self.assertIn('--draft',next(c for c in self.commands if c[:2]==('release','create')))
-        self.assertIn('--latest',self.commands[edit])
-        manifest=json.loads((self.root/'release-upload'/'voice-companion-update.json').read_text())
-        self.assertEqual(manifest['sha256'],hashlib.sha256(self.setup.read_bytes()).hexdigest())
-    def test_workflow_token_without_permission_metadata_uses_authorized_writes(self):
-        self.metadata={'private':False}
-        self.assertTrue(self.run_publish().endswith('v1.2.3-test'))
-        self.assertTrue(any(c[:2]==('release','create') for c in self.commands))
-    def test_repository_workflow_token_can_have_false_push_metadata(self):
-        self.metadata={'private':False,'permissions':{'push':False}}
-        with patch.dict('os.environ',{'GITHUB_ACTIONS':'true','GITHUB_REPOSITORY':'owner/repository'}):
-            self.assertTrue(self.run_publish().endswith('v1.2.3-test'))
-        with patch.dict('os.environ',{'GITHUB_ACTIONS':'true','GITHUB_REPOSITORY':'other/repository'}):
-            with self.assertRaises(ValueError):self.run_publish()
-    def test_private_or_explicit_read_only_repository_is_rejected(self):
-        for metadata in ({'private':True},{'private':False,'permissions':{'push':False}},{}):
-            self.metadata=metadata;self.commands=[]
-            with self.assertRaises(ValueError):self.run_publish()
-            self.assertFalse(any(c[0]=='release' for c in self.commands))
-    def test_failed_or_corrupt_upload_never_publishes(self):
-        for failure in ('corrupt','fail_upload'):
-            setattr(self,failure,True);self.commands=[]
-            with self.assertRaises((ValueError,RuntimeError)):self.run_publish()
-            self.assertFalse(any(c[:2]==('release','edit') for c in self.commands))
-            setattr(self,failure,False)
-    def test_draft_retry_does_not_create_another_release(self):
-        self.existing={'draft':True};self.run_publish()
-        self.assertFalse(any(c[:2]==('release','create') for c in self.commands))
-    def test_published_version_or_downgrade_is_never_overwritten(self):
-        for existing,latest in (({'draft':False},None),(None,{'tag_name':'v1.2.4-test'})):
-            self.existing=existing;self.latest=latest;self.commands=[]
-            with self.assertRaises(ValueError):self.run_publish()
-            self.assertFalse(any(c[0]=='release' for c in self.commands))
-    def test_publishing_help_does_not_require_document_authoring_dependencies(self):
-        import subprocess,sys
-        result=subprocess.run([sys.executable,'-S',str(Path(__file__).parent/'publish_release.py'),'--help'],capture_output=True,text=True)
-        self.assertEqual(result.returncode,0,result.stderr)
+        self.store=MemoryStore();self.site=PublicSite(self.store)
+        self.output=io.StringIO()
 
-    def test_release_document_asset_names_are_portable(self):
+    def run_publish(self):
+        with contextlib.redirect_stdout(self.output):
+            return publish(self.setup,self.store,root=self.root,opener=self.site,wait=0)
+
+    def feed(self):
+        return json.loads(self.store.objects['voice-companion-update.json'])
+
+    def test_complete_release_is_verified_before_the_feed_changes(self):
+        url=self.run_publish()
+        self.assertEqual(url,BASE+FOLDER+'VoiceCompanion-Setup.exe')
+        feed=self.feed()
+        self.assertEqual(feed,{'schema':1,'version':'1.2.3-test','installer_url':url,
+                               'sha256':hashlib.sha256(self.setup.read_bytes()).hexdigest(),'size':self.setup.stat().st_size})
+        log=self.store.log
+        feed_write=log.index(('put','voice-companion-update.json'))
+        uploads=[key for action,key in log if action=='upload']
+        checks=[key for action,key in log[:feed_write] if action=='sha256']
+        # Installer, its manifest, eSpeak source, license, notes and every guide (12 files).
+        self.assertEqual(len(uploads),17)
+        self.assertTrue(all(key.startswith(FOLDER) for key in uploads))
+        self.assertTrue(set(uploads)<=set(checks))
+        self.assertLess(max(i for i,(a,_k) in enumerate(log) if a=='upload'),feed_write)
+        self.assertLess(log.index(('copy','VoiceCompanion-Setup.exe')),feed_write)
+        self.assertIn(('put',FOLDER+'published.json'),log[feed_write:])
+        # The public installer address was checked before the feed was written.
+        self.assertIn(url,self.site.requests)
+        self.assertEqual(self.store.cache['voice-companion-update.json'],NO_CACHE)
+        self.assertEqual(self.store.cache[FOLDER+'VoiceCompanion-Setup.exe'],FOREVER)
+        self.assertEqual(self.store.objects['VoiceCompanion-Setup.exe'],self.setup.read_bytes())
+        self.assertEqual(json.loads((self.root/'VoiceCompanion-Published.json').read_text())['url'],url)
+
+    def test_release_document_names_are_portable(self):
         self.run_publish()
-        uploads=[Path(c[3]).name for c in self.commands if c[:2]==('release','upload')]
+        uploads=[key[len(FOLDER):] for action,key in self.store.log if action=='upload']
         self.assertIn('Release-Notes-for-Voice-Companion-1.2.3-test.brf',uploads)
         self.assertIn('START-HERE-Veteran.brf',uploads)
+        self.assertIn('espeak-ng-1.52.0-source.tar.gz',uploads)
         self.assertFalse(any(' ' in name for name in uploads))
+
+    def test_a_corrupt_upload_never_reaches_the_feed(self):
+        real_upload=self.store.upload
+        def corrupt(path,key,cache_control=FOREVER):
+            real_upload(path,key,cache_control)
+            if key.endswith('.exe'):self.store.objects[key]=b'MZcorrupted'
+        self.store.upload=corrupt
+        with self.assertRaises(ValueError):self.run_publish()
+        self.assertNotIn('voice-companion-update.json',self.store.objects)
+
+    def test_a_failed_upload_never_reaches_the_feed(self):
+        def offline(*args,**kwargs):raise OSError('Could not connect to the endpoint URL')
+        self.store.upload=offline
+        with self.assertRaises(OSError):self.run_publish()
+        self.assertNotIn('voice-companion-update.json',self.store.objects)
+
+    def test_an_unreachable_public_address_never_reaches_the_feed(self):
+        # The custom domain is not connected to the bucket: copies could not download it.
+        self.site.broken=True
+        with self.assertRaises(RuntimeError) as caught:self.run_publish()
+        self.assertIn('custom domain',str(caught.exception))
+        self.assertNotIn('voice-companion-update.json',self.store.objects)
+
+    def test_a_retry_after_a_failure_publishes(self):
+        self.site.broken=True
+        with self.assertRaises(RuntimeError):self.run_publish()
+        self.site.broken=False
+        self.run_publish()
+        self.assertEqual(self.feed()['version'],'1.2.3-test')
+
+    def test_published_version_or_downgrade_is_never_overwritten(self):
+        for feed_version in ('1.2.3-test','1.2.4-test'):
+            store=MemoryStore();store.objects['voice-companion-update.json']=json.dumps({'version':feed_version}).encode()
+            self.store=store
+            with self.assertRaises(ValueError):self.run_publish()
+            self.assertFalse(any(action=='upload' for action,_key in store.log))
+        # A later release went out, but this version was published before it.
+        store=MemoryStore();store.objects['voice-companion-update.json']=json.dumps({'version':'1.2.2-test'}).encode()
+        store.objects[FOLDER+'published.json']=b'{}'
+        self.store=store
+        with self.assertRaises(ValueError):self.run_publish()
+        self.assertFalse(any(action=='upload' for action,_key in store.log))
+
+    def test_an_older_published_release_is_replaced_in_the_feed(self):
+        self.store.objects['voice-companion-update.json']=json.dumps({'version':'1.2.2-test'}).encode()
+        self.run_publish()
+        self.assertEqual(self.feed()['version'],'1.2.3-test')
+
+    def test_a_feed_that_stays_old_at_the_public_address_fails_and_names_itself(self):
+        self.site.stale_feed=json.dumps({'version':'1.2.2-test'}).encode()
+        with self.assertRaises(RuntimeError) as caught:self.run_publish()
+        self.assertIn('1.2.2-test',str(caught.exception))
+        self.assertIn('cache',str(caught.exception))
 
     def test_missing_or_mismatched_documentation_is_not_uploaded(self):
         (self.root/'Voice Companion Release Notes.brf').unlink()
         with self.assertRaises(OSError):self.run_publish()
-        self.assertEqual(self.commands,[])
+        self.assertEqual(self.store.log,[])
 
     def test_changed_or_unchecked_installer_is_not_uploaded(self):
         self.setup.write_bytes(b'MZchanged')
         with self.assertRaises(ValueError):self.run_publish()
-        self.assertEqual(self.commands,[])
+        self.assertEqual(self.store.log,[])
         (self.root/'VoiceCompanion-Build-Passed.json').unlink()
         with self.assertRaises(OSError):self.run_publish()
-    def test_only_not_found_is_treated_as_missing(self):
-        from unittest.mock import MagicMock
-        for stderr,missing in (('HTTP 404',True),('HTTP 403',False)):
-            process=MagicMock();process.__enter__.return_value=process
-            process.returncode=1;process.communicate.return_value=('',stderr)
-            with patch('publish_release.subprocess.Popen',return_value=process):
-                if missing:self.assertIsNone(gh_call('gh','api','path',missing_ok=True))
-                else:
-                    with self.assertRaises(RuntimeError):gh_call('gh','api','path',missing_ok=True)
 
-    def test_progress_heartbeat_and_child_completion(self):
-        import subprocess
-        from unittest.mock import MagicMock
-        process=MagicMock();process.__enter__.return_value=process;process.returncode=0
-        process.communicate.side_effect=[subprocess.TimeoutExpired('gh',20),('done','')]
-        with patch('publish_release.subprocess.Popen',return_value=process),patch('publish_release.progress') as output:
-            self.assertEqual(gh_call('gh','release','upload','v1.2.3','C:/Folder with spaces/VoiceCompanion-Setup.exe'),'done')
-        messages=[c.args[0] for c in output.call_args_list]
-        self.assertTrue(any('Still waiting' in m for m in messages))
-        self.assertTrue(messages[-1].endswith('completed.'))
-        self.assertEqual(process.communicate.call_count,2)
+    def test_a_github_feed_in_the_settings_is_refused(self):
+        (self.root/'update-settings.json').write_text(json.dumps({'manifest_url':'https://github.com/owner/repository/releases/latest/download/voice-companion-update.json'}))
+        with self.assertRaises(ValueError):self.run_publish()
+        self.assertEqual(self.store.log,[])
+
+    def test_publishing_help_does_not_require_document_authoring_dependencies(self):
+        import subprocess,sys
+        result=subprocess.run([sys.executable,'-S',str(Path(__file__).parent/'publish_release.py'),'--help'],capture_output=True,text=True)
+        self.assertEqual(result.returncode,0,result.stderr)
 
     def test_only_the_github_build_publishes(self):
         # Will, November 3, 2026: the old hand publishing tools were removed. A build on
@@ -138,84 +189,95 @@ class PublishingTests(unittest.TestCase):
         workflow=(folder.parent/'.github'/'workflows'/'windows-installer.yml').read_text()
         self.assertIn('publish_release.py',workflow)
 
-class ProgressProcessTests(unittest.TestCase):
-    @unittest.skipIf(__import__('os').name == 'nt', 'POSIX child executable fixture')
-    def test_real_waiting_process_shows_progress_and_keeps_raw_output_private(self):
-        import sys
-        import io
-        import contextlib
-        with tempfile.TemporaryDirectory(prefix='Publishing path ') as folder:
-            cli=Path(folder)/'fake gh'
-            cli.write_text('#!'+sys.executable+'\nimport time,sys\ntime.sleep(0.06)\nprint("metadata")\nprint("private diagnostic",file=sys.stderr)\n')
-            cli.chmod(0o700)
-            output=io.StringIO()
-            with patch('publish_release.PROGRESS_INTERVAL',0.02),contextlib.redirect_stdout(output):
-                result=gh_call(cli,'api','repos/owner/repository')
-            self.assertEqual(result.strip(),'metadata')
-            self.assertIn('Still waiting',output.getvalue())
-            self.assertIn('completed.',output.getvalue())
-            self.assertNotIn('private diagnostic',output.getvalue())
+
+class PublishFromEnvironmentTests(unittest.TestCase):
+    """Every failure names itself in a GitHub annotation (CLAUDE.md)."""
+    def run_main(self, environ, store=None, failure=None):
+        out=io.StringIO()
+        def fake(setup,store,root,opener):
+            if failure:raise failure
+            return BASE+FOLDER+'VoiceCompanion-Setup.exe'
+        with patch.object(publish_release,'publish',side_effect=fake),contextlib.redirect_stdout(out):
+            code=publish_from_environment('setup.exe',environ=environ,store=store)
+        return code,out.getvalue()
+
+    def test_missing_secrets_are_named(self):
+        code,out=self.run_main({'GITHUB_ACTIONS':'true','R2_ACCOUNT_ID':'abc'})
+        self.assertEqual(code,1)
+        self.assertIn('::error title=Not published::',out)
+        self.assertIn('R2_ACCESS_KEY_ID',out);self.assertIn('R2_SECRET_ACCESS_KEY',out)
+        self.assertNotIn('R2_ACCOUNT_ID,',out)
+
+    def test_a_failure_and_a_success_are_annotated(self):
+        code,out=self.run_main({'GITHUB_ACTIONS':'true'},store=MemoryStore(),failure=RuntimeError('The installer cannot be read'))
+        self.assertEqual(code,1);self.assertIn('::error title=Not published::The installer cannot be read',out)
+        code,out=self.run_main({'GITHUB_ACTIONS':'true'},store=MemoryStore())
+        self.assertEqual(code,0);self.assertIn('::notice title=Published::'+BASE,out)
 
 
+class ShippedSettingsTests(unittest.TestCase):
+    def test_the_shipped_settings_name_the_update_bucket(self):
+        # Will, November 7, 2026: updates come from Cloudflare R2 at updates.voicecompanionapp.com.
+        self.assertEqual(publish_release.public_base(),'https://updates.voicecompanionapp.com/')
+        settings=json.loads((Path(__file__).parent/'update-settings.json').read_text())
+        self.assertFalse(settings.get('fallback_urls'))
 
-class PublishEverywhereTests(unittest.TestCase):
-    """November 2026: each release goes to the public releases-only repository and, while it is
-    still public, to the source repository. One that cannot be published to says why."""
+    def test_the_workflow_publishes_with_the_r2_secrets(self):
+        workflow=(Path(__file__).parent.parent/'.github'/'workflows'/'windows-installer.yml').read_text()
+        publish=workflow[workflow.index('- name: Publish verified installer'):]
+        publish=publish[:publish.index('- name: Tag the published release')]
+        for name in ('R2_ACCOUNT_ID','R2_ACCESS_KEY_ID','R2_SECRET_ACCESS_KEY'):
+            self.assertIn('secrets.'+name,publish)
+        self.assertNotIn('RELEASES_TOKEN',workflow)
+        self.assertNotIn('willwalsh14-hub/voice-companion-updates/releases/download',workflow)
+        self.assertIn('fetch_espeak_source.py',workflow)
+
+
+class R2StoreTests(unittest.TestCase):
+    """The real S3 client calls, against moto's S3 stand-in when it is installed."""
     def setUp(self):
-        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
-        self.root=Path(self.temp.name)
-        (self.root/'update-settings.json').write_text(json.dumps({
-            'manifest_url':'https://github.com/owner/releases/releases/latest/download/voice-companion-update.json',
-            'fallback_urls':['https://github.com/owner/source/releases/latest/download/voice-companion-update.json']}))
-        self.calls=[]
-        import publish_release
-        self.module=publish_release
-        self.addCleanup(setattr,publish_release,'LOG_PATH',None)
+        try:
+            import boto3
+            from moto import mock_aws
+        except ImportError:
+            self.skipTest('boto3 and moto are not installed')
+        mock=mock_aws();mock.start();self.addCleanup(mock.stop)
+        client=boto3.client('s3',region_name='us-east-1',aws_access_key_id='a',aws_secret_access_key='b')
+        client.create_bucket(Bucket='bucket')
+        from r2_storage import R2Store
+        self.store=R2Store(client,'bucket')
 
-    def run_all(self, environ, fail=()):
-        def publish(setup, gh, root, repo=None):
-            self.calls.append((repo, (self.module.GH_ENV or {}).get('GH_TOKEN')))
-            if repo in fail:raise ValueError('Publishing requires a public repository.')
-            return 'https://github.com/'+repo+'/releases/tag/v1'
-        with patch.object(self.module,'publish',side_effect=publish):
-            return self.module.publish_everywhere('setup.exe','gh',self.root,environ)
+    def test_upload_read_copy_and_checksums(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/'VoiceCompanion-Setup.exe';path.write_bytes(b'MZ'+b'x'*1000)
+            self.assertIsNone(self.store.read('missing'))
+            self.assertIsNone(self.store.size('missing'))
+            self.assertIsNone(self.store.sha256('missing'))
+            self.store.upload(path,'releases/v1/VoiceCompanion-Setup.exe')
+            self.assertEqual(self.store.sha256('releases/v1/VoiceCompanion-Setup.exe'),hashlib.sha256(path.read_bytes()).hexdigest())
+            self.assertEqual(self.store.size('releases/v1/VoiceCompanion-Setup.exe'),1002)
+            self.store.copy('releases/v1/VoiceCompanion-Setup.exe','VoiceCompanion-Setup.exe')
+            head=self.store.client.head_object(Bucket='bucket',Key='VoiceCompanion-Setup.exe')
+            self.assertEqual(head['CacheControl'],NO_CACHE)
+            self.assertEqual(head['ContentType'],'application/vnd.microsoft.portable-executable')
+            self.store.put(b'{"version":"1"}','voice-companion-update.json')
+            self.assertEqual(self.store.read('voice-companion-update.json'),b'{"version":"1"}')
+            head=self.store.client.head_object(Bucket='bucket',Key='voice-companion-update.json')
+            self.assertEqual((head['ContentType'],head['CacheControl']),('application/json',NO_CACHE))
 
-    def test_both_repositories_each_with_its_own_token(self):
-        environ={'GITHUB_ACTIONS':'true','GITHUB_REPOSITORY':'owner/source','GH_TOKEN':'workflow','RELEASES_TOKEN':'releases'}
-        self.assertEqual(self.run_all(environ),0)
-        self.assertEqual(self.calls,[('owner/releases','releases'),('owner/source','workflow')])
-        self.assertIsNone(self.module.GH_ENV)
+    def test_other_errors_are_not_treated_as_missing(self):
+        from r2_storage import R2Store
+        import boto3
+        client=boto3.client('s3',region_name='us-east-1',aws_access_key_id='a',aws_secret_access_key='b')
+        with self.assertRaises(Exception):R2Store(client,'no-such-bucket').read('key')
 
-    def test_without_the_releases_secret_the_source_still_publishes(self):
-        environ={'GITHUB_ACTIONS':'true','GITHUB_REPOSITORY':'owner/source','GH_TOKEN':'workflow'}
-        self.assertEqual(self.run_all(environ),0)
-        self.assertEqual(self.calls,[('owner/source','workflow')])
+    def test_the_client_points_at_r2(self):
+        from r2_storage import R2Store
+        store=R2Store.from_environment({'R2_ACCOUNT_ID':'acct','R2_ACCESS_KEY_ID':'id','R2_SECRET_ACCESS_KEY':'secret'})
+        self.assertEqual(store.client.meta.endpoint_url,'https://acct.r2.cloudflarestorage.com')
+        self.assertEqual(store.bucket,'voice-companion-updates')
+        self.assertEqual(R2Store.from_environment({'R2_ACCOUNT_ID':'a','R2_ACCESS_KEY_ID':'b','R2_SECRET_ACCESS_KEY':'c','R2_BUCKET':'other'}).bucket,'other')
 
-    def test_a_private_source_is_skipped_once_the_releases_repository_has_it(self):
-        environ={'GITHUB_ACTIONS':'true','GITHUB_REPOSITORY':'owner/source','GH_TOKEN':'workflow','RELEASES_TOKEN':'releases'}
-        self.assertEqual(self.run_all(environ,fail=('owner/source',)),0)
 
-    def test_a_skipped_repository_names_itself_in_the_run_annotations(self):
-        # Will, November 3, 2026: 0.2.201 skipped the releases repository and said so only deep in
-        # the log. Every skip or failure must show as a GitHub annotation.
-        import contextlib,io
-        out=io.StringIO()
-        environ={'GITHUB_ACTIONS':'true','GITHUB_REPOSITORY':'owner/source','GH_TOKEN':'workflow'}
-        with contextlib.redirect_stdout(out):self.assertEqual(self.run_all(environ),0)
-        self.assertIn('::warning title=Not published to owner/releases::',out.getvalue())
-        self.assertIn('RELEASES_TOKEN',out.getvalue())
-        out=io.StringIO()
-        environ['RELEASES_TOKEN']='releases'
-        with contextlib.redirect_stdout(out):self.run_all(environ,fail=('owner/releases',))
-        self.assertIn('::warning title=Not published to owner/releases::Publishing requires a public repository.',out.getvalue())
-        out=io.StringIO()
-        with contextlib.redirect_stdout(out):self.run_all(environ)
-        self.assertIn('::notice title=Published to owner/releases::',out.getvalue())
-
-    def test_nothing_published_fails(self):
-        environ={'GITHUB_ACTIONS':'true','GITHUB_REPOSITORY':'owner/source','GH_TOKEN':'workflow'}
-        self.assertEqual(self.run_all(environ,fail=('owner/source',)),1)
-
-    def test_the_shipped_settings_name_the_releases_repository_first(self):
-        import publish_release
-        self.assertEqual(publish_release.feed_repos(),['willwalsh14-hub/voice-companion-releases','willwalsh14-hub/voice-companion-updates'])
+if __name__ == '__main__':
+    unittest.main()

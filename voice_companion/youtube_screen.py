@@ -2166,7 +2166,7 @@ def here(m, s, raw, command, typed=False):
         if command in OPEN:
             m.speak(s.where())
             return MODE
-        m.speak('YouTube. Say search for and words to search, or press Alt for the YouTube menu. Press F1 for help.')
+        m.speak('YouTube. Say search for and words to search, or press Alt for the YouTube menu. Press F1 twice for help.')
         return MODE
     if action == 'leave':
         return leave(m, s)

@@ -199,7 +199,7 @@ class ScreenWordTests(NoBrowser):
         self.assertEqual(self.said[-1], 'Audio paused.')
 
     def test_f1_opens_the_youtube_chapter_of_the_guide(self):
-        self.assertEqual(self.press('F1'), 'help')
+        self.assertEqual(self.press('Double:F1'), 'help')      # F1 twice quickly
         self.assertTrue(self.said[-1].startswith('User guide. Watch YouTube. Open YouTube'), self.said[-1])
 
     def test_a_letter_typed_after_other_letters_is_never_a_video_key(self):

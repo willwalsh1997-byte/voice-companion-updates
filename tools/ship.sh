@@ -1,9 +1,11 @@
 #!/bin/bash
 # ship.sh PR SHA VERSION : wait for checks on SHA, merge PR, wait until release VERSION is published.
-R=repos/willwalsh14-hub/voice-companion-updates
+R=repos/willwalsh1997-byte/voice-companion-updates
 PR=$1; SHA=$2; VER=$3
 # A version already released cannot publish again (the nightly sweep may have used it): stop at once.
-if gh api "$R/releases/tags/v$VER" --jq .tag_name >/dev/null 2>&1; then echo "VERSION $VER IS ALREADY RELEASED: raise the version"; exit 4; fi
+FEED=https://updates.voicecompanionapp.com
+# Releases are on Cloudflare R2: releases/v<version>/published.json marks one live.
+if curl -fsS "$FEED/releases/v$VER/published.json" >/dev/null 2>&1; then echo "VERSION $VER IS ALREADY RELEASED: raise the version"; exit 4; fi
 for i in $(seq 1 170); do
   out=$(gh api "$R/commits/$SHA/check-runs" --jq '.check_runs[] | "\(.name)|\(.status)|\(.conclusion)"')
   n=$(echo "$out" | grep -c '|completed|'); t=$(echo "$out" | grep -c .); f=$(echo "$out" | grep -c '|failure')
@@ -20,7 +22,7 @@ m=$(gh api -X PUT $R/pulls/$PR/merge -f merge_method=merge -f sha=$SHA -f commit
 echo "merged $VER as $m"; sleep 90
 for i in $(seq 1 170); do
   out=$(gh api "$R/commits/$m/check-runs" --jq '.check_runs[] | "\(.name)|\(.status)|\(.conclusion)"')
-  rel=$(gh api $R/releases/latest --jq .tag_name); f=$(echo "$out" | grep -c '|failure')
+  rel=v$(curl -fsS -H 'Cache-Control: no-cache' "$FEED/voice-companion-update.json?t=$i" | python3 -c 'import json,sys;print(json.load(sys.stdin)["version"])' 2>/dev/null); f=$(echo "$out" | grep -c '|failure')
   if [ "$f" -gt 0 ]; then echo "PUBLISH BUILD FAILED $VER"; echo "$out"
     for id in $(gh api "$R/commits/$m/check-runs" --jq '.check_runs[]|select(.conclusion=="failure")|.id'); do gh api $R/check-runs/$id/annotations --jq '.[]|"\(.title): \(.message)"' | head -c 7000; echo; done
     echo "RUN_ID $(gh api "$R/commits/$m/check-runs" --jq '.check_runs[]|select(.name=="installer")|.details_url')"; exit 2; fi

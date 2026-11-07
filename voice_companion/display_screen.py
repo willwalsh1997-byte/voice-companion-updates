@@ -160,12 +160,12 @@ HINT_KEYS = {
     'email_draft': 'Tab moves between boxes. Alt+S sends.',
     'mailbox': 'Enter opens. R replies. N writes new.',
     'note': 'Control+S saves.',
-    'files': 'Arrows move. Enter opens. Alt opens the menu.',
+    'files': 'Enter opens. Alt opens the menu.',
     'web': 'Escape opens the browser menu.',
     'help': 'Arrows move. Escape goes back.',
     'file_reader': 'Arrows read. Escape goes back.',
     'local_media': 'Space plays or pauses. Alt opens the menu.',
-    'tutorial': 'F1 lists commands.',
+    'tutorial': 'F1 twice lists commands.',
     'youtube': 'Enter plays. Space pauses. Alt opens the menu.',
 }
 QUESTION_HINT = 'Arrows choose. Enter answers.'
@@ -188,7 +188,7 @@ def hint(m, mode, value):
     name = options.SCREEN_NAMES.get(logical) or options.screen_name(logical)
     if microphone != 'on':
         lead = 'Microphone off. Use the keys.' if microphone == 'off' else 'Microphone not working. Use the keys.'
-        return lead + (' F1 for help.' if has_help_key(logical) else '')
+        return lead + (' F1 twice for help.' if has_help_key(logical) else '')
     if value.get('confirmation') is not None:
         return name + '. ' + QUESTION_HINT
     keys = HINT_KEYS.get(logical)
@@ -196,7 +196,7 @@ def hint(m, mode, value):
         keys = 'Alt+1 to Alt+6 read the header. R replies.'   # a message is open
     if keys is None and _safe(lambda: m.menu_state(logical), None) is not None:
         keys = 'Arrows move. Enter chooses.'
-    return ' '.join(part for part in (name + '.', 'F1 for help.' if has_help_key(logical) else '', keys or '') if part)
+    return ' '.join(part for part in (name + '.', 'F1 twice for help.' if has_help_key(logical) else '', keys or '') if part)
 
 
 def context(m, mode, value):

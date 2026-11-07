@@ -306,6 +306,8 @@ def render():
         for row in data:
             if row[0] == area:
                 action, voice, keyboard, status = (str(x) for x in row[1:])
+                # Help is F1 pressed twice; F1 once is the main menu (November 6, 2026).
+                if keyboard == 'Double:F1' or keyboard == 'F1' and voice != 'main menu':keyboard = 'F1 twice'
                 lines += ['### ' + action, '', '- Voice: ' + voice, '- Keyboard: ' + keyboard,
                           '- Status: ' + status, '']
     return '\n'.join(lines)

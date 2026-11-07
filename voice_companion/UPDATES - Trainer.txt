@@ -31,7 +31,9 @@ Release notes explain the changes from the earlier version. Read them before try
 
 5. Publish an update
 This part is for the person who makes and shares the app. People who only use it do not need a GitHub account.
-Updates are built and shared on GitHub, in willwalsh14-hub/voice-companion-updates.
+Updates are built on GitHub, in willwalsh1997-byte/voice-companion-updates.
+They are shared from updates.voicecompanionapp.com.
+The newest installer is always at updates.voicecompanionapp.com/VoiceCompanion-Setup.exe.
 A change to the app's files on the main branch starts the build. It checks the app and the installer first. Only a build that passes is shared.
 A failed build shares nothing. Each update needs a new version number.
 Build details are in GITHUB AUTOMATED BUILDS.txt.

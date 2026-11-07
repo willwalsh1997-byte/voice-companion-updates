@@ -121,11 +121,11 @@ class LastContactOnThisComputerTests(ContactsSourceHarness):
         self.assertEqual(self.said(), 'Deleted Zed Local. No contacts here. Press Control+L to show another address book, '
                                       'or Control+N to add a contact.')
         app.handle('where am i', mode)
-        self.assertEqual(self.said(), 'Contacts. Showing Saved on this computer. No contacts here. Press Control+L to show '
+        self.assertEqual(self.said(), 'Address manager. Showing Saved on this computer. No contacts here. Press Control+L to show '
                                       'another address book, or Control+N to add a contact.')
         app.handle('close contacts', mode)
         self.open()
-        self.assertEqual(self.said(), 'Contacts. Showing Saved on this computer. No contacts here. Press Control+L to show '
+        self.assertEqual(self.said(), 'Address manager. Showing Saved on this computer. No contacts here. Press Control+L to show '
                                       'another address book, or Control+N to add a contact.')
         self.assertNotIn('no longer in Thunderbird', self.everything_said())
 
@@ -178,12 +178,12 @@ class NoCalendarTests(CalendarHarness):
         # Before, Calendar opened without a word, so the person did not know where they were.
         mode = app.handle('add appointment tomorrow at 3 PM called doctor', 'awake')
         self.assertEqual(mode, 'awake')
-        self.assertEqual(self.said(), 'Thunderbird has no calendar that can be changed. Press F1 to learn how to add one.')
+        self.assertEqual(self.said(), 'Thunderbird has no calendar that can be changed. Press F1 twice to learn how to add one.')
 
     def test_control_l_does_not_speak_of_one_email_account(self):
         mode = self.open()
         self.press('Ctrl+L', mode)
-        self.assertEqual(self.said(), 'Thunderbird has no calendars turned on. Press F1 to learn how to add one.')
+        self.assertEqual(self.said(), 'Thunderbird has no calendars turned on. Press F1 twice to learn how to add one.')
 
 
 class EmptyContactsTests(ContactsSourceHarness):

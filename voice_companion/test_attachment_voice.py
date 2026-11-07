@@ -424,7 +424,7 @@ class HelpTests(ListVoiceTests.__bases__[0]):
     def test_f1_in_the_list_opens_the_attachments_part_of_the_guide(self):
         # Before: it opened the email chapter on "Read messages", 1 of 7.
         mode = self.press('L', self.opened_message())
-        self.assertEqual(self.press('F1', mode), 'help')
+        self.assertEqual(self.press('Double:F1', mode), 'help')      # F1 twice quickly
         self.assertTrue(self.last().startswith('User guide. Open and save attachments. '), self.last())
 
 

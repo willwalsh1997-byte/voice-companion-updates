@@ -1,7 +1,7 @@
 # Voice Companion — rules for every working session
 
 Voice Companion is a Windows voice and keyboard app for blind and low-vision
-veterans. It is in a private beta: Will (willwalsh14-hub) and a few testers. The
+veterans. It is in a private beta: Will (GitHub: willwalsh1997-byte) and a few testers. The
 people using it cannot see the screen, so a wrong word, a lost sentence or a
 silent failure is a real problem for them. Work to that standard without being
 asked.
@@ -29,6 +29,8 @@ asked.
 - **A merge to `main` that changes anything under `voice_companion/` builds and
   publishes an update to every installed copy.** `.github/workflows/windows-installer.yml`
   builds, tests and then runs `publish_release.py` on `main`.
+- **Updates are hosted on Cloudflare R2, not GitHub releases** (from 0.2.209,
+  November 7, 2026). See "Where updates live" below.
 - Publishing refuses a version that is already released. So every merge that
   touches `voice_companion/` must be a complete release:
   1. Bump the version everywhere: `APP_VERSION` in `companion.py`,
@@ -44,7 +46,9 @@ asked.
   4. If files in `regular_browser_extension/` changed, bump the version in its
      `manifest.json`. The release sends it to the Chrome Web Store for review,
      and store copies update by themselves. Mention Reload on the extension
-     card only for copies a helper loaded by hand.
+     card only for copies a helper loaded by hand. (Chrome Web Store
+     publishing is not set up on the new account yet: the step skips itself
+     and says so in an annotation. That is allowed.)
 - Files outside `voice_companion/` (this file, `tools/`, `.github/ISSUE_TEMPLATE/`,
   `LAUNCH-CHECKLIST.md`) do not trigger a release.
 - **Never merge to `main` without Will's go-ahead for that release**, and never
@@ -72,11 +76,12 @@ asked.
    and why, in the pull request. An unexplained routing change is a bug.
 3. If web or browser code changed, also run `python3 tools/run_checks.py --live --compare main`
    and `node voice_companion/regular_browser_extension/test-worker.cjs`.
-4. After pushing, wait for all three GitHub checks ("Build and publish Windows
-   installer", "Validate updater fixes and live browsers", "Verify standard
-   browser features through extension"). They cover Windows-only behaviour
-   that cannot run here. If one fails and its log cannot be read from this
-   session, ask Will to paste the end of the failed step's log.
+4. On a release candidate, wait for all three Windows checks after pushing
+   ("Build and publish Windows installer", "Validate updater fixes and live
+   browsers", "Verify standard browser features through extension"). They
+   cover Windows-only behaviour that cannot run here. If one fails and its log
+   cannot be read from this session, ask Will to paste the end of the failed
+   step's log. Other pull requests skip them (see "Release rhythm").
 
 ## How releases are run (agreed with Will, October 22, 2026)
 
@@ -90,7 +95,7 @@ back-and-forth, and failures fixed so they do not come back.
 - **Every failure must name itself.** `build-windows.ps1` writes the reason a
   build stopped, and the failed test names with their output, into GitHub
   annotations (`Write-BuildAnnotation`, `Invoke-UnitTests`). Read them with
-  `gh api repos/willwalsh14-hub/voice-companion-updates/check-runs/<id>/annotations`.
+  `gh api repos/willwalsh1997-byte/voice-companion-updates/check-runs/<id>/annotations`.
   Never rerun or guess blind: if a step fails without a readable reason, first
   make that step report its reason. One failed run should be enough to find
   the cause.
@@ -99,14 +104,52 @@ back-and-forth, and failures fixed so they do not come back.
   Automation, PowerShell, NVDA/JAWS) goes first on a separate `claude/try-...`
   branch with a draft pull request, and joins a release only after it passes on
   Windows. Do not hold a release for an untested test.
-- **Small releases.** A fix Will is waiting for (e.g. Gmail broken) ships alone.
-  Bundle big features only when nothing urgent is waiting.
+- **Release rhythm (Will, November 7, 2026): fewer, larger releases.** About
+  one release a week. Gather fixes and features on `claude/...` branches and
+  merge them into one release branch. Ship sooner only for something urgent:
+  a fix Will is waiting for, data loss, or something that stops people
+  working (e.g. email broken). This replaces the earlier "small releases"
+  rule.
+- **Windows checks only on release candidates.** The three Windows workflows
+  cost about 100 build minutes a run, so pull requests run them only when
+  they are a release candidate:
+  - the branch is named `claude/release-<version>` (for example
+    `claude/release-0.2.210`), or
+  - the branch is a Windows trial, `claude/try-...`, or
+  - the pull request has the label `release candidate`.
+  Every other pull request relies on `python3 tools/run_checks.py --compare main`
+  here. A merge to `main` always runs the full build before publishing.
 - **A test that passes on rerun is still a bug.** Find why (timing, focus,
   threads, leftover state) and fix the cause, then note it in
   LAUNCH-CHECKLIST.md.
 - **Check in on long work.** Helpers can stop when a session is interrupted.
   Set a check-in (send_later) for long tasks and verify commits are still
   arriving.
+
+## Where updates live (Cloudflare R2, from November 7, 2026)
+
+- The project is on the willwalsh1997-byte GitHub account:
+  `willwalsh1997-byte/voice-companion-updates`. The old willwalsh14-hub
+  account's releases are no longer published to.
+- Installed copies read the feed at
+  `https://updates.voicecompanionapp.com/voice-companion-update.json`
+  (`voice_companion/update-settings.json`). The R2 bucket is
+  `voice-companion-updates` (the `R2_BUCKET` repository variable can change it).
+- Repository secrets: `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`.
+- In the bucket:
+  - `voice-companion-update.json`: the feed. Written last, never cached.
+  - `VoiceCompanion-Setup.exe`: the newest installer, for first installs.
+  - `releases/v<version>/`: that release's installer, guides, notes and eSpeak
+    source. `published.json` there marks it live; it is never replaced.
+  - `third-party/espeak-ng-1.52.0-source.tar.gz`: the verified eSpeak source
+    the build ships (`fetch_espeak_source.py`, checksum checked every build).
+- `publish_release.py` uploads, checks every file's checksum in the bucket and
+  the installer at the public address, and only then writes the feed. Each
+  published release is also tagged `v<version>` in git.
+- The Thunderbird add-on ID stays `voice-companion-mail@willwalsh14-hub`.
+  Changing it would break every installed add-on.
+- Copies on 0.2.208 or older read the old GitHub feed. They need the 0.2.209
+  installer once, by hand.
 
 ## Windows test lessons
 

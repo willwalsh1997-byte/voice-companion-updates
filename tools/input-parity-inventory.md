@@ -7,17 +7,29 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 
 ## Counts
 
-- Actions inventoried: 760
-- Already had both ways: 598
+- Actions inventoried: 774
+- Already had both ways: 612
 - Gaps found: 162
 - Gaps fixed (Added): 154
 - Not applicable (N/A, with reason): 8
 
 ## Main menu
 
+### File manager
+
+- Voice: "File manager"
+- Keyboard: First letter, arrows, Enter
+- Status: Both
+
 ### Office tools
 
 - Voice: "Office tools"
+- Keyboard: First letter, arrows, Enter
+- Status: Both
+
+### Organizer
+
+- Voice: "Organizer"
 - Keyboard: First letter, arrows, Enter
 - Status: Both
 
@@ -248,7 +260,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### File manager help
 
 - Voice: "File manager help"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ### Main menu
@@ -814,7 +826,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Document help
 
 - Voice: "Help with documents"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ### Word processor options
@@ -917,12 +929,6 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 
 ## Office Menu
 
-### Email
-
-- Voice: "Email"
-- Keyboard: First letter, arrows, Enter
-- Status: Both
-
 ### Word processor
 
 - Voice: "Word processor"
@@ -935,27 +941,37 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 - Keyboard: First letter, arrows, Enter
 - Status: Both
 
+### Email
+
+- Voice: "Email"
+- Keyboard: First letter, arrows, Enter
+- Status: Both
+
 ### Document reader
 
 - Voice: "Document reader"
 - Keyboard: First letter, arrows, Enter
 - Status: Both
 
-### Calendar
+## Organizer Menu
 
-- Voice: "Calendar"
-- Keyboard: First letter, arrows, Enter
-- Status: Both
-
-### Contacts
+### Address manager
 
 - Voice: "Contacts"
 - Keyboard: First letter, arrows, Enter
 - Status: Both
 
-### File manager
+### Schedule manager
 
-- Voice: "File manager"
+- Voice: "Calendar"
+- Keyboard: First letter, arrows, Enter
+- Status: Both
+
+## Favorites Menu
+
+### Change favorite apps
+
+- Voice: "Change favorite apps"
 - Keyboard: First letter, arrows, Enter
 - Status: Both
 
@@ -1022,7 +1038,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Main menu
 
 - Voice: "Main menu"
-- Keyboard: Ctrl+F1
+- Keyboard: F1 twice
 - Status: Both
 
 ## Reader Menu
@@ -1048,13 +1064,13 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Help
 
 - Voice: "Help with document reader"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ### Main menu
 
 - Voice: "Main menu"
-- Keyboard: Ctrl+F1
+- Keyboard: F1 twice
 - Status: Both
 
 ## Media Menu
@@ -1575,6 +1591,80 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 
 - Voice: "Set Keep a transcript of everything Voice Companion says to ..."
 - Keyboard: Alt+O, arrows to Startup and exit options, Tab to the field, arrows or Space, Enter to save
+- Status: Both
+
+## My menu
+
+### File manager in Favorite apps
+
+- Voice: "Set File manager in Favorite apps to ..."
+- Keyboard: Alt+O, arrows to My menu, Tab to the field, arrows or Space, Enter to save
+- Status: Both
+
+### Word processor in Favorite apps
+
+- Voice: "Set Word processor in Favorite apps to ..."
+- Keyboard: Alt+O, arrows to My menu, Tab to the field, arrows or Space, Enter to save
+- Status: Both
+
+### Notepad in Favorite apps
+
+- Voice: "Set Notepad in Favorite apps to ..."
+- Keyboard: Alt+O, arrows to My menu, Tab to the field, arrows or Space, Enter to save
+- Status: Both
+
+### Email in Favorite apps
+
+- Voice: "Set Email in Favorite apps to ..."
+- Keyboard: Alt+O, arrows to My menu, Tab to the field, arrows or Space, Enter to save
+- Status: Both
+
+### Document reader in Favorite apps
+
+- Voice: "Set Document reader in Favorite apps to ..."
+- Keyboard: Alt+O, arrows to My menu, Tab to the field, arrows or Space, Enter to save
+- Status: Both
+
+### Address manager in Favorite apps
+
+- Voice: "Set Address manager in Favorite apps to ..."
+- Keyboard: Alt+O, arrows to My menu, Tab to the field, arrows or Space, Enter to save
+- Status: Both
+
+### Schedule manager in Favorite apps
+
+- Voice: "Set Schedule manager in Favorite apps to ..."
+- Keyboard: Alt+O, arrows to My menu, Tab to the field, arrows or Space, Enter to save
+- Status: Both
+
+### Web browser in Favorite apps
+
+- Voice: "Set Web browser in Favorite apps to ..."
+- Keyboard: Alt+O, arrows to My menu, Tab to the field, arrows or Space, Enter to save
+- Status: Both
+
+### Radio in Favorite apps
+
+- Voice: "Set Radio in Favorite apps to ..."
+- Keyboard: Alt+O, arrows to My menu, Tab to the field, arrows or Space, Enter to save
+- Status: Both
+
+### Podcasts in Favorite apps
+
+- Voice: "Set Podcasts in Favorite apps to ..."
+- Keyboard: Alt+O, arrows to My menu, Tab to the field, arrows or Space, Enter to save
+- Status: Both
+
+### Media player in Favorite apps
+
+- Voice: "Set Media player in Favorite apps to ..."
+- Keyboard: Alt+O, arrows to My menu, Tab to the field, arrows or Space, Enter to save
+- Status: Both
+
+### YouTube in Favorite apps
+
+- Voice: "Set YouTube in Favorite apps to ..."
+- Keyboard: Alt+O, arrows to My menu, Tab to the field, arrows or Space, Enter to save
 - Status: Both
 
 ## Radio
@@ -2208,7 +2298,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Email help
 
 - Voice: "Help with email"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ### Main menu
@@ -2380,7 +2470,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Writing email help
 
 - Voice: "Help with writing email"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ## Alt menu, Email draft: Attachments
@@ -2490,7 +2580,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Notepad help
 
 - Voice: "Help with notepad"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ### Main menu
@@ -2650,7 +2740,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Web help
 
 - Voice: "Help with web"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ## Alt menu, Downloads: Download
@@ -2716,7 +2806,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Downloads help
 
 - Voice: "Help with downloads"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ### Close downloads
@@ -2725,7 +2815,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 - Keyboard: Escape
 - Status: Both
 
-## Alt menu, Contacts: Contact
+## Alt menu, Address manager: Contact
 
 ### Email this person
 
@@ -2763,7 +2853,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 - Keyboard: Delete
 - Status: Both
 
-## Alt menu, Contacts: Contacts
+## Alt menu, Address manager: Address manager
 
 ### Add contact
 
@@ -2783,10 +2873,10 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 - Keyboard: Alt, 2, 3
 - Status: Added: Alt menu path
 
-### Contacts help
+### Address manager help
 
 - Voice: "Help with contacts"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ### Main menu
@@ -2801,7 +2891,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 - Keyboard: Ctrl+L
 - Status: Both
 
-## Alt menu, Calendar: Event
+## Alt menu, Schedule manager: Event
 
 ### Read event
 
@@ -2839,7 +2929,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 - Keyboard: Delete
 - Status: Both
 
-## Alt menu, Calendar: Day
+## Alt menu, Schedule manager: Day
 
 ### Today
 
@@ -2877,7 +2967,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 - Keyboard: Ctrl+G
 - Status: Both
 
-## Alt menu, Calendar: Calendar
+## Alt menu, Schedule manager: Schedule manager
 
 ### Refresh calendar
 
@@ -2885,10 +2975,10 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 - Keyboard: Alt, 3, 1
 - Status: Added: Alt menu path
 
-### Calendar help
+### Schedule manager help
 
 - Voice: "Help with calendar"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ### Main menu
@@ -2994,7 +3084,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### List commands
 
 - Voice: "List commands"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ### Main menu
@@ -3050,7 +3140,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Attachments help
 
 - Voice: "Help with attachments"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ### Close the list
@@ -3196,7 +3286,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Document reader help
 
 - Voice: "Help with document reader"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ## Alt menu, YouTube actions: Play
@@ -3514,7 +3604,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### YouTube help
 
 - Voice: "Help with youtube"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Both
 
 ### Media menu
@@ -3718,7 +3808,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Help for the current screen
 
 - Voice: "Help with documents", "Help with email", ...
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Added: F1 on email, notes, web, media, reader and menu screens
 
 ### Choose a topic or part
@@ -4030,7 +4120,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Notepad help
 
 - Voice: "Help with notepad"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Added: F1
 
 ### Start or end of the typing line
@@ -4166,7 +4256,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Help with writing email
 
 - Voice: "Help with writing email"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Added: F1
 
 ## Email: read and organize
@@ -4330,7 +4420,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Email help
 
 - Voice: "Help with email"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Added: F1
 
 ## Web: page reading
@@ -4428,7 +4518,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Web help
 
 - Voice: "Help with web"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Added: F1
 
 ### Close the browser window, even when kept open
@@ -4630,7 +4720,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Radio or podcast help
 
 - Voice: "Help with radio", "Help with podcasts"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Added: F1
 
 ## Media player
@@ -4650,7 +4740,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Media player help
 
 - Voice: "Help with media player"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Added: F1
 
 ## Document reader
@@ -4712,7 +4802,7 @@ The command box (Alt+T, type the command, Enter) also works everywhere but is no
 ### Help
 
 - Voice: "Help with document reader"
-- Keyboard: F1
+- Keyboard: F1 twice
 - Status: Added: F1 and voice Help
 
 ## Sleep, exit and power

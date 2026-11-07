@@ -50,7 +50,7 @@ from menu_navigation import boundary_notice, bounded_index, next_match, menu_lab
 APP = Path(os.getenv('VOICE_COMPANION_DATA_DIR') or
            (Path(os.getenv('LOCALAPPDATA', str(Path.home()))) / 'VoiceCompanion'))
 DEFAULT_APP = APP
-APP_VERSION = '0.2.208-test'
+APP_VERSION = '0.2.209-test'
 POWER_COMMANDS={'restart computer':'restart','restart the computer':'restart','restart windows':'restart','reboot computer':'restart','shut down computer':'shutdown','shut down the computer':'shutdown','shutdown computer':'shutdown','shut down windows':'shutdown','turn off computer':'shutdown','turn off the computer':'shutdown'}
 POWER_COMMANDS.update(dict.fromkeys(('shut off the computer','shut off computer','turn the computer off','turn computer off','shut the computer down','shut computer down'), 'shutdown'))
 POWER_COMMANDS.update(dict.fromkeys(('reboot the damn thing','reboot the computer','reboot','restart','restart the damn thing'), 'restart'))
@@ -360,7 +360,7 @@ def create_named_document(value):
     checkpoint_document()
     apply_document_defaults(document)
     document.dictating=INPUT_MODE!='commands'
-    speak('New document, '+name+'. Speak or type to write. For help, say help with documents, or press F1.')
+    speak('New document, '+name+'. Speak or type to write. For help, say help with documents, or press F1 twice.')
     return 'document'
 
 def start_save_as(name_text=None):
@@ -765,7 +765,7 @@ SLEEP_RETURN_MODE = 'awake'
 MAIN_MENU_HELP = ('help me', 'what can i say', 'what can i do', 'what do i say', 'i need help', 'please help',
                   'help me please', 'help please', 'what are my choices', 'what are my options')
 MAIN_MENU_FIRST = 'You are on the main menu. It is the first screen, so there is nothing to go back to. Say a choice, or say help.'
-MAIN_MENU_NOT_UNDERSTOOD = 'I did not understand that. You are on the main menu. Press F1 for help.'
+MAIN_MENU_NOT_UNDERSTOOD = 'I did not understand that. You are on the main menu. Press F1 twice for help.'
 MAIN_MENU_PROMPT = 'Main menu. What would you like to do? Say next or previous to move through the items, and okay, confirm, confirm that, or that one to open.'
 
 # Said together with the next main menu announcement, in one message: a second
@@ -788,10 +788,11 @@ def startup_prompt():
     return startup_speech.announcement(APP_VERSION, microphone_state())
 
 MAIN_MENU_INDEX = None
-# Grouped (Will, November 5, 2026): Office tools holds Email, Word processor, Notepad, Document
-# reader, Calendar, Contacts and File manager; Shut down or restart holds the two power choices.
-# Every app's own command still works from here ("email", "file manager").
-MAIN_MENU_CHOICES = (('Office tools', 'office tools'), ('Web browser', 'web browser'), ('Media', 'media menu'), ('Options', 'options'), ('Check for updates', 'check for updates'), ('Help', 'help'), ('Shut down or restart', 'shut down or restart'), ('Exit Voice Companion', 'exit companion'))
+# Grouped (Will, November 6, 2026): File manager first, on its own. Office tools holds Word
+# processor, Notepad, Email and Document reader. Organizer holds Address manager (contacts) and
+# Schedule manager (calendar). Shut down or restart holds the two power choices. Every app's own
+# command still works from here ("email", "contacts", "calendar").
+MAIN_MENU_CHOICES = (('File manager', 'file manager'), ('Office tools', 'office tools'), ('Organizer', 'organizer'), ('Web browser', 'web browser'), ('Media', 'media menu'), ('Options', 'options'), ('Check for updates', 'check for updates'), ('Help', 'help'), ('Shut down or restart', 'shut down or restart'), ('Exit Voice Companion', 'exit companion'))
 
 
 def resume_from_sleep():
@@ -1109,9 +1110,17 @@ def navigation_key(key,mode):
     if key=='F9':
         # F9 turns the microphone fully off or on, on every screen.
         return '@microphone'
-    if key=='Ctrl+F1':
-        # Control+F1 goes back to the main menu from every screen.
+    if key=='F1':
+        # F1 goes back to the main menu from every screen (Will, November 6, 2026). The window
+        # sends it after waiting a moment for a second press; see f1_key.py.
         return '@main_menu'
+    if key=='Ctrl+F1':
+        # Control+F1 opens Favorite apps from every screen.
+        return '@favorites'
+    if key=='Double:F1':
+        # F1 twice quickly: help for this screen (on the main menu, the user guide). Each screen
+        # still knows its help as 'F1', as before.
+        key='F1'
     if key.startswith('Display:'):
         # Control+Plus, Control+Minus, Control+0, Control+9 and F11 change the screen on every screen.
         previous=KEYBOARD_NAVIGATION;KEYBOARD_NAVIGATION=True
@@ -1384,7 +1393,7 @@ def task_navigation():
 
 def options_return_notice(mode):
     logical=SLEEP_RETURN_MODE if mode=='sleep' else mode
-    return {'awake':'Main menu.','document':'Back to document.','email_draft':'Back to email draft.','mailbox':'Back to email.','web':'Back to web page.','browser_menu':'Back to web browser menu.','note':'Back to your note.','notepad_menu':'Back to Notepad menu.','reader_menu':'Back to Document reader menu.','files':'Back to file manager.','word_processor':'Back to Word processor menu.','document_menu':'Back to document menu.','media_menu':'Back to Media menu.','office_menu':'Back to Office tools.','power_menu':'Back to Shut down or restart.','local_media':'Back to Media player.','recent_documents':'Back to recent documents list.','reader_recent':'Back to recent documents list.','file_reader':'Back to document reader.','help':'Back to help.','media':'Back to media.','attachments':'Back to attachments.','draft_leave':'Back to the question about your email.','youtube':'Back to YouTube.'}.get(logical,'Back to '+logical.replace('_',' ')+'.')
+    return {'awake':'Main menu.','document':'Back to document.','email_draft':'Back to email draft.','mailbox':'Back to email.','web':'Back to web page.','browser_menu':'Back to web browser menu.','note':'Back to your note.','notepad_menu':'Back to Notepad menu.','reader_menu':'Back to Document reader menu.','files':'Back to file manager.','word_processor':'Back to Word processor menu.','document_menu':'Back to document menu.','media_menu':'Back to Media menu.','office_menu':'Back to Office tools.','organizer_menu':'Back to Organizer.','favorites_menu':'Back to Favorite apps.','contacts':'Back to Address manager.','calendar':'Back to Schedule manager.','power_menu':'Back to Shut down or restart.','local_media':'Back to Media player.','recent_documents':'Back to recent documents list.','reader_recent':'Back to recent documents list.','file_reader':'Back to document reader.','help':'Back to help.','media':'Back to media.','attachments':'Back to attachments.','draft_leave':'Back to the question about your email.','youtube':'Back to YouTube.'}.get(logical,'Back to '+logical.replace('_',' ')+'.')
 
 def poll_file_manager(mode):
     global FILE_READER,SLEEP_RETURN_MODE
@@ -4149,7 +4158,7 @@ VERSION_QUESTIONS = ('what version', 'what version is this', 'which version', 'w
 
 
 def _handle(text, mode, typed=False):
-    global DOCUMENT_NAMING_ACTION, THUNDERBIRD_SIGN_IN
+    global DOCUMENT_NAMING_ACTION, THUNDERBIRD_SIGN_IN, FAVORITES_AFTER
     global SYNTH_PICK_INDEX, VOICE_PICK_ENGINE, MAIN_MENU_INDEX, ACCOUNT_MENU_INDEX
     global SLEEP_RETURN_MODE, document, email_draft, pending_website, pending_send, mail_session, web_session, account_setup, INPUT_MODE, VOICE_PICK_INDEX, VOICE_PICK_ORIGINAL, VOICE_PICK_CONFIRM, MEDIA_SECTION, help_session, help_return_mode, tutorial_session, AI_VOICE_NAME
     text = text.strip()
@@ -4167,8 +4176,16 @@ def _handle(text, mode, typed=False):
     command=normalized_command(text)
     if text=='@microphone':
         return set_microphone(MICROPHONE_OFF, mode)
+    if text=='@favorites':
+        # Control+F1: Favorite apps. Other screens close first, as for the main menu, so a
+        # document still asks to save; then Favorite apps opens.
+        if mode in ('awake',)+GROUP_MENU_MODES+('power_menu','media_menu') and ACCOUNT_ENTRY is None and THUNDERBIRD_SETUP is None and not account_setup:
+            FAVORITES_AFTER=False
+            return open_favorites()
+        FAVORITES_AFTER=True
+        return handle('main menu', mode, typed=True)
     if text=='@main_menu':
-        # Control+F1: the same as saying Main menu, so each screen saves or asks first.
+        # F1: the same as saying Main menu, so each screen saves or asks first.
         if mode=='awake' and ACCOUNT_ENTRY is None and THUNDERBIRD_SETUP is None and not account_setup:
             announce_main_menu();return 'awake'
         return handle('main menu', mode, typed=True)
@@ -4183,7 +4200,7 @@ def _handle(text, mode, typed=False):
         if answered is not None:
             return answered
     if account_setup and command in OFFICE_LEAVE_TO_MAIN:
-        # Main menu or Control+F1 ends the account type question; it must not stay behind
+        # Main menu or F1 ends the account type question; it must not stay behind
         # the main menu, where the arrows would still move through the account types.
         account_setup=False
         MAIN_MENU_LEAD='Account setup canceled.'
@@ -4447,7 +4464,7 @@ def _handle(text, mode, typed=False):
         if control:
             control_speech(control);return mode
         if command in ('main menu','back to main menu','go to main menu'):
-            # Control+F1 or "Main menu" in Options: close it (changes not saved) and go there.
+            # F1 or "Main menu" in Options: close it (changes not saved) and go there.
             SETTINGS_PANEL.cancel();__import__('app_settings').stop_preview(sys.modules[__name__])
             MAIN_MENU_LEAD='Options closed.'   # handle() says it with Main menu, in one message
             return 'awake'
@@ -5896,11 +5913,11 @@ def _handle(text, mode, typed=False):
         SEARCH_RETURN_MODE='awake'
         speak('Web address or search. Say or type an address or a search, then press Enter. Addresses do not need www or https. Escape cancels.')
         return 'search'
-    if mode in ('word_processor','notepad_menu','reader_menu','media_menu','office_menu','power_menu','local_media','recent_documents','reader_recent'):
+    if mode in ('word_processor','notepad_menu','reader_menu','media_menu','office_menu','organizer_menu','favorites_menu','power_menu','local_media','recent_documents','reader_recent'):
         # Nothing above understood the words. A misheard word must not throw you out of
         # this menu (or stop the file playing): stay, and say where you are.
         if command in ('main menu','back to main menu','go to main menu'):return 'awake'   # handle() says Main menu
-        speak('I did not understand that. You are on the '+options_return_notice(mode)[len('Back to '):].rstrip('.')+'. Press F1 for help.')
+        speak('I did not understand that. You are on the '+options_return_notice(mode)[len('Back to '):].rstrip('.')+'. Press F1 twice for help.')
         return mode
     if mode == 'awake' and spoken_website(text):return 'awake'
     if mode == 'awake':
@@ -6052,7 +6069,7 @@ _HANDLE_DEPTH = 0
 SAFETY_NET = None
 # Screens that come back to the note with its words: questions, Help, sleep and Options.
 NOTE_KEPT_OPEN = ('note','sleep','help','tutorial','exit_confirm','power_confirm','settings','update_offer','exit')
-COMMAND_FAILED = 'That did not work because of a problem in Voice Companion. You are still on {screen}. Try again, or press F1 for help.'
+COMMAND_FAILED = 'That did not work because of a problem in Voice Companion. You are still on {screen}. Try again, or press F1 twice for help.'
 
 
 def safety_net_on():
@@ -6080,50 +6097,82 @@ def command_failed(exc, mode):
     return mode if mode != 'exit' else 'awake'
 
 
-# True while you are in an app opened from Office tools. Leaving the app (Escape, Go back,
-# Close) then goes back to Office tools, one level up, not to the main menu. Saying Main menu,
-# or Control+F1, still goes to the main menu (Will, November 5, 2026).
+# The group menu you opened an app from: Office tools, Organizer or Favorite apps, or False.
+# Leaving the app (Escape, Go back, Close) then goes back to that menu, one level up, not to
+# the main menu. Saying Main menu, or F1, still goes to the main menu (Will, November 5 and 6, 2026).
 OFFICE_RETURN = False
 OFFICE_LEAVE_TO_MAIN = ('main menu', 'back to main menu', 'go to main menu', 'go back to main menu', 'return to main menu')
-# Places that are not part of Office tools: going there ends the way back.
+GROUP_MENU_MODES = ('office_menu', 'organizer_menu', 'favorites_menu')
+# Places that are not part of Office tools or Organizer: going there ends the way back.
+# Favorite apps holds the web browser and media too, so only Shut down or restart ends its way back.
 OFFICE_ELSEWHERE = ('web', 'browser_menu', 'search', 'media', 'media_menu', 'local_media', 'podcast', 'youtube', 'power_menu')
+# Control+F1 opens Favorite apps once the screen you were on is closed (a document may ask
+# to save first). These questions keep that request waiting for their answer.
+FAVORITES_AFTER = False
+LEAVE_QUESTIONS = ('document_save', 'document_name', 'document_replace', 'draft_leave')
 
 
 def office_return(text, mode, result):
-    global OFFICE_RETURN, MAIN_MENU_LEAD
+    global OFFICE_RETURN, MAIN_MENU_LEAD, FAVORITES_AFTER
+    if FAVORITES_AFTER:
+        if result == 'awake':
+            FAVORITES_AFTER = False
+            OFFICE_RETURN = False
+            lead, MAIN_MENU_LEAD = MAIN_MENU_LEAD.strip(), ''
+            return open_favorites(lead)
+        if result not in LEAVE_QUESTIONS:
+            FAVORITES_AFTER = False
     setting_up = bool(account_setup or ACCOUNT_ENTRY is not None or THUNDERBIRD_SETUP is not None)
-    if mode == 'office_menu' and (result not in ('office_menu', 'awake', 'sleep', 'exit', 'exit_confirm') or result == 'awake' and setting_up):
+    if mode in GROUP_MENU_MODES and (result not in GROUP_MENU_MODES + ('awake', 'sleep', 'exit', 'exit_confirm') or result == 'awake' and setting_up):
         # Email with no account yet starts adding one on the main menu screen.
-        OFFICE_RETURN = True
+        OFFICE_RETURN = mode
         return result
     leaving_to_main = text == '@main_menu' or normalized_command(text) in OFFICE_LEAVE_TO_MAIN
-    if mode == 'office_menu' and result == 'awake' and not leaving_to_main and normalized_command(text) not in (
+    if mode in GROUP_MENU_MODES and result == 'awake' and not leaving_to_main and normalized_command(text) not in (
             'escape', 'go back', 'back', 'exit', 'leave', 'close'):
-        # The app could not open (Calendar before Thunderbird is set up) and said why: stay here.
+        # The app could not open (Schedule manager before Thunderbird is set up) and said why: stay here.
         lead, MAIN_MENU_LEAD = MAIN_MENU_LEAD.strip(), ''
         if lead:speak(lead)
-        return 'office_menu'
-    if result in OFFICE_ELSEWHERE or result == 'office_menu' or mode == 'office_menu' and result == 'awake' and not setting_up:
-        # Back in Office tools (Help closed there), or left it for the main menu: the way back
-        # is used up. Kept, the next main menu key would jump into Office tools.
+        return mode
+    if (result == 'power_menu' or result in OFFICE_ELSEWHERE and OFFICE_RETURN != 'favorites_menu'
+            or result in GROUP_MENU_MODES or mode in GROUP_MENU_MODES and result == 'awake' and not setting_up):
+        # Back in a group menu (Help closed there), or left it for the main menu: the way back
+        # is used up. Kept, the next main menu key would jump into that menu.
         OFFICE_RETURN = False
         return result
     if mode == 'awake' and result == 'awake' and OFFICE_RETURN:
         # Adding an email account opened from Office tools: canceling goes back there.
         if setting_up:
             return result
-    elif result != 'awake' or mode in ('awake', 'sleep', 'office_menu'):
+    elif result != 'awake' or mode in ('awake', 'sleep') + GROUP_MENU_MODES:
         return result
-    back = OFFICE_RETURN and not leaving_to_main
+    back = OFFICE_RETURN if not leaving_to_main else False
     OFFICE_RETURN = False
     if not back:
         return result
     lead, MAIN_MENU_LEAD = MAIN_MENU_LEAD.strip(), ''
-    return group_menu('office_menu', (lead + ' ' if lead else '') + 'Office tools.')
+    return group_menu(back, (lead + ' ' if lead else '') + GROUP_TITLES[back] + '.')
+
+
+GROUP_TITLES = {'office_menu': 'Office tools', 'organizer_menu': 'Organizer', 'favorites_menu': 'Favorite apps',
+                'power_menu': 'Shut down or restart'}
+
+
+def open_favorites(lead=''):
+    """Favorite apps (Control+F1): the apps chosen in Options, My menu, then Change favorite apps."""
+    navigation = task_navigation()
+    items = navigation.items('favorites_menu')
+    navigation.indices['favorites_menu'] = 0
+    words = (lead + ' ' if lead else '') + 'Favorite apps. '
+    if len(items) == 1:
+        words += 'No apps are in it yet. To add apps, press Enter on Change favorite apps. '
+    speak(words + navigation.describe(items[0], 0, len(items)))
+    return 'favorites_menu'
 
 
 def group_menu(menu, words):
-    """Back to Office tools or Shut down or restart, on the item you left, in one message."""
+    """Back to a group menu (Office tools, Organizer, Favorite apps, Shut down or restart), on the
+    item you left, in one message."""
     navigation = task_navigation()
     items = navigation.items(menu)
     index = navigation.indices.get(menu, 0)

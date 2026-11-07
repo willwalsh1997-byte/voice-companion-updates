@@ -285,7 +285,7 @@ SEARCH_MENU=(('Search current list','Ctrl+F','search files'),('Search subfolders
 SORT_MENU=(('Name','Ctrl+1','sort key name'),('Date modified','Ctrl+2','sort key date modified'),('Type','Ctrl+3','sort key type'),('Size','Ctrl+4','sort key size'),
            ('Date created','Ctrl+5','sort key date created'),('Date added (first seen here)','Alt+D','sort by date added'),
            ('Ascending','Ctrl+Shift+Up','sort ascending'),('Descending','Ctrl+Shift+Down','sort descending'))
-GO_MENU=(('Refresh','F5','refresh'),('Previous folder','Escape','go back'),('Drive list','Ctrl+D','drive list'),('File manager help','F1','file manager help'),('Main menu','Alt+Home','main menu'))
+GO_MENU=(('Refresh','F5','refresh'),('Previous folder','Escape','go back'),('Drive list','Ctrl+D','drive list'),('File manager help','Double:F1','file manager help'),('Main menu','Alt+Home','main menu'))
 GROUPS={'actions':('Actions',ACTIONS),'search':('Search',SEARCH_MENU),'sort':('Sort',SORT_MENU),'go':('Go to',GO_MENU)}
 MENU=tuple((name,'','open group '+key) for key,(name,_) in GROUPS.items())
 # Email this file and Attach to draft need the app (attachment_screen.py); File manager hands them over.
@@ -421,7 +421,7 @@ class FileManager:
         # A recognizer ends "Photos." with a period; Windows names never end in one.
         heard=name.strip().rstrip('.!?');name=heard.casefold()
         matches=[(n,i) for n,i in enumerate(self.items) if i.name.casefold()==name or i.path.casefold()==name or Path(i.name).stem.casefold()==name or (i.drive and name in (ntpath.splitdrive(i.path)[0].rstrip(':').casefold()+' drive','drive '+ntpath.splitdrive(i.path)[0].rstrip(':').casefold()))]
-        if len(matches)!=1:raise ValueError('More than one item matches. Use arrows or say its full path.' if matches else 'No item is named '+heard+'. Say an item name, or press F1 for help.')
+        if len(matches)!=1:raise ValueError('More than one item matches. Use arrows or say its full path.' if matches else 'No item is named '+heard+'. Say an item name, or press F1 twice for help.')
         self.index=matches[0][0]
     def command(self,text,typed=False):
         text=text.strip();cmd=text.casefold().rstrip('.!?')

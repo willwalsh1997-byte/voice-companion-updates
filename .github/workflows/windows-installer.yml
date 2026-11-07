@@ -2,6 +2,7 @@ name: Build and publish Windows installer
 on:
   workflow_dispatch:
   pull_request:
+    types: [opened, synchronize, reopened, labeled]
     branches: [main]
     paths:
       - 'voice_companion/**'
@@ -12,6 +13,7 @@ on:
       - 'voice_companion/**'
       - '.github/workflows/windows-installer.yml'
 permissions:
+  # Write: tags each published release (v<version>) on main.
   contents: write
   # Signs in to the Chrome Web Store without a stored key. Google accepts only
   # main of this repository (tools/chrome-store-publishing.md).
@@ -21,6 +23,14 @@ concurrency:
   cancel-in-progress: true
 jobs:
   installer:
+    # Windows minutes are kept for release candidates (CLAUDE.md, November 7, 2026): a pull
+    # request from a claude/release-... or claude/try-... branch, or one labeled
+    # "release candidate". Merges to main, and Run workflow, always run.
+    if: >-
+      github.event_name != 'pull_request' ||
+      startsWith(github.head_ref, 'claude/release-') ||
+      startsWith(github.head_ref, 'claude/try-') ||
+      contains(github.event.pull_request.labels.*.name, 'release candidate')
     runs-on: windows-2022
     timeout-minutes: 120
     env:
@@ -33,6 +43,12 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
+      - name: Install the update bucket client
+        # Cloudflare R2 (S3 API). Used for the eSpeak source and for publishing.
+        shell: pwsh
+        run: |
+          python -m pip install --disable-pip-version-check boto3==1.43.126
+          if ($LASTEXITCODE -ne 0) { throw 'The update bucket client (boto3) could not be installed.' }
       - name: Check the browser extension version was raised
         if: github.event_name == 'pull_request'
         run: |
@@ -61,11 +77,19 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Inno Setup installation failed.' }
       - name: Restore pinned eSpeak runtime and corresponding source
         shell: pwsh
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ vars.R2_BUCKET }}
         run: |
           python ./voice_companion/prepare_espeak.py ./voice_companion/espeak
           if ($LASTEXITCODE -ne 0) { throw 'eSpeak preparation failed.' }
+          # From the update bucket (third-party/). The first build copies it there from the
+          # old account's v0.2.77-test release. The checksum is checked either way.
           $source = './voice_companion/espeak/espeak-ng-1.52.0-source.tar.gz'
-          Invoke-WebRequest 'https://github.com/willwalsh14-hub/voice-companion-updates/releases/download/v0.2.77-test/espeak-ng-1.52.0-source.tar.gz' -OutFile $source
+          python ./voice_companion/fetch_espeak_source.py $source
+          if ($LASTEXITCODE -ne 0) { throw 'The verified eSpeak source could not be found. Read the annotation.' }
           if ((Get-FileHash $source -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'bb4338102ff3b49a81423da8a1a158b420124b055b60fa76cfb4b18677130a23') { throw 'The eSpeak source checksum differs from the verified source.' }
           if (-not (Test-Path './voice_companion/espeak/COPYING')) { throw 'The eSpeak distribution license is missing.' }
       - name: Build and test complete installer
@@ -117,14 +141,26 @@ jobs:
           & $python -u ./voice_companion/consumer_voice_audit.py
           if ($LASTEXITCODE -ne 0) { throw 'A recognized synthetic speech command failed its routing check. Read the voice audit report.' }
       - name: Publish verified installer and update feed
+        # To the update bucket on Cloudflare R2 (updates.voicecompanionapp.com), not GitHub releases.
         if: github.ref == 'refs/heads/main'
         shell: pwsh
         env:
-          # Publishes to the public releases-only repository too (voice-companion-releases).
-          RELEASES_TOKEN: ${{ secrets.RELEASES_TOKEN }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ vars.R2_BUCKET }}
         run: |
-          & python -u ./voice_companion/publish_release.py --setup ./voice_companion/VoiceCompanion-Setup.exe --gh gh
-          if ($LASTEXITCODE -ne 0) { throw 'Publishing failed. Read the progress log.' }
+          & python -u ./voice_companion/publish_release.py --setup ./voice_companion/VoiceCompanion-Setup.exe
+          if ($LASTEXITCODE -ne 0) { throw 'Publishing failed. Read the annotation and the progress log.' }
+      - name: Tag the published release
+        # The Chrome Web Store check reads the extension from this tag.
+        if: github.ref == 'refs/heads/main'
+        shell: pwsh
+        run: |
+          $version = (Get-Content ./voice_companion/VoiceCompanion-Published.json -Raw | ConvertFrom-Json).version
+          git tag "v$version" $env:GITHUB_SHA
+          git push origin "v$version"
+          if ($LASTEXITCODE -ne 0) { Write-Output "::warning title=Release tag not pushed::v$version is published, but its tag could not be pushed." }
       - name: Send the browser extension to the Chrome Web Store
         # Uploads only a higher extension version, then submits it for review; Chrome updates users on its own.
         # Its annotation says what happened. It never fails the release, which is already public.

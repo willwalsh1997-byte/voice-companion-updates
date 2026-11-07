@@ -152,7 +152,7 @@ class MainMenuWhereAmITests(CompanionTestCase):
         companion.handle('next', 'awake')
         companion.MICROPHONE_OFF = True
         companion.handle('where am i', 'awake')
-        self.assertEqual(self.said[-1], 'Main menu. Office tools (O), 1 of 8. The microphone is off, as you left it. Press F9 to turn it on.')
+        self.assertEqual(self.said[-1], 'Main menu. File manager (F), 1 of 10. The microphone is off, as you left it. Press F9 to turn it on.')
 
 
 class UnknownWordsOnLaunchMenusTests(CompanionTestCase):
@@ -177,7 +177,7 @@ class UnknownWordsOnLaunchMenusTests(CompanionTestCase):
                 self.assertEqual(companion.handle(command, 'awake'), mode)
                 self.said.clear()
                 self.assertEqual(companion.handle('banana bread', mode), mode)
-                self.assertEqual(self.said, ['I did not understand that. You are on the ' + name + '. Press F1 for help.'])
+                self.assertEqual(self.said, ['I did not understand that. You are on the ' + name + '. Press F1 twice for help.'])
 
     def test_main_menu_from_a_launch_menu_says_main_menu_once(self):
         for command, mode, name in self.SCREENS:
@@ -189,9 +189,10 @@ class UnknownWordsOnLaunchMenusTests(CompanionTestCase):
                 self.assertEqual(self.said, [companion.MAIN_MENU_PROMPT])
 
     def test_the_main_menu_says_where_you_are_like_other_menus(self):
-        # Will, October 2026: the same short answer as the other menus, with F1 for help.
+        # Will, October 2026: the same short answer as the other menus, with F1 twice for help
+        # (F1 once is the main menu since November 6, 2026).
         companion.handle('banana bread', 'awake')
-        self.assertEqual(self.said[-1], 'I did not understand that. You are on the main menu. Press F1 for help.')
+        self.assertEqual(self.said[-1], 'I did not understand that. You are on the main menu. Press F1 twice for help.')
 
 
 class UpdaterStateTests(unittest.TestCase):
@@ -233,7 +234,7 @@ class HelpAndTutorialReturnTests(CompanionTestCase):
 
     def test_closing_help_names_the_menu_you_return_to(self):
         mode = companion.handle('word processor', 'awake')
-        mode = self.key('F1', mode)
+        mode = self.key('Double:F1', mode)                 # F1 twice quickly: help
         self.assertEqual(mode, 'help')
         self.assertNotIn('..', self.said[-1])
         mode = self.key('Escape', self.key('Escape', mode))
@@ -241,7 +242,8 @@ class HelpAndTutorialReturnTests(CompanionTestCase):
         self.assertEqual(self.said[-1], 'Help closed. Back to Word processor menu.')
 
     def test_closing_help_on_the_main_menu_is_one_message(self):
-        mode = self.key('F1', 'awake')
+        mode = self.key('Double:F1', 'awake')              # F1 twice quickly: the user guide
+        self.assertEqual(mode, 'help')
         self.said.clear()
         self.assertEqual(self.key('Escape', mode), 'awake')
         self.assertEqual(self.said, ['Help closed. ' + companion.MAIN_MENU_PROMPT])
@@ -299,7 +301,7 @@ class SpokenKeyNamesTests(CompanionTestCase):
         from menu_navigation import spoken_key
         for key, words in (('Ctrl+O', 'Control+O'), ('Ctrl+Shift+S', 'Control+Shift+S'), ('Up', 'Up Arrow'),
                            ('Ctrl+Shift+Down', 'Control+Shift+Down Arrow'), ('PgDn', 'Page Down'), ('Esc', 'Escape'),
-                           ('ShiftTab', 'Shift+Tab'), ('Alt, 3, 2', 'Alt, 3, 2'), ('F1', 'F1'), ('Enter', 'Enter'),
+                           ('ShiftTab', 'Shift+Tab'), ('Alt, 3, 2', 'Alt, 3, 2'), ('F1', 'F1'), ('Double:F1', 'F1 twice'), ('Enter', 'Enter'),
                            ('Insert+Shift+Down', 'Insert+Shift+Down Arrow'), ('Ctrl+Alt+1', 'Control+Alt+1'), ('', '')):
             self.assertEqual(spoken_key(key), words)
 
@@ -362,7 +364,8 @@ class OptionsLeavingTests(CompanionTestCase):
     def test_the_options_window_passes_main_menu_and_microphone_keys_to_the_app(self):
         import inspect, native_settings
         source = inspect.getsource(native_settings.NativeSettings._run)
-        self.assertIn("self.keyboard('Ctrl+F1')", source)
+        self.assertIn("self.keyboard('Ctrl+F1')", source)          # Favorite apps
+        self.assertIn("self.keyboard('Double:F1')", source)        # help; F1 once (the main menu) follows the wait
         self.assertIn("self.keyboard('F9')", source)
 
 

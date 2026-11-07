@@ -94,7 +94,9 @@ class FileManagerTests(unittest.TestCase):
             app.handle('delete','files');self.assertEqual(app.CONFIRM_CHOICE,'no')
             self.assertEqual(app.navigation_key('Enter','files'),'no')
             app.handle('no','files');self.assertFalse(self.backend.actions)
-        self.assertEqual(app.task_navigation().items('office_menu')[-1],('File manager','','file manager'))
+        # File manager is first on the main menu, on its own (Will, November 6, 2026).
+        self.assertEqual(app.MAIN_MENU_CHOICES[0],('File manager','file manager'))
+        self.assertNotIn('File manager',[name for name,_,_ in app.task_navigation().items('office_menu')])
         self.assertEqual(app.options_return_notice('document'),'Back to document.')
 
 @unittest.skipUnless(os.name=='nt','Real Windows Shell integration')

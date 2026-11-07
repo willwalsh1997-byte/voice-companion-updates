@@ -7,7 +7,7 @@
 },
 "awake | Add contact": {
 "said": [
-"Contacts. No contacts yet. Press Control+N to add one, or say add contact. Only contacts saved on this computer are here. To use your Google or Outlook contacts, say add Thunderbird account.",
+"Address manager. No contacts yet. Press Control+N to add one, or say add contact. Only contacts saved on this computer are here. To use your Google or Outlook contacts, say add Thunderbird account.",
 "New contact. Type or say the name, then press Enter. Escape cancels."
 ],
 "screen_after": "task_input"
@@ -26,7 +26,7 @@
 },
 "awake | CC is fine with me.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -38,7 +38,7 @@
 },
 "awake | Call details": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -50,13 +50,13 @@
 },
 "awake | Change importance": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Contacts": {
 "said": [
-"Contacts. No contacts yet. Press Control+N to add one, or say add contact. Only contacts saved on this computer are here. To use your Google or Outlook contacts, say add Thunderbird account."
+"Address manager. No contacts yet. Press Control+N to add one, or say add contact. Only contacts saved on this computer are here. To use your Google or Outlook contacts, say add Thunderbird account."
 ],
 "screen_after": "contacts"
 },
@@ -68,7 +68,7 @@
 },
 "awake | Delete contact": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -86,7 +86,7 @@
 },
 "awake | Ducking under the fence was hard.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -126,43 +126,43 @@
 },
 "awake | Flag or unflag": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Flag the car down at the corner.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Flag.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Go to October 30": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Heading 1": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Heading level two.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Hello there.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -174,19 +174,19 @@
 },
 "awake | High importance.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Importance": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Is it flagged?": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -198,49 +198,49 @@
 },
 "awake | Mark as read when you get it.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Mark as read.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Mark as unread": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Message status": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Next contact": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Next event": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Next heading": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | No, thanks.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -252,7 +252,7 @@
 },
 "awake | Open contacts": {
 "said": [
-"Contacts. No contacts yet. Press Control+N to add one, or say add contact. Only contacts saved on this computer are here. To use your Google or Outlook contacts, say add Thunderbird account."
+"Address manager. No contacts yet. Press Control+N to add one, or say add contact. Only contacts saved on this computer are here. To use your Google or Outlook contacts, say add Thunderbird account."
 ],
 "screen_after": "contacts"
 },
@@ -264,13 +264,13 @@
 },
 "awake | Please meet me today.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Previous heading": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -282,31 +282,31 @@
 },
 "awake | Read event": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Read paragraph.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Read receipt on or off": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Remove flag": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Request a read receipt.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -318,7 +318,7 @@
 },
 "awake | Send to the team at the office.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -330,19 +330,19 @@
 },
 "awake | Star this message": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Status.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Subject is closed for now.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -354,37 +354,37 @@
 },
 "awake | The date of the party is Friday.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | The heading of the letter is short.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | The status of the order is late.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | The trial period is over": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | This is of high importance.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Time to go home.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -396,19 +396,19 @@
 },
 "awake | Today": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Toggle bold": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | Tomorrow.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -456,7 +456,7 @@
 },
 "awake | What is on the menu tonight?": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -468,7 +468,7 @@
 },
 "awake | What time is the meeting?": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -498,7 +498,7 @@
 },
 "awake | Write to the council about the road.": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -516,31 +516,31 @@
 },
 "awake | account": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | account entry busy": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | account entry empty": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | accounts": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | action": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -580,7 +580,7 @@
 },
 "awake | add favorite as": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -592,7 +592,7 @@
 },
 "awake | add preset as": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -604,7 +604,7 @@
 },
 "awake | address": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -616,25 +616,25 @@
 },
 "awake | at": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | attach": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | attachments": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | audio tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
@@ -652,13 +652,13 @@
 },
 "awake | available": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | awake": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -670,25 +670,25 @@
 },
 "awake | back a list": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | back one list": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | back to files": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | back to folder": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -706,13 +706,13 @@
 },
 "awake | back to topics": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | bcc": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -724,7 +724,7 @@
 },
 "awake | beginning of list": {
 "said": [
-"Office tools (O), 1 of 8."
+"File manager (F), 1 of 10."
 ],
 "screen_after": "awake"
 },
@@ -736,13 +736,13 @@
 },
 "awake | body": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | brave": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -790,19 +790,19 @@
 },
 "awake | cancel": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cancel account setup": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cancel draft": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -814,31 +814,31 @@
 },
 "awake | cancel forward": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cancel forward draft": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cancel forwarding": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cancel message": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cancel naming": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -850,31 +850,31 @@
 },
 "awake | cancel reply": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cancel reply draft": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cancel send": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cancel setup": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cancel this draft": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -886,31 +886,31 @@
 },
 "awake | cancel this forward": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cancel this message": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cancel this reply": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cancel update": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | cc": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -922,7 +922,7 @@
 },
 "awake | change address": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -940,31 +940,31 @@
 },
 "awake | change font to Arial": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | change list to": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | change the address": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | change voice to": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | change world to friend": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1090,13 +1090,13 @@
 },
 "awake | close": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | close browser": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1114,7 +1114,7 @@
 },
 "awake | close file manager": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1126,7 +1126,7 @@
 },
 "awake | close list": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1143,7 +1143,7 @@
 },
 "awake | close website": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1155,7 +1155,7 @@
 },
 "awake | commands": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1215,7 +1215,7 @@
 },
 "awake | confirm send": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1233,7 +1233,7 @@
 },
 "awake | confirm website": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1280,19 +1280,19 @@
 },
 "awake | continue writing": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | copy": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | copy sender address": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1304,7 +1304,7 @@
 },
 "awake | copy the sender address": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1328,7 +1328,7 @@
 },
 "awake | current": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1340,7 +1340,7 @@
 },
 "awake | delete": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1390,7 +1390,7 @@
 },
 "awake | delete line": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1408,7 +1408,7 @@
 },
 "awake | describe formatting": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1420,7 +1420,7 @@
 },
 "awake | dictation": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1444,13 +1444,13 @@
 },
 "awake | discard": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | discard draft": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1462,13 +1462,13 @@
 },
 "awake | discard message": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | discard this draft": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1504,19 +1504,19 @@
 },
 "awake | do it": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | do not replace": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | do not send": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1534,19 +1534,19 @@
 },
 "awake | documents": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | done dictating": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | download": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1558,13 +1558,13 @@
 },
 "awake | duck": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | duckduckgo": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1606,7 +1606,7 @@
 },
 "awake | enable": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1618,37 +1618,37 @@
 },
 "awake | end of list": {
 "said": [
-"Exit Voice Companion (E), 8 of 8."
+"Exit Voice Companion (E), 10 of 10."
 ],
 "screen_after": "awake"
 },
 "awake | episode": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | escape": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | exchange": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | exit": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | exit browser": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1713,13 +1713,13 @@
 },
 "awake | file letter": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | file letters": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1731,7 +1731,7 @@
 },
 "awake | files": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1778,61 +1778,61 @@
 },
 "awake | first item": {
 "said": [
-"Office tools (O), 1 of 8."
+"File manager (F), 1 of 10."
 ],
 "screen_after": "awake"
 },
 "awake | fix address": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | fix the address": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | flow": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | folder": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | folders": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | follow link": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | forward": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | forward message": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | frozen": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1844,7 +1844,7 @@
 },
 "awake | get more messages": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1862,13 +1862,13 @@
 },
 "awake | gmail": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | go ahead": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1880,7 +1880,7 @@
 },
 "awake | go back a list": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1892,13 +1892,13 @@
 },
 "awake | go back to main menu": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | go to": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1942,7 +1942,7 @@
 },
 "awake | go to folder": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1954,7 +1954,7 @@
 },
 "awake | go to main menu": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1972,7 +1972,7 @@
 },
 "awake | go to options": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -1990,7 +1990,7 @@
 },
 "awake | go to website": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2020,25 +2020,25 @@
 },
 "awake | help for": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | help with": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | high": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | history": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2050,13 +2050,13 @@
 },
 "awake | how many messages per page": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | id": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2068,13 +2068,13 @@
 },
 "awake | importance": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | in": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2086,7 +2086,7 @@
 },
 "awake | index": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2110,7 +2110,7 @@
 },
 "awake | install it": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2128,13 +2128,13 @@
 },
 "awake | install update": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | installing": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2146,37 +2146,37 @@
 },
 "awake | items": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | keep": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | keep it": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | last item": {
 "said": [
-"Exit Voice Companion (E), 8 of 8."
+"Exit Voice Companion (E), 10 of 10."
 ],
 "screen_after": "awake"
 },
 "awake | later": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | leave": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2194,7 +2194,7 @@
 },
 "awake | leave file manager": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2206,7 +2206,7 @@
 },
 "awake | leave radio": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2223,19 +2223,19 @@
 },
 "awake | leave website": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | lessons": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
 "awake | line": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2388,7 +2388,7 @@
 },
 "awake | low": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2406,13 +2406,13 @@
 },
 "awake | mailbox": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | mailto": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2442,7 +2442,7 @@
 },
 "awake | maybe later": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2460,25 +2460,25 @@
 },
 "awake | message": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | microsoft": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | microsoft 365": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | mixed": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2490,7 +2490,7 @@
 },
 "awake | mode": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2502,7 +2502,7 @@
 },
 "awake | mozilla thunderbird": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2567,7 +2567,7 @@
 },
 "awake | name": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2579,13 +2579,13 @@
 },
 "awake | never mind": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | nevermind": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2629,7 +2629,7 @@
 },
 "awake | new line": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2647,7 +2647,7 @@
 },
 "awake | new paragraph": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2659,43 +2659,43 @@
 },
 "awake | next": {
 "said": [
-"Office tools (O), 1 of 8."
+"File manager (F), 1 of 10."
 ],
 "screen_after": "awake"
 },
 "awake | next chapter": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | next episode": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | next list": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | next message": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | next messages": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | next page": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2713,55 +2713,55 @@
 },
 "awake | next show": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | next voice": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | next word": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | no": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | no message body": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | no subject": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | no thank you": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | no thanks": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | nope": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2773,13 +2773,13 @@
 },
 "awake | not now": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | not yet": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2803,7 +2803,7 @@
 },
 "awake | nt": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2821,13 +2821,13 @@
 },
 "awake | on": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | open": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2869,7 +2869,7 @@
 },
 "awake | open earlier copy": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2887,7 +2887,7 @@
 },
 "awake | open favorite": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2905,7 +2905,7 @@
 },
 "awake | open folder": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -2941,7 +2941,7 @@
 },
 "awake | open link": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3078,7 +3078,7 @@
 },
 "awake | open the earlier copy": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3090,13 +3090,13 @@
 },
 "awake | open the tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
 "awake | open tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
@@ -3142,7 +3142,7 @@
 },
 "awake | open website": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3178,19 +3178,19 @@
 },
 "awake | origin": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | outlook": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | password": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3200,25 +3200,25 @@
 },
 "awake | pending": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | play": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | play download": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | play episode": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3230,25 +3230,25 @@
 },
 "awake | play recording": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | play station": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | please send": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | please send it": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3260,7 +3260,7 @@
 },
 "awake | please send that": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3302,7 +3302,7 @@
 },
 "awake | practice tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
@@ -3314,7 +3314,7 @@
 },
 "awake | preparing": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3326,43 +3326,43 @@
 },
 "awake | previous": {
 "said": [
-"Exit Voice Companion (E), 8 of 8."
+"Exit Voice Companion (E), 10 of 10."
 ],
 "screen_after": "awake"
 },
 "awake | previous chapter": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | previous episode": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | previous list": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | previous message": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | previous messages": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | previous page": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3386,31 +3386,31 @@
 },
 "awake | previous show": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | previous voice": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | provider": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | purpose": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | question": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3452,7 +3452,7 @@
 },
 "awake | read": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3524,7 +3524,7 @@
 },
 "awake | read paragraph": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3536,7 +3536,7 @@
 },
 "awake | read selection": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3548,19 +3548,19 @@
 },
 "awake | reader": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | recipient": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | record station": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3595,7 +3595,7 @@
 },
 "awake | remove": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3637,7 +3637,7 @@
 },
 "awake | rename": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3669,55 +3669,55 @@
 },
 "awake | repeat": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | repeat that": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | replace": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | replace it": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | replace paragraph with New text": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | reply": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | reply all": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | reply to all": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | reply to message": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3735,7 +3735,7 @@
 },
 "awake | restore earlier copy": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3769,25 +3769,25 @@
 },
 "awake | return to main menu": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | rows": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | save": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | save as": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3805,7 +3805,7 @@
 },
 "awake | save draft": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3817,13 +3817,13 @@
 },
 "awake | save favorite as": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | save it": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3853,7 +3853,7 @@
 },
 "awake | save preset as": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3877,37 +3877,37 @@
 },
 "awake | say formatting": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | say selection": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | say that again": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | schedule station": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | scratch": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | scratch that": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3959,19 +3959,19 @@
 },
 "awake | select first paragraph": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | selected": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | send": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -3995,19 +3995,19 @@
 },
 "awake | send it": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | send it now": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | send message": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4019,19 +4019,19 @@
 },
 "awake | send my message": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | send now": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | send that": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4043,13 +4043,13 @@
 },
 "awake | send the message": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | send this": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4061,13 +4061,13 @@
 },
 "awake | send this message": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | session": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4079,7 +4079,7 @@
 },
 "awake | set list to": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4091,13 +4091,13 @@
 },
 "awake | set message list size": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | set page size": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4115,7 +4115,7 @@
 },
 "awake | set show": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4127,7 +4127,7 @@
 },
 "awake | set to": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4157,7 +4157,7 @@
 },
 "awake | set voice to": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4181,7 +4181,7 @@
 },
 "awake | show": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4199,7 +4199,7 @@
 },
 "awake | show more messages": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4247,13 +4247,13 @@
 },
 "awake | shutdown": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | sleep": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4277,31 +4277,31 @@
 },
 "awake | start dictation": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | start lessons": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
 "awake | start of list": {
 "said": [
-"Office tools (O), 1 of 8."
+"File manager (F), 1 of 10."
 ],
 "screen_after": "awake"
 },
 "awake | start the tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
 "awake | start tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
@@ -4313,13 +4313,13 @@
 },
 "awake | status": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | step": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4329,25 +4329,25 @@
 },
 "awake | stop update": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | storage": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | subject": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | subprocess": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4365,7 +4365,7 @@
 },
 "awake | subscription": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4383,7 +4383,7 @@
 },
 "awake | sure": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4413,7 +4413,7 @@
 },
 "awake | switch to": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4491,13 +4491,13 @@
 },
 "awake | the same screen": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | thunderbird": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4515,7 +4515,7 @@
 },
 "awake | top": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4539,25 +4539,25 @@
 },
 "awake | tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
 "awake | type": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | type new line": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | unittest": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4569,7 +4569,7 @@
 },
 "awake | update status": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4599,7 +4599,7 @@
 },
 "awake | upgrade": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4623,7 +4623,7 @@
 },
 "awake | use earlier copy": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4659,13 +4659,13 @@
 },
 "awake | use the earlier copy": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | use voice": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4683,7 +4683,7 @@
 },
 "awake | verbosity": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4695,7 +4695,7 @@
 },
 "awake | visit": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4796,7 +4796,7 @@
 },
 "awake | what": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4811,7 +4811,7 @@
 },
 "awake | what do i do": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4829,7 +4829,7 @@
 },
 "awake | what formatting": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4847,7 +4847,7 @@
 },
 "awake | what is selected": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -4889,7 +4889,7 @@
 },
 "awake | what now": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -5102,13 +5102,13 @@
 },
 "awake | wrong address": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | yahoo": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -5120,13 +5120,13 @@
 },
 "awake | yeah": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | yep": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -5138,13 +5138,13 @@
 },
 "awake | yes open it": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | yes open website": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -5156,7 +5156,7 @@
 },
 "awake | yes replace it": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -5168,13 +5168,13 @@
 },
 "awake | yes send it": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
 "awake | yes send that": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -5186,7 +5186,7 @@
 },
 "awake | zip": {
 "said": [
-"I did not understand that. You are on the main menu. Press F1 for help."
+"I did not understand that. You are on the main menu. Press F1 twice for help."
 ],
 "screen_after": "awake"
 },
@@ -21133,7 +21133,7 @@
 },
 "help | audio tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
@@ -22692,7 +22692,7 @@
 },
 "help | lessons": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
@@ -23532,13 +23532,13 @@
 },
 "help | open the tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
 "help | open tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
@@ -23736,7 +23736,7 @@
 },
 "help | practice tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
@@ -24700,7 +24700,7 @@
 },
 "help | start lessons": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
@@ -24712,13 +24712,13 @@
 },
 "help | start the tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
 "help | start tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },
@@ -24956,7 +24956,7 @@
 },
 "help | tutorial": {
 "said": [
-"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
+"Audio tutorial. Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager. These are lessons. Commands given here are explained and do not change your work. Use Up and Down to select a course and Enter to open it, or say its name. Lessons wait for you. Say next lesson, previous lesson, repeat, lesson list, list commands, find lesson followed by a topic, or explain command followed by its words. Control stops speech. If needed, say stop talking before your next voice request. Main menu leaves the tutorial."
 ],
 "screen_after": "tutorial"
 },

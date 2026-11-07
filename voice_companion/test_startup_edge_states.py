@@ -38,7 +38,8 @@ class DamagedSpeechSettingsTests(unittest.TestCase):
 
 
 class F1RepeatsTheUpdateQuestionTests(CompanionTestCase):
-    """F1 in a yes or no question says it again (Will, October 31, 2026). It found the question
+    """F1 in a yes or no question says it again (Will, October 31, 2026); F1 twice quickly since
+    November 6, 2026, when F1 once became the main menu key. It found the question
     by the words "yes or no". With the microphone off, the update question says "Press Y or N"
     instead, so F1 said nothing at all, just when keys are the only way in. At startup it
     repeated the whole startup announcement instead of the question."""
@@ -67,7 +68,7 @@ class F1RepeatsTheUpdateQuestionTests(CompanionTestCase):
                 self.assertEqual(companion.poll_app_updates('awake'), 'update_offer')
                 question = self.said[-1]
                 self.said.clear()
-                self.assertIsNone(companion.navigation_key('F1', 'update_offer'))
+                self.assertIsNone(companion.navigation_key('Double:F1', 'update_offer'))
                 self.assertEqual(self.said, [question])
                 companion.handle('no', 'update_offer')
 
@@ -79,7 +80,7 @@ class F1RepeatsTheUpdateQuestionTests(CompanionTestCase):
                 self.assertEqual(companion.announce_startup(), 'update_offer')
                 self.assertTrue(self.said[-1].startswith('Voice Companion'), self.said)
                 self.said.clear()
-                self.assertIsNone(companion.navigation_key('F1', 'update_offer'))
+                self.assertIsNone(companion.navigation_key('Double:F1', 'update_offer'))
                 self.assertEqual(self.said, [companion.update_offer_question()])
                 companion.handle('no', 'update_offer')
 

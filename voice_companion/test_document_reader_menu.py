@@ -82,9 +82,9 @@ class DocumentReaderMenuTests(CompanionTestCase):
         self.assertIn('Press Control+R to read it', self.said[-1])
         self.assertNotIn('front desk', self.said[-1])
 
-    def test_escape_and_control_f1_leave_the_menu(self):
+    def test_escape_and_f1_leave_the_menu(self):
         self.assertEqual(self.key('Escape', companion.handle('document reader', 'awake')), 'awake')
-        self.assertEqual(self.key('Ctrl+F1', companion.handle('document reader', 'awake')), 'awake')
+        self.assertEqual(self.key('F1', companion.handle('document reader', 'awake')), 'awake')
 
 
 class FileManagerStartTests(unittest.TestCase):

@@ -55,12 +55,14 @@ class ScreenKeyTableTests(unittest.TestCase):
         for mode,keys in SCREEN_KEYS.items():
             for key,command in keys.items():
                 with self.subTest(mode=mode,key=key):
+                    # The help key in this table is F1; it is pressed twice quickly (F1 once is
+                    # the main menu since November 6, 2026), and the window sends that as Double:F1.
                     with patch.object(app,'speak'),patch.object(app,'NAMED_LIST',None),patch.object(app,'MEDIA_SECTION','radio'):
-                        request=app.navigation_key(key,mode)
+                        request=app.navigation_key('Double:F1' if key=='F1' else key,mode)
                     self.assertEqual(request,('@prompt:'+command) if '{value}' in command else command)
                     self.assertEqual(screen_command(key,mode),request)
         with patch.object(app,'MEDIA_SECTION','podcast'):
-            self.assertEqual(app.navigation_key('F1','media'),'help with podcasts')
+            self.assertEqual(app.navigation_key('Double:F1','media'),'help with podcasts')
 
     def test_window_sends_each_key_only_on_its_screen_and_not_during_a_question(self):
         for mode,keys in SCREEN_KEYS.items():
@@ -145,7 +147,7 @@ class ScreenKeyEffectTests(unittest.TestCase):
         expected={'media':'Listen To Radio','awake':None,'note':'Write A Note','email_draft':'Write An Email','mailbox':'Read And Organize Email',
                   'file_reader':'Document Reader','web':'Browse The Web','browser_menu':'Browse The Web',
                   'word_processor':'Write A Document','recent_documents':'Write A Document',
-                  'media_menu':'Media Player','local_media':'Media Player','contacts':'Contacts','calendar':'Calendar'}
+                  'media_menu':'Media Player','local_media':'Media Player','contacts':'Address manager','calendar':'Schedule manager'}
         from document_reader import open_document
         reader=self.root/'reader.txt';reader.write_text('Reader text.',encoding='utf-8')
         for mode,topic in expected.items():
@@ -158,7 +160,7 @@ class ScreenKeyEffectTests(unittest.TestCase):
                     app.email_draft=VoiceEmail(self.root/'Email Drafts')
                 if mode=='media':app.MEDIA_HUB=Mock()
                 if mode=='mailbox':app.mail_session=Mock(folder_picker=None,folder_choice=None,pending=None,view='folder')
-                self.assertEqual(self.press('F1',mode),'help')
+                self.assertEqual(self.press('Double:F1',mode),'help')   # F1 twice quickly
                 level_name=app.help_session.topics[app.help_session.topic_index]['name']
                 if topic:self.assertEqual(level_name.casefold(),topic.casefold())
                 else:self.assertEqual(app.help_session.level,'topics')
@@ -434,7 +436,7 @@ class NewKeyEffectTests(ScreenKeyEffectTests):
         def fresh():
             app.tutorial_session=None;app.handle('start tutorial','awake');app.handle('that one','tutorial');app.handle('that one','tutorial')
         state=lambda:(app.tutorial_session.level,app.tutorial_session.index)
-        for key,voice in (('Ctrl+Shift+R','Repeat.'),('F1','list commands'),('Ctrl+L','Lesson list.'),('Ctrl+Down','continue reading')):
+        for key,voice in (('Ctrl+Shift+R','Repeat.'),('Double:F1','list commands'),('Ctrl+L','Lesson list.'),('Ctrl+Down','continue reading')):
             with self.subTest(key=key):self.both('tutorial',key,voice,setup=fresh,state=state)
         fresh();app.handle('find lesson email','tutorial');expected=(self.last(),state())
         fresh()

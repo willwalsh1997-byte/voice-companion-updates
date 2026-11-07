@@ -44,11 +44,15 @@ class ConsumerRegressionTests(unittest.TestCase):
         with patch.object(app,'MAIN_MENU_INDEX',len(app.MAIN_MENU_CHOICES)-2),patch.object(app,'SYNTH_PICK_INDEX',None),patch.object(app,'VOICE_PICK_INDEX',None),patch.object(app,'speak') as speak:
             app.handle('next','awake');self.assertIn('Exit Voice Companion',speak.call_args.args[0]);self.assertNotIn('of list',speak.call_args.args[0])
             app.handle('next','awake');speak.assert_called_with('End of list.')
-            app.navigation_key('Home','awake');self.assertIn('Office tools',speak.call_args.args[0])
+            app.navigation_key('Home','awake');self.assertIn('File manager',speak.call_args.args[0])
             app.handle('previous','awake');speak.assert_called_with('Start of list.')
 
     def test_all_options_categories_are_named_options(self):
-        for name in CATEGORIES:self.assertTrue(name.endswith(' options'));self.assertTrue(fields(name,{}))
+        # My menu is the one section with its own name (Will, November 6, 2026): it holds Favorite apps.
+        for name in CATEGORIES:
+            self.assertTrue(fields(name,{}))
+            if name!='My menu':self.assertTrue(name.endswith(' options'),name)
+        self.assertEqual([name for name in CATEGORIES if not name.endswith(' options')],['My menu'])
 
     def test_refresh_is_available_while_keyboard_only_and_asleep(self):
         session=Mock(page_revision=1,refresh_changed=Mock(return_value=''))
@@ -57,7 +61,7 @@ class ConsumerRegressionTests(unittest.TestCase):
             self.assertEqual(session.refresh_changed.call_count,2);sync.assert_called_with('sleep')
 
     def test_main_menu_order_is_identical_for_voice_and_keyboard(self):
-        expected=['Office tools','Web browser','Media','Options','Check for updates','Help','Shut down or restart','Exit Voice Companion']
+        expected=['File manager','Office tools','Organizer','Web browser','Media','Options','Check for updates','Help','Shut down or restart','Exit Voice Companion']
         self.assertEqual([label for label,_ in app.MAIN_MENU_CHOICES],expected)
         with patch.object(app,'MAIN_MENU_INDEX',None),patch.object(app,'SYNTH_PICK_INDEX',None),patch.object(app,'VOICE_PICK_INDEX',None),patch.object(app,'speak') as speak:
             for label in expected:app.handle('next','awake');self.assertTrue(speak.call_args.args[0].startswith(label))

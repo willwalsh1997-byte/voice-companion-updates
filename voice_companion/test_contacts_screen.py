@@ -120,17 +120,22 @@ class ContactsScreenTests(CompanionHarness):
         return mode
 
     def test_main_menu_has_contacts_and_calendar_after_email(self):
-        # In Office tools since November 2026, after Email's other office apps.
-        names = [name for name, _, _ in app.task_navigation().items('office_menu')]
-        self.assertEqual(names[names.index('Calendar'):names.index('Calendar') + 2], ['Calendar', 'Contacts'])
-        self.assertEqual(len(app.MAIN_MENU_CHOICES), 8)
+        # In Organizer since November 6, 2026, right after Office tools, as Address manager and
+        # Schedule manager, in alphabetical order. They are no longer in Office tools.
+        names = [name for name, _, _ in app.task_navigation().items('organizer_menu')]
+        self.assertEqual(names, ['Address manager', 'Schedule manager'])
+        office = [name for name, _, _ in app.task_navigation().items('office_menu')]
+        self.assertNotIn('Calendar', office); self.assertNotIn('Contacts', office)
+        main = [name for name, _ in app.MAIN_MENU_CHOICES]
+        self.assertEqual(main[main.index('Office tools') + 1], 'Organizer')
+        self.assertEqual(len(app.MAIN_MENU_CHOICES), 10)
 
     def test_opens_on_a_sorted_merged_list(self):
         # A contact saved here and in Thunderbird is said once; one only here is added.
         AddressBook(self.root, 'me@gmail.com').save('Johnny', 'JOHN@example.com')
         AddressBook(self.root, 'me@gmail.com').save('Zed Local', 'zed@example.com', '555-0177')
         self.open()
-        self.assertEqual(self.said(), 'Contacts. 6 contacts. Ann Brown, ann@example.com, 1 of 6.')
+        self.assertEqual(self.said(), 'Address manager. 6 contacts. Ann Brown, ann@example.com, 1 of 6.')
         self.assertEqual([c.name for c in contacts_screen.CONTACTS],
                          ['Ann Brown', 'Help Desk', 'John Smith', 'Mary Jones', 'Plumber', 'Zed Local'])
         self.assertEqual(contacts_screen.CONTACTS[-1].source, 'local')
@@ -168,7 +173,7 @@ class ContactsScreenTests(CompanionHarness):
         self.press('Down', mode); self.press('Down', mode); self.press('Down', mode)
         self.assertEqual(self.said(), 'Phone: 555-0100, 4 of 7.')
         self.press('Escape', mode)
-        self.assertEqual(self.said(), 'Contacts. John Smith, john@example.com, 555-0100, 3 of 5.')
+        self.assertEqual(self.said(), 'Address manager. John Smith, john@example.com, 555-0100, 3 of 5.')
         self.press('Enter', mode)
         mode = self.press('Enter', mode)
         self.assertEqual(mode, 'email_draft')
@@ -241,7 +246,7 @@ class ContactsScreenTests(CompanionHarness):
         self.assertEqual(mode, 'task_input')
         self.assertIn('A contact needs an email address or a phone number.', self.said())
         mode = self.press('Escape', mode)
-        self.assertEqual((mode, self.said()), ('contacts', 'Canceled. Back to contacts.'))
+        self.assertEqual((mode, self.said()), ('contacts', 'Canceled. Back to Address manager.'))
         self.assertNotIn('Sam', [c.name for c in contacts_screen.CONTACTS])
 
     def test_a_change_thunderbird_could_not_make_says_so_and_what_to_do(self):
@@ -309,7 +314,7 @@ class ContactsScreenTests(CompanionHarness):
         for words in ('repeat', 'Say that again.', 'where am i'):
             with self.subTest(words=words):
                 self.say(words, mode)
-                self.assertEqual(self.said(), 'Contacts. 5 contacts. Help Desk, help@work.example, 555-0111, 2 of 5.')
+                self.assertEqual(self.said(), 'Address manager. 5 contacts. Help Desk, help@work.example, 555-0111, 2 of 5.')
         self.say('next item', mode)
         self.assertEqual(self.said(), 'John Smith, john@example.com, 555-0100, 3 of 5.')
         self.say('previous item', mode)
@@ -318,7 +323,7 @@ class ContactsScreenTests(CompanionHarness):
         self.press('Enter', mode)
         self.press('Down', mode)
         self.say('Where am I?', mode)
-        self.assertEqual(self.said(), 'Contacts. Help Desk. Name: Help Desk, 2 of 5.')
+        self.assertEqual(self.said(), 'Address manager. Help Desk. Name: Help Desk, 2 of 5.')
         self.assertEqual(contacts_screen.VIEW, 'details')
         self.press('Down', mode)
         self.assertEqual(self.said(), 'Email: help@work.example, 3 of 5.')
@@ -422,8 +427,8 @@ class ContactsScreenTests(CompanionHarness):
     def test_an_unknown_command_names_what_to_say_including_edit(self):
         mode = self.open()
         app.handle('zebra quantum lantern', mode)
-        self.assertEqual(self.said(), 'Contacts. Say next contact, find and a name, email contact, add contact, edit contact, '
-                                      'or delete contact. Press F1 for help, or Escape for the main menu.')
+        self.assertEqual(self.said(), 'Address manager. Say next contact, find and a name, email contact, add contact, edit contact, '
+                                      'or delete contact. Press F1 twice for help, or Escape for the main menu.')
 
     def test_escape_goes_to_the_main_menu(self):
         mode = self.open()
@@ -438,7 +443,7 @@ class ContactsScreenTests(CompanionHarness):
         mode = app.handle('Bob Smith', mode, typed=True)
         self.assertTrue(app.screen_question('contacts'))      # still being asked: "Play" may be the name
         mode = self.press('Escape', mode)
-        self.assertEqual((mode, self.said()), ('contacts', 'Canceled. Back to contacts.'))
+        self.assertEqual((mode, self.said()), ('contacts', 'Canceled. Back to Address manager.'))
         self.assertFalse(app.screen_question('contacts'))
         self.assertEqual(app.station_asked('Play WGN', mode), 'WGN')
         # While a new contact is asked for, "Play WGN" is still its name.
@@ -449,41 +454,41 @@ class ContactsScreenTests(CompanionHarness):
         self.press('Escape', mode)
 
     def test_closing_help_names_the_list_still_open(self):
-        # F1 in the list of what to change opens Help. Escape back said only "Back to contacts.",
+        # F1 twice in the list of what to change opens Help. Escape back said only "Back to Address manager.",
         # though the list was still open (sweep, November 6, 2026).
         mode = self.open()
         self.press('F2', mode)
-        mode = self.press('F1', mode)
+        mode = self.press('Double:F1', mode)
         while mode == 'help':
             mode = self.press('Escape', mode)
-        self.assertEqual(self.said(), 'Help closed. Back to contacts. Name: Ann Brown, 1 of 3. '
+        self.assertEqual(self.said(), 'Help closed. Back to Address manager. Name: Ann Brown, 1 of 3. '
                                       'Use the arrows and Enter, or say what to change. Escape cancels.')
         self.press('Escape', mode)
-        mode = self.press('F1', mode)
+        mode = self.press('Double:F1', mode)
         while mode == 'help':
             mode = self.press('Escape', mode)
-        self.assertEqual(self.said(), 'Help closed. Back to contacts.')
+        self.assertEqual(self.said(), 'Help closed. Back to Address manager.')
 
     def test_f1_says_the_yes_or_no_question_again_and_keeps_the_choice(self):
-        # Guide part 2.5: "To hear the question again, press F1." On Contacts it opened Help instead,
+        # Guide part 2.5: "To hear the question again, press F1." (F1 twice since November 6, 2026.) On Contacts it opened Help instead,
         # and the question was left open behind it (sweep, November 6, 2026).
         mode = self.open()
         self.press('Delete', mode)
         question = self.said()
         self.press('Up', mode)
-        self.assertIsNone(app.navigation_key('F1', mode))
+        self.assertIsNone(app.navigation_key('Double:F1', mode))
         self.assertEqual(self.said(), question)
         self.assertEqual((contacts_screen.PENDING[0], contacts_screen.CHOICE), ('delete', 'yes'))
         self.press('Escape', mode)
         self.press('F2', mode)
-        # In the list of what to change, F1 is still Help.
-        self.assertEqual(app.navigation_key('F1', mode), 'help with contacts')
+        # In the list of what to change, F1 twice is still Help.
+        self.assertEqual(app.navigation_key('Double:F1', mode), 'help with contacts')
         self.press('End', mode)
         mode = self.press('Enter', mode)
         mode = app.handle('555 0100', mode, typed=True)
         self.assertEqual(self.said(), 'Change the phone number for Ann Brown to 555 0100? Say Yes to save or No to cancel.')
         self.press('Down', mode)
-        self.assertIsNone(app.navigation_key('F1', mode))
+        self.assertIsNone(app.navigation_key('Double:F1', mode))
         self.assertEqual(self.said(), 'Change the phone number for Ann Brown to 555 0100? Say Yes to save or No to cancel.')
         self.assertEqual(contacts_screen.CHOICE, 'no')
 
@@ -532,7 +537,7 @@ class ContactsScreenTests(CompanionHarness):
         mode = app.handle('email the plumber', 'awake')
         self.assertNotEqual(mode, 'email_draft')
         app.handle('email plumber', 'awake')
-        self.assertEqual(self.said(), 'Plumber has no email address saved. Open Contacts to add one.')
+        self.assertEqual(self.said(), 'Plumber has no email address saved. Open Address manager to add one.')
 
     def test_two_contacts_with_the_same_first_name_ask_which_one(self):
         AddressBook(self.root, 'me@gmail.com').save('John Brown', 'jb@example.com')
@@ -591,7 +596,7 @@ class ContactsScreenTests(CompanionHarness):
                       'Phone book'):
             with self.subTest(words=words):
                 self.assertEqual(app.handle(words, 'awake'), 'contacts')
-                self.assertTrue(self.said().startswith('Contacts. 5 contacts.'), self.said())
+                self.assertTrue(self.said().startswith('Address manager. 5 contacts.'), self.said())
                 contacts_screen.reset()
 
     def test_old_google_contacts_command_points_to_thunderbird(self):
@@ -649,7 +654,7 @@ class OldAddonContactsTests(CompanionHarness):
         AddressBook(self.root, 'me@gmail.com').save('Zed Local', 'zed@example.com')
         self.assertEqual(app.handle('contacts', 'awake'), 'contacts')
         from thunderbird_pim import UPDATE_NEEDED
-        self.assertEqual(self.said(), 'Contacts. 1 contact. Zed Local, zed@example.com, 1 of 1. ' + UPDATE_NEEDED)
+        self.assertEqual(self.said(), 'Address manager. 1 contact. Zed Local, zed@example.com, 1 of 1. ' + UPDATE_NEEDED)
         self.assertNotIn('Close Thunderbird', UPDATE_NEEDED)   # it updates by itself (Will, October 30, 2026)
 
 
@@ -658,7 +663,7 @@ class NoThunderbirdContactsTests(CompanionHarness):
 
     def test_without_thunderbird_contacts_are_kept_on_this_computer(self):
         mode = app.handle('open contacts', 'awake')
-        self.assertEqual(self.said(), 'Contacts. No contacts yet. Press Control+N to add one, or say add contact. '
+        self.assertEqual(self.said(), 'Address manager. No contacts yet. Press Control+N to add one, or say add contact. '
                          'Only contacts saved on this computer are here. To use your Google or Outlook contacts, say add Thunderbird account.')
         mode = app.handle('add contact', mode)
         mode = app.handle('Lee', mode)

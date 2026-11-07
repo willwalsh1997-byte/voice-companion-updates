@@ -1,5 +1,1 @@
 blank_issues_enabled: true
-contact_links:
-  - name: Report a problem or idea on the Voice Companion issues page
-    url: https://github.com/willwalsh14-hub/voice-companion-releases/issues/new/choose
-    about: Bug reports now go to the releases repository, which stays public.

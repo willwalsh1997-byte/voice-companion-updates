@@ -6,10 +6,26 @@ pull requests. Update this file as items are finished.
 
 ## Must do before launch
 
+### New GitHub account and Cloudflare R2 updates (November 7, 2026)
+- Done: the project moved to `willwalsh1997-byte/voice-companion-updates`.
+  Updates come from Cloudflare R2 at updates.voicecompanionapp.com, not GitHub
+  releases. The source repository can be private whenever Will wants: publishing
+  no longer needs a public repository.
+- Done: the eSpeak source moves into the bucket (`third-party/`) on the first
+  build, with the same checksum check.
+- [ ] **Every tester (0.2.209):** install 0.2.209 by hand once, from the
+      [newest installer](https://updates.voicecompanionapp.com/VoiceCompanion-Setup.exe).
+      Copies on 0.2.208 or older still read the old GitHub feed and will not find it.
+      Then say "What version?" and check settings, email accounts and documents.
+- [ ] **Will:** set up Chrome Web Store publishing on the new account
+      (`tools/chrome-store-publishing.md`). Until then the store step skips itself.
+- [ ] **Will:** point the Chrome Web Store privacy policy link at the copy in this
+      repository, or at a page on voicecompanionapp.com.
+
 ### Privacy of the beta and the code
-- Decision (Will, November 2, 2026): the source code becomes private. Installers
-  and the update feed move to the public `willwalsh14-hub/voice-companion-releases`
-  (steps in `tools/releases-repository.md`).
+- Superseded November 7, 2026 (see above): the releases-only repository
+  `willwalsh14-hub/voice-companion-releases` is retired.
+- Decision (Will, November 2, 2026): the source code becomes private.
 - Done (November 3): the releases repository exists, `RELEASES_TOKEN` is set,
   and it has the bug report forms, the privacy policy and a README.
 - Done (November 3): the privacy policy contact is willwalsh14@gmail.com.

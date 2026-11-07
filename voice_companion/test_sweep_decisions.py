@@ -111,7 +111,7 @@ class GeneralAnswerTests(CompanionCase):
         self.assertIn('Yes or no', question)
         companion.navigation_key('Down', 'exit_confirm')
         self.assertIn(self.last(), ('No.', 'End of list.'))
-        self.assertIsNone(companion.navigation_key('F1', 'exit_confirm'))
+        self.assertIsNone(companion.navigation_key('Double:F1', 'exit_confirm'))   # F1 twice quickly
         self.assertEqual(self.last(), question)
         companion.handle('no', 'exit_confirm')
 
@@ -403,7 +403,7 @@ class SafetyNetTests(CompanionCase):
              patch.object(companion, '_handle', side_effect=TypeError('boom')):
             self.assertEqual(companion.handle('read paragraph', 'document'), 'document')
         self.assertEqual(self.last(), 'That did not work because of a problem in Voice Companion. '
-                                      'You are still on Document. Try again, or press F1 for help.')
+                                      'You are still on Document. Try again, or press F1 twice for help.')
         detail = (self.folder / 'command-error.txt').read_text(encoding='utf-8')
         self.assertIn('builtins.TypeError', detail)
         self.assertNotIn('read paragraph', detail)

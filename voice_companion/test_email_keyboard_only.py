@@ -123,15 +123,15 @@ class AttachmentListKeyTests(test_attachment_voice.PlacesTestCase):
         self.press('Ctrl+Shift+T', mode)
         self.assertEqual(self.last(), '1 attachment tagged: a.txt.')
 
-    def test_control_f1_from_the_list_goes_to_the_main_menu_without_saying_back_to_draft(self):
+    def test_f1_from_the_list_goes_to_the_main_menu_without_saying_back_to_draft(self):
         mode = self.draft_list()
         self.said.clear()
-        self.assertEqual(self.press('Ctrl+F1', mode), 'awake')
+        self.assertEqual(self.press('F1', mode), 'awake')
         self.assertNotIn('Back to email draft', ' '.join(self.said))
         self.assertIn('Main menu.', ' '.join(self.said))
         mode = self.press('L', self.opened_message())
         self.said.clear()
-        self.assertEqual(self.press('Ctrl+F1', mode), 'awake')
+        self.assertEqual(self.press('F1', mode), 'awake')
         self.assertNotIn('Back to message', ' '.join(self.said))
 
     def test_the_alt_menu_has_every_tag_key_as_the_guide_says(self):
@@ -180,16 +180,16 @@ class GuideKeyTests(unittest.TestCase):
 
 
 class LeaveDraftWordsTests(test_attachment_voice.PlacesTestCase):
-    def test_control_f1_from_a_draft_never_sent_says_it_was_not_sent(self):
+    def test_f1_from_a_draft_never_sent_says_it_was_not_sent(self):
         # It said "Check whether it was sent before sending it again." for a draft never sent.
         draft = self.draft()
-        self.assertEqual(self.press('Ctrl+F1', 'email_draft'), 'awake')
+        self.assertEqual(self.press('F1', 'email_draft'), 'awake')
         said = ' '.join(self.said)
         self.assertIn('Email draft saved locally as Note. It has not been sent.', said)
         self.assertNotIn('Check whether it was sent', said)
         draft.last_attempt_hash = 'tried'
         self.said.clear()
-        self.press('Ctrl+F1', 'email_draft')
+        self.press('F1', 'email_draft')
         self.assertIn('Check whether it was sent before sending it again.', ' '.join(self.said))
 
 

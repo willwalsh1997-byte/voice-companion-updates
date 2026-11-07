@@ -15,10 +15,10 @@ class ReadingResponsivenessTests(unittest.TestCase):
         with patch.object(app,'APP_WINDOW',window),patch.object(app,'apply_keyboard_edit') as edit,patch.object(app,'interrupt_speech') as stop,patch.object(app,'KEYBOARD_BATCH_TEXT',None):
             self.assertEqual(app.process_keyboard_batch('help'),'help');edit.assert_called_once();stop.assert_not_called();window.feedback.assert_not_called()
     def test_rapid_arrows_apply_all_moves_but_speak_final_item_only(self):
-        # Two presses reach Web browser (the apps are grouped, November 2026).
-        window=self.window([('keyboard','Down')]*2)
+        # Four presses reach Web browser (File manager, Office tools and Organizer come first, November 6, 2026).
+        window=self.window([('keyboard','Down')]*4)
         with patch.object(app,'APP_WINDOW',window),patch.object(app,'MAIN_MENU_INDEX',None),patch.object(app,'SYNTH_PICK_INDEX',None),patch.object(app,'VOICE_PICK_INDEX',None),patch.object(app,'account_setup',False),patch.object(app,'interrupt_speech'),patch.object(app,'sync_app_context'),patch.object(app,'KEYBOARD_BATCH_TEXT',None):
-            self.assertEqual(app.process_keyboard_batch('awake'),'awake');self.assertEqual(app.MAIN_MENU_INDEX,1);window.feedback.assert_called_once_with('Web browser (W), 2 of 8.')
+            self.assertEqual(app.process_keyboard_batch('awake'),'awake');self.assertEqual(app.MAIN_MENU_INDEX,3);window.feedback.assert_called_once_with('Web browser (W), 4 of 10.')
     def test_voice_navigation_fast_in_every_reading_context(self):
         with patch.object(app,'INPUT_MODE','mixed'):
             for mode in ('document','email_draft','mailbox','help','web','note'):

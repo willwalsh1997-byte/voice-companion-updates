@@ -38,7 +38,7 @@ DOCUMENT_ACTIONS = {
                           ('Document details', '', 'where am i')],
     'Dictation': [('Start dictation', 'F4', 'start dictation'), ('Pause dictation', 'Shift+F4', 'pause dictation')],
     'More commands': [('Run any document voice command', 'Alt+T', '{value}'),
-                      ('Document help', 'F1', 'help with documents'), ('Word processor options', 'Alt+O', '@options')],
+                      ('Document help', 'Double:F1', 'help with documents'), ('Word processor options', 'Alt+O', '@options')],
 }
 DOCUMENT_ACTIONS['Table'] = [(label, '', command) for label, command in (
     ('Read table','read table'),('Read cell','read cell'),('Next cell','next cell'),('Previous cell','previous cell'),
@@ -66,6 +66,8 @@ DOCUMENT_ACTIONS['Table']=[(name,TABLE_KEYS.get(command,''),command) for name,_,
 SHORTCUTS = {key: command for items in DOCUMENT_ACTIONS.values() for _, key, command in items if key and key not in ('Enter', 'Alt+T','Tab','Shift+Tab','F12')}
 # Control+Shift+S, the Save As key before F12, still works.
 SHORTCUTS['Ctrl+Shift+S'] = 'save as'
+# The menu shows help as F1 twice; the window sends it as F1 to the screen (see f1_key.py).
+SHORTCUTS['F1'] = SHORTCUTS.pop('Double:F1')
 SHORTCUTS.update({'Ctrl+Alt+'+str(level):'heading '+str(level) for level in range(1,7)})
 SHORTCUTS.update({'CapsLock+F':'what formatting','CapsLock+Shift+Down':'what is selected','CapsLock+Down':'say all','Insert+Down':'say all',
                  'Insert+Up':'read current line','CapsLock+Up':'read current line',
@@ -120,16 +122,48 @@ def gone_words(gone):
     return str(gone) + ' files are gone, so they were removed from the list. '
 
 
-# The main menu groups the apps (Will, November 5, 2026). Office tools holds the apps for
-# writing, reading, email and planning. Each item runs the same command as before.
-OFFICE_TOOLS = (('Email', '', 'email'), ('Word processor', '', 'word processor'), ('Notepad', '', 'notepad'),
-                ('Document reader', '', 'document reader'), ('Calendar', '', 'calendar'), ('Contacts', '', 'contacts'),
-                ('File manager', '', 'file manager'))
+# The main menu groups the apps (Will, November 5 and 6, 2026). File manager is first on the
+# main menu, on its own. Office tools holds the writing, reading and email apps. Organizer holds
+# Address manager (contacts) and Schedule manager (calendar), in alphabetical order. Each item
+# runs the same command as before, so "contacts" and "calendar" still work too.
+OFFICE_TOOLS = (('Word processor', '', 'word processor'), ('Notepad', '', 'notepad'), ('Email', '', 'email'),
+                ('Document reader', '', 'document reader'))
 OFFICE_OPEN = ('office tools', 'open office tools', 'office tools menu', 'go to office tools')
+ORGANIZER = (('Address manager', '', 'contacts'), ('Schedule manager', '', 'calendar'))
+ORGANIZER_OPEN = ('organizer', 'open organizer', 'organizer menu', 'go to organizer', 'organiser', 'open organiser',
+                  'organiser menu', 'go to organiser')
 POWER_CHOICES = (('Shut down the computer', '', 'shut down computer'), ('Restart the computer', '', 'restart computer'))
 POWER_OPEN = ('shut down or restart', 'power menu', 'power options', 'open power menu')
+# Favorite apps (Control+F1): the apps you chose in Options, My menu, in this order.
+FAVORITE_APPS = (('File manager', 'file manager'), ('Word processor', 'word processor'), ('Notepad', 'notepad'),
+                 ('Email', 'email'), ('Document reader', 'document reader'), ('Address manager', 'contacts'),
+                 ('Schedule manager', 'calendar'), ('Web browser', 'web browser'), ('Radio', 'radio'),
+                 ('Podcasts', 'podcasts'), ('Media player', 'media player'), ('YouTube', 'youtube'))
+# Not "favorites" or "my favorites": those are the web browser's saved pages.
+FAVORITES_OPEN = ('favorite apps', 'favourite apps', 'open favorite apps', 'open favourite apps',
+                  'favorite apps menu', 'go to favorite apps', 'my favorite apps', 'my favourite apps')
+FAVORITES_CHANGE = ('change favorite apps', 'change favourite apps', 'edit favorite apps', 'edit favourite apps',
+                    'my menu', 'open my menu', 'my menu options')
+
+
+def favorite_key(name):
+    """The saved setting for one app in Favorite apps: 'favorite_word_processor'."""
+    return 'favorite_' + name.lower().replace(' ', '_')
+
+
+def favorite_items(preferences):
+    chosen = [(name, '', command) for name, command in FAVORITE_APPS if (preferences or {}).get(favorite_key(name))]
+    return chosen + [('Change favorite apps', '', '@options:My menu')]
+
+
+# Group menus: leaving an app opened from one goes back to it (companion.group_return).
+GROUP_MENUS = {'office_menu': 'Office tools', 'organizer_menu': 'Organizer', 'favorites_menu': 'Favorite apps'}
 # Simple list menus: arrows, first letters, Enter and Escape.
-LIST_MENUS = ('word_processor', 'notepad_menu', 'reader_menu', 'media_menu', 'office_menu', 'power_menu')
+LIST_MENUS = ('word_processor', 'notepad_menu', 'reader_menu', 'media_menu', 'office_menu', 'organizer_menu',
+              'favorites_menu', 'power_menu')
+# Menus whose items run a command from the main menu.
+MAIN_LEVEL_MENUS = ('media_menu', 'word_processor', 'notepad_menu', 'office_menu', 'organizer_menu', 'favorites_menu',
+                    'power_menu')
 
 READER_BACK_WORDS = {'reader_recent': 'your recent documents', 'reader_picker': 'the file list',
                      'recent_documents': 'your recent documents', 'files': 'the file list',
@@ -177,17 +211,21 @@ class TaskNavigation:
         if mode == 'reader_menu':
             # Document reader is an app of its own (Will, October 2026).
             return [('Open a document', 'Ctrl+O', '@reader_open'), ('Recent documents', 'Ctrl+R', '@reader_recent'),
-                    ('Options', 'Alt+O', '@options:Document reader'), ('Help', 'F1', 'help with document reader'),
-                    ('Main menu', 'Ctrl+F1', 'main menu')]
+                    ('Options', 'Alt+O', '@options:Document reader'), ('Help', 'Double:F1', 'help with document reader'),
+                    ('Main menu', 'F1', 'main menu')]
         if mode == 'reader_recent':
             return [(Path(p).name, '', '@reader_file:'+p) for p in self.reader_recent]
         if mode == 'notepad_menu':
             # Opening Notepad lands here first (Will, October 2026).
             return [('Create a note', 'Ctrl+N', 'write a note'), ('Open a note', 'Ctrl+O', 'list notes'),
-                    ('Options', 'Alt+O', '@options:Notepad'), ('Main menu', 'Ctrl+F1', 'main menu')]
+                    ('Options', 'Alt+O', '@options:Notepad'), ('Main menu', 'F1', 'main menu')]
         if mode == 'office_menu':
-            # Office tools on the main menu (Will, November 5, 2026).
+            # Office tools on the main menu (Will, November 5 and 6, 2026).
             return list(OFFICE_TOOLS)
+        if mode == 'organizer_menu':
+            return list(ORGANIZER)
+        if mode == 'favorites_menu':
+            return favorite_items(getattr(self.app, 'PREFERENCES', {}))
         if mode == 'power_menu':
             return list(POWER_CHOICES)
         if mode == 'media_menu':
@@ -464,7 +502,10 @@ class TaskNavigation:
                 m.list_saved_notes(); return mode
             if command.startswith('@options:'):return m.screen_menu().run(command, mode)
             if command == 'main menu':return 'awake'
-        return m.handle(command, 'document' if mode == 'document_menu' else 'awake' if mode in ('media_menu','word_processor','notepad_menu','office_menu','power_menu') else mode, typed=True)
+        if mode == 'favorites_menu' and command.startswith('@options:'):
+            # Change favorite apps: Options opens on My menu; closing it comes back here.
+            return m.screen_menu().run(command, mode)
+        return m.handle(command, 'document' if mode == 'document_menu' else 'awake' if mode in MAIN_LEVEL_MENUS else mode, typed=True)
 
     def keyboard(self, key, mode):
         if mode=='document_menu' and key.startswith('MenuPick:'):
@@ -493,7 +534,7 @@ class TaskNavigation:
                 return {'Ctrl+N':'create a document','Ctrl+O':'@open','Ctrl+R':'@recent','Alt+O':'@options'}[key]
             if mode == 'reader_menu' and key in ('Ctrl+O','Ctrl+R','Alt+O'):
                 return {'Ctrl+O':'@reader_open','Ctrl+R':'@reader_recent','Alt+O':'@options:Document reader'}[key]
-            if mode in ('office_menu','power_menu','media_menu') and key == 'Alt+O':
+            if mode in ('office_menu','organizer_menu','favorites_menu','power_menu','media_menu') and key == 'Alt+O':
                 # These menus have no options of their own: Alt+O opens Options, as on every screen.
                 return 'open options'
             if mode == 'notepad_menu' and key in ('Ctrl+N','Ctrl+O','Alt+O'):
@@ -544,7 +585,7 @@ class TaskNavigation:
             return self.action('@options',mode)
         if mode=='document_menu' and command in ('main menu','back to main menu','exit companion'):
             return m.handle(text,'document',typed=True)
-        if mode in ('word_processor','media_menu','office_menu','power_menu','recent_documents','document_menu','local_media','notepad_menu','reader_menu','reader_recent') and (m.spoken_control(command) or command in ('help','exit companion','go to sleep','wake up','main menu','back to main menu')):
+        if mode in ('word_processor','media_menu','office_menu','organizer_menu','favorites_menu','power_menu','recent_documents','document_menu','local_media','notepad_menu','reader_menu','reader_recent') and (m.spoken_control(command) or command in ('help','exit companion','go to sleep','wake up','main menu','back to main menu')):
             return None
         editor = m.document if mode == 'document' else m.email_draft if mode == 'email_draft' else None
         if editor is not None and command in ('toggle bold','toggle italic','toggle underline') and (mode == 'document' or (editor.compose_step or 'body') == 'body'):
@@ -573,6 +614,12 @@ class TaskNavigation:
             return self.action({'create a note':'write a note','new note':'write a note','open a note':'list notes','open notes':'list notes'}.get(command,'@options:Notepad'), mode)
         if command in OFFICE_OPEN and mode not in ('document','email_draft','note'):
             return self.enter('office_menu', 'Office tools')
+        if command in ORGANIZER_OPEN and mode not in ('document','email_draft','note'):
+            return self.enter('organizer_menu', 'Organizer')
+        if command in FAVORITES_OPEN and mode not in ('document','email_draft','note'):
+            return m.open_favorites()
+        if command in FAVORITES_CHANGE and mode not in ('document','email_draft','note'):
+            return m.screen_menu().run('@options:My menu', mode)
         if command in POWER_OPEN and mode not in ('document','email_draft','note'):
             return self.enter('power_menu', 'Shut down or restart')
         if command in ('media','media menu','open media') and mode not in ('document','email_draft'):

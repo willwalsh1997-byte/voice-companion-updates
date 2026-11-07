@@ -1,6 +1,6 @@
 """Keyboard-only sweep of the main menu, Office tools and Shut down or restart (November 6, 2026).
 
-A user who never speaks: F1 and Alt+O must work in the new submenus, Escape on a question goes
+A user who never speaks: F1 twice (help), F1 (main menu) and Alt+O must work in the new submenus, Escape on a question goes
 back one level, the account type question must not be cut off or left behind, and the way back
 to Office tools must never send you there from the main menu by surprise."""
 import unittest
@@ -31,18 +31,20 @@ class KeyboardOnlyStartupTests(CompanionTestCase):
         return companion.handle_keyboard(request, mode)
 
     def office(self):
+        # File manager is first on the main menu; Office tools is second (November 6, 2026).
         mode = self.key('Home', 'awake')
+        mode = self.key('Down', mode)
         return self.key('Enter', mode)
 
     def no_account(self):
         store = mock.Mock(); store.accounts.return_value = []; store.selected.return_value = None
         return mock.patch.object(companion, 'connected_accounts', return_value=[])
 
-    # F1 opens Help for the screen, as on every other screen (guide 1.4).
+    # F1 twice opens Help for the screen, as on every other screen (guide 1.4).
     def test_f1_opens_help_in_office_tools_and_power_menu(self):
-        for opened in ('office tools', 'shut down or restart'):
+        for opened in ('office tools', 'organizer', 'shut down or restart'):
             mode = companion.handle(opened, 'awake')
-            self.assertEqual(self.key('F1', mode), 'help', opened)
+            self.assertEqual(self.key('Double:F1', mode), 'help', opened)
             self.assertIn('Use the main menu', self.said[-1])
             companion.help_session = None
 
@@ -78,29 +80,33 @@ class KeyboardOnlyStartupTests(CompanionTestCase):
     # Email with no account from Office tools: the account question is the last thing said.
     def test_email_with_no_account_question_is_not_cut_off_by_main_menu(self):
         with self.no_account():
-            mode = self.key('Enter', self.office())          # Email
+            mode = self.office()
+            mode = self.key('Down', mode)                    # Notepad
+            mode = self.key('Down', mode)                    # Email
+            mode = self.key('Enter', mode)
         self.assertTrue(companion.account_setup)
         self.assertFalse(any(text.startswith('Main menu') for text in self.said[-1:]), self.said[-2:])
         self.assertIn('Which email account type?', self.said[-1])
         self.assertEqual(self.key('Escape', mode), 'office_menu')
 
-    # Main menu, Control+F1 or Help must not leave the account question running behind them.
+    # Main menu, F1 or Help must not leave the account question running behind them.
     def test_main_menu_ends_the_account_question(self):
-        for leave in ('Ctrl+F1', 'main menu'):
+        for leave in ('F1', 'main menu'):
             with self.no_account():
                 mode = companion.handle('email', 'awake')
             self.assertTrue(companion.account_setup)
-            mode = self.key(leave, mode) if leave == 'Ctrl+F1' else companion.handle(leave, mode)
+            mode = self.key(leave, mode) if leave == 'F1' else companion.handle(leave, mode)
             self.assertEqual(mode, 'awake', leave)
             self.assertFalse(companion.account_setup, leave)
             self.assertTrue(self.said[-1].startswith('Account setup canceled. Main menu.'), self.said[-1])
             self.key('Down', mode)
-            self.assertEqual(self.said[-1], 'Office tools (O), 1 of 8.')
+            self.assertEqual(self.said[-1], 'File manager (F), 1 of 10.')
 
     def test_f1_at_the_account_question_says_the_question_again(self):
+        # F1 twice quickly says it again; F1 once is the main menu.
         with self.no_account():
             mode = companion.handle('email', 'awake')
-        self.assertEqual(self.key('F1', mode), 'awake')
+        self.assertEqual(self.key('Double:F1', mode), 'awake')
         self.assertTrue(companion.account_setup)
         self.assertTrue(self.said[-1].startswith('Which email account type?'), self.said[-1])
 
@@ -161,7 +167,7 @@ class KeyboardOnlyStartupTests(CompanionTestCase):
             self.assertEqual(mode, 'awake', detour)
             mode = self.key('Down', mode)
             self.assertEqual(mode, 'awake', detour)
-            self.assertEqual(self.said[-1], 'Office tools (O), 1 of 8.')
+            self.assertEqual(self.said[-1], 'File manager (F), 1 of 10.')
             # An app opened from the main menu by name goes back to the main menu.
             mode = companion.handle('notepad', mode)
             self.assertEqual(self.key('Escape', mode), 'awake', detour)

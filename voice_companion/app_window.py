@@ -441,6 +441,8 @@ class CompanionWindow:
             root.bind_all('<FocusIn>',trace_focus,add='+')
             from time_date import PressCounter,clock_key,key_request
             clock_presses=PressCounter()
+            from f1_key import F1Presses,DOUBLE_PRESS_SECONDS as F1_WAIT
+            f1_presses=F1Presses();f1_job=[None]
             def shortcut(event):
                 if event.keysym.lower()=='p' and event.state&4 and not event.state&1 and not alt_held(event.state):
                     if not self.media_shortcut.registered:self.commands.put(('keyboard','Ctrl+P'))
@@ -471,11 +473,28 @@ class CompanionWindow:
                     cancel_phonetic()
                     self.commands.put(('keyboard','F9'));return 'break'
                 if key=='F1' and event.state&4 and not event.state&1 and not alt_held(event.state):
-                    # Control+F1 goes to the main menu from every screen. (Print Screen stays
-                    # with Windows, for screenshots.)
+                    # Control+F1 opens Favorite apps from every screen (Will, November 6, 2026).
                     if self.keyboard_output:self.keyboard_output.interrupt()
-                    cancel_phonetic()
+                    flush_pending_edit();cancel_phonetic()
                     self.commands.put(('keyboard','Ctrl+F1'));return 'break'
+                if key=='F1' and not event.state&(1|4) and not alt_held(event.state):
+                    # F1 goes to the main menu from every screen; F1 twice quickly opens help for
+                    # this screen (Will, November 6, 2026). One press waits a moment for a second
+                    # one, so a double press never leaves the screen first. See f1_key.py.
+                    if self.keyboard_output:self.keyboard_output.interrupt()
+                    flush_pending_edit();cancel_phonetic()
+                    if f1_presses.press():
+                        if f1_job[0] is not None:
+                            try:root.after_cancel(f1_job[0])
+                            except Exception:pass
+                        f1_job[0]=None
+                        self.commands.put(('keyboard','Double:F1'));return 'break'
+                    def single_f1():
+                        f1_job[0]=None
+                        if f1_presses.due() or f1_presses.pending():
+                            f1_presses.first=None;self.commands.put(('keyboard','F1'))
+                    f1_job[0]=root.after(int(F1_WAIT*1000)+20,single_f1)
+                    return 'break'
                 display_request=display_options.display_key(key,event.state)
                 if display_request:
                     # Control+Plus, Control+Minus, Control+0: text size. Control+9: colors. F11: full
@@ -555,7 +574,7 @@ class CompanionWindow:
                             # Add the typed words to the note first, as Enter would.
                             self.commands.put(typed.get().strip());typed.delete(0,'end')
                         self.commands.put(('keyboard',direct));return 'break'
-                if mode in ('document','word_processor','document_menu','recent_documents','media_menu','office_menu','power_menu','local_media','notepad_menu','reader_menu','reader_recent','task_input'):
+                if mode in ('document','word_processor','document_menu','recent_documents','media_menu','office_menu','organizer_menu','favorites_menu','power_menu','local_media','notepad_menu','reader_menu','reader_recent','task_input'):
                     from task_navigation import SHORTCUTS
                     if mode=='document' and self.context.get('document_table') and key in ('Tab','ISO_Left_Tab'):
                         flush_pending_edit();cancel_phonetic()

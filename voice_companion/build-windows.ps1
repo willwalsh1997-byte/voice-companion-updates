@@ -145,7 +145,7 @@ $env:VOICE_COMPANION_WINDOW_TESTS_APART = '1'
 $releaseTests = Start-Process -FilePath $python -NoNewWindow -Wait -PassThru `
   -ArgumentList @('-m','unittest','-q','smoke_tests','test_email_delivery','test_mailbox','test_chrome_setup',
     'test_media_update_fixes','test_web_fixes','test_document_fixes','test_core_email_fixes','test_storage','test_embedded_edge_default','test_thunderbird_mail','test_thunderbird_setup','test_web_performance',
-    'test_web_assistant','test_browser_recovery','test_web_browse','test_browser_accessibility','test_browser_media_polish','test_virtual_browser','test_document_formatting','test_text_selection','test_contacts_and_composing','test_media_hub','test_onboard_help','test_practice_tutorial','test_ai_speech','test_ai_voice_settings','test_voice_choices','test_build_packaging','test_dictation_text','test_ai_dictation','test_dictation_echo','test_file_manager','test_file_explorer','test_input_parity','test_task_navigation','test_media_player_menu','test_document_reader','test_rich_documents','test_workflow_regressions','test_draft_cancel','test_structural_selection','test_cross_area_selection','test_email_rich_formatting','test_document_controls','test_formatting_navigation','test_espeak_speech','test_command_latency','test_speech_controls','test_guide_files','test_app_updates','test_release_publishing','test_menu_prompts','test_sapi_build_check','test_settings', 'test_windows_actions','test_native_settings','test_keyboard_text','test_release_documents','test_menu_keyboard','test_list_boundaries','test_accessibility_fixes','test_browser_menu','test_documentation_quality','test_reading_responsiveness','test_email_reader','test_email_status_startup','test_consumer_workflows','test_consumer_regressions','test_browser_bridge','test_regular_browser','test_browser_cdp_relay','test_launch_review_fixes','test_notepad_and_document_options','test_removed_mail_accounts','test_yahoo_setup','test_yahoo_mail','test_screen_menus','test_web_modes','test_web_history','test_web_fields','test_email_accounts','test_audio_ducking','test_time_date','test_time_date_windows','test_thunderbird_accounts','test_user_stop','test_key_state','test_microphone_switch','test_microphone_off_startup','test_shared_playwright','test_document_reader_menu','test_guide_html_accessibility','test_main_menu_key','test_notepad_menu','test_heading_links','test_email_links_open_in_guided_browser','test_downloads','test_spoken_dates','test_contacts_screen','test_calendar_screen','test_email_attachments','test_attachment_flows','test_email_docs_audit','test_attachment_voice','test_display_options','test_startup_announcement','test_core_polish','test_speech_transcript','test_web_media_audit','test_site_audit_report','test_update_close','test_document_save_as','test_consumer_walkthrough','test_consumer_journeys','test_main_menu_document_words','test_calendar_contacts_sources','test_undo_redo','test_message_headers','test_hint_line','test_window_widget_release','test_media_web_answers','test_window_hiding','test_browser_window','test_chrome_window','test_thunderbird_host_reconnect','test_podcast_start','test_youtube','test_options_layout','test_new_veteran_start','test_email_new_veteran','test_editor_sweep','test_media_new_veteran','test_update_install','test_thunderbird_upgrade','test_extension_update','test_podcast_browsing','test_podcast_player','test_expert_startup','test_email_expert_sweep','test_expert_editing','test_media_expert_user','test_heading_feedback','test_options_control_words','test_thunderbird_addon_refresh','test_document_error_handling','test_media_error_handling','test_email_error_handling','test_sweep_decisions','test_mail_sync','test_text_navigation','test_speech_worker','test_own_chrome_open','test_text_navigation_window','test_first_time_chrome','test_search_focus_window','test_own_chrome_window','test_startup_edge_states','test_email_edge_states','test_calendar_edge_states','test_document_edge_states','test_web_edge_states','test_media_edge_states','test_voice_options_layout','test_file_manager_tags','test_zip_passwords','test_file_start_places','test_attachment_tags','test_office_tools_menu','test_keyboard_only_startup','test_email_keyboard_only','test_keyboard_documents_sweep','test_web_keyboard_only','test_media_keyboard_only') `
+    'test_web_assistant','test_browser_recovery','test_web_browse','test_browser_accessibility','test_browser_media_polish','test_virtual_browser','test_document_formatting','test_text_selection','test_contacts_and_composing','test_media_hub','test_onboard_help','test_practice_tutorial','test_ai_speech','test_ai_voice_settings','test_voice_choices','test_build_packaging','test_dictation_text','test_ai_dictation','test_dictation_echo','test_file_manager','test_file_explorer','test_input_parity','test_task_navigation','test_media_player_menu','test_document_reader','test_rich_documents','test_workflow_regressions','test_draft_cancel','test_structural_selection','test_cross_area_selection','test_email_rich_formatting','test_document_controls','test_formatting_navigation','test_espeak_speech','test_command_latency','test_speech_controls','test_guide_files','test_app_updates','test_release_publishing','test_fetch_espeak_source','test_menu_prompts','test_sapi_build_check','test_settings', 'test_windows_actions','test_native_settings','test_keyboard_text','test_release_documents','test_menu_keyboard','test_list_boundaries','test_accessibility_fixes','test_browser_menu','test_documentation_quality','test_reading_responsiveness','test_email_reader','test_email_status_startup','test_consumer_workflows','test_consumer_regressions','test_browser_bridge','test_regular_browser','test_browser_cdp_relay','test_launch_review_fixes','test_notepad_and_document_options','test_removed_mail_accounts','test_yahoo_setup','test_yahoo_mail','test_screen_menus','test_web_modes','test_web_history','test_web_fields','test_email_accounts','test_audio_ducking','test_time_date','test_time_date_windows','test_thunderbird_accounts','test_user_stop','test_key_state','test_microphone_switch','test_microphone_off_startup','test_shared_playwright','test_document_reader_menu','test_guide_html_accessibility','test_main_menu_key','test_notepad_menu','test_heading_links','test_email_links_open_in_guided_browser','test_downloads','test_spoken_dates','test_contacts_screen','test_calendar_screen','test_email_attachments','test_attachment_flows','test_email_docs_audit','test_attachment_voice','test_display_options','test_startup_announcement','test_core_polish','test_speech_transcript','test_web_media_audit','test_site_audit_report','test_update_close','test_document_save_as','test_consumer_walkthrough','test_consumer_journeys','test_main_menu_document_words','test_calendar_contacts_sources','test_undo_redo','test_message_headers','test_hint_line','test_window_widget_release','test_media_web_answers','test_window_hiding','test_browser_window','test_chrome_window','test_thunderbird_host_reconnect','test_podcast_start','test_youtube','test_options_layout','test_new_veteran_start','test_email_new_veteran','test_editor_sweep','test_media_new_veteran','test_update_install','test_thunderbird_upgrade','test_extension_update','test_podcast_browsing','test_podcast_player','test_expert_startup','test_email_expert_sweep','test_expert_editing','test_media_expert_user','test_heading_feedback','test_options_control_words','test_thunderbird_addon_refresh','test_document_error_handling','test_media_error_handling','test_email_error_handling','test_sweep_decisions','test_mail_sync','test_text_navigation','test_speech_worker','test_own_chrome_open','test_text_navigation_window','test_first_time_chrome','test_search_focus_window','test_own_chrome_window','test_startup_edge_states','test_email_edge_states','test_calendar_edge_states','test_document_edge_states','test_web_edge_states','test_media_edge_states','test_voice_options_layout','test_file_manager_tags','test_zip_passwords','test_file_start_places','test_attachment_tags','test_office_tools_menu','test_favorite_apps','test_keyboard_only_startup','test_email_keyboard_only','test_keyboard_documents_sweep','test_web_keyboard_only','test_media_keyboard_only') `
   -RedirectStandardOutput $releaseOutput -RedirectStandardError $releaseErrors
 if (Test-Path $releaseErrors) { Get-Content $releaseErrors | Out-Host }
 if ($releaseTests.ExitCode -ne 0) {
@@ -372,6 +372,20 @@ if ((Get-FileHash -LiteralPath $portableSetup -Algorithm SHA256).Hash -ne
 }
 Write-Output "SETUP CREATED: $portableSetup"
 Write-Output "Starting the installer: $setup"
+$keptFiles = @()
+if ($Unattended) {
+  # Installing over an earlier copy must keep the user's settings, email accounts and
+  # documents (0.2.209: every tester installs it by hand once). Sample files stand in for them.
+  $keptFiles = @(
+    (Join-Path $env:LOCALAPPDATA 'VoiceCompanion\upgrade-check-settings.json'),
+    (Join-Path $env:LOCALAPPDATA 'VoiceCompanion\upgrade-check-accounts\account.json'),
+    (Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'Voice Companion\upgrade-check-document.txt')
+  ) | ForEach-Object {
+    New-Item -ItemType Directory -Force -Path (Split-Path $_) | Out-Null
+    Set-Content -LiteralPath $_ -Value ('Kept by Setup: ' + $_) -Encoding UTF8
+    @{ path = $_; hash = (Get-FileHash -LiteralPath $_ -Algorithm SHA256).Hash }
+  }
+}
 if ($Unattended) {
   Write-Output 'BUILD STAGE: Testing installation without user interaction.'
   $installation = Start-Process -FilePath $setup -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/SP-') -PassThru
@@ -380,6 +394,13 @@ if ($Unattended) {
 }
 $installation.WaitForExit()
 if ($installation.ExitCode -ne 0) { throw "Setup did not complete. Exit code: $($installation.ExitCode)" }
+foreach ($kept in $keptFiles) {
+  if (-not (Test-Path -LiteralPath $kept.path) -or (Get-FileHash -LiteralPath $kept.path -Algorithm SHA256).Hash -ne $kept.hash) {
+    throw "Setup changed or removed a user file it must keep: $($kept.path)"
+  }
+  Remove-Item -LiteralPath $kept.path -Force
+}
+Remove-Item -LiteralPath (Join-Path $env:LOCALAPPDATA 'VoiceCompanion\upgrade-check-accounts') -Force -Recurse -ErrorAction SilentlyContinue
 $installedFolder = Join-Path $env:LOCALAPPDATA 'Programs\Voice Companion'
 $installedDiagnostics = Join-Path $installedFolder 'VoiceCompanion-Diagnostics.exe'
 $installedApp = Join-Path $installedFolder 'VoiceCompanion.exe'
@@ -418,14 +439,14 @@ if ($LASTEXITCODE -ne 0) { throw 'The installed native browser connection failed
 & $python (Join-Path $PSScriptRoot 'check_extension_browser.py') $installedFolder $extensionTestRuntime
 if ($LASTEXITCODE -ne 0) { throw 'The installed extension did not preserve the standard browser navigation and forms.' }
 $installedVersion = & $installedDiagnostics --version
-if ($LASTEXITCODE -ne 0 -or -not (($installedVersion -join ' ') -match '^Voice Companion 0\.2\.208-test$')) {
+if ($LASTEXITCODE -ne 0 -or -not (($installedVersion -join ' ') -match '^Voice Companion 0\.2\.209-test$')) {
   throw 'The installed program is not the current Voice Companion build.'
 }
 & $installedDiagnostics --refresh-guides
 if ($LASTEXITCODE -ne 0) { throw 'The installed documentation did not copy and verify in Documents.' }
 & $installedDiagnostics --check-runtime
 if ($LASTEXITCODE -ne 0) { throw 'The installed program is missing a runtime component.' }
-Write-Output 'INSTALL PASSED. Voice Companion 0.2.208-test is installed. Use the desktop icon or Start menu.'
+Write-Output 'INSTALL PASSED. Voice Companion 0.2.209-test is installed. Use the desktop icon or Start menu.'
 if ($Unattended) {
   & (Join-Path $PSScriptRoot 'test-update-audio.ps1')
   if ($LASTEXITCODE -ne 0) { throw 'Updater microphone release checks failed.' }
@@ -464,7 +485,7 @@ Write-Output "COPY THIS INSTALLER TO OTHER COMPUTERS: $portableSetup"
 Write-Output 'The temporary runnable EXEs have been removed to avoid confusing them with Setup.'
 
 # Record exactly the installer that passed all packaged and installed checks.
-@{ version = '0.2.208-test'; sha256 = (Get-FileHash -LiteralPath $portableSetup -Algorithm SHA256).Hash.ToLowerInvariant(); size = (Get-Item -LiteralPath $portableSetup).Length } |
+@{ version = '0.2.209-test'; sha256 = (Get-FileHash -LiteralPath $portableSetup -Algorithm SHA256).Hash.ToLowerInvariant(); size = (Get-Item -LiteralPath $portableSetup).Length } |
   ConvertTo-Json | Set-Content -LiteralPath $receiptPath -Encoding UTF8
 # Updates are published only by the GitHub build (.github/workflows/windows-installer.yml).
 # A build on your own computer is for testing. -NoPublish is still accepted.

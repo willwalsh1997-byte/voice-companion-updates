@@ -27,7 +27,7 @@ Follow CLAUDE.md first; it overrides anything here.
 
 ## Steps
 0a. If a release pull request from an earlier sweep is still open, finish it first. On October 29 the sweep's checks were all green at 6:28 AM, but it never merged, because the session ended while tools/ship.sh was still waiting. If its checks are green and it is up to date with main, run tools/ship.sh on it. If not, update it and fix it. Then start tonight's sweep from the new main.
-0. Before starting, check for an open release pull request (`gh api repos/willwalsh14-hub/voice-companion-updates/pulls --jq '.[]|.title'`). Also check for an unfinished publish build on main. If one is in progress, wait for it to publish, then branch from the new main. Never ship two releases at the same time.
+0. Before starting, check for an open release pull request (`gh api repos/willwalsh1997-byte/voice-companion-updates/pulls --jq '.[]|.title'`). Also check for an unfinished publish build on main. If one is in progress, wait for it to publish, then branch from the new main. Never ship two releases at the same time.
 1. Make sure the repository is cloned and up to date with main. Read CLAUDE.md
    and LAUNCH-CHECKLIST.md. Read the last few releases' notes and git log to see
    what changed recently. New code is where bugs hide.
@@ -50,7 +50,10 @@ Follow CLAUDE.md first; it overrides anything here.
    node suites. Every result must be "No new failures".
 7. New Windows-only tests go first on a `claude/try-...` branch with a short workflow
    that runs only them. Close that draft pull request when done.
-8. Open the pull request and run `tools/ship.sh` with run_in_background. **Do not end the session while it runs.** A release takes about 80 minutes: checks, merge, then the publish build. Set a send_later check-in for 45 minutes, and keep checking until ship.sh prints PUBLISHED. If the session is about to end, write the pull request number in tools/sweep-log.md, so the next run finishes it (step 0a). Will has given standing approval to
+8. Release rhythm (Will, November 7, 2026): about one release a week. On other nights,
+   push the sweep's work to `claude/release-<next version>` without opening the pull
+   request, unless something urgent is fixed (see CLAUDE.md, "Release rhythm").
+   On release night, open the pull request and run `tools/ship.sh` with run_in_background. **Do not end the session while it runs.** A release takes about 80 minutes: checks, merge, then the publish build. Set a send_later check-in for 45 minutes, and keep checking until ship.sh prints PUBLISHED. If the session is about to end, write the pull request number in tools/sweep-log.md, so the next run finishes it (step 0a). Will has given standing approval to
    publish when all checks pass. If a check fails, read the annotations, find the
    cause, fix it and ship again. A test that passes on rerun is still a bug.
 9. Record every bug fix, not only the highlights:

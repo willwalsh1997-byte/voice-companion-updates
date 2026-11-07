@@ -109,7 +109,7 @@ class CalendarSourceTests(CalendarHarness):
 
     def test_opening_says_what_is_shown_and_shows_every_calendar(self):
         self.open()
-        self.assertEqual(self.said(), 'Calendar. Showing all calendars. Today, Monday, October 26. 3 events. '
+        self.assertEqual(self.said(), 'Schedule manager. Showing all calendars. Today, Monday, October 26. 3 events. '
                                       'Ten thirty AM to eleven AM, Doctor appointment, me@gmail.com, 1 of 3.')
         self.assertEqual([e.title for e in calendar_screen.EVENTS], ['Doctor appointment', 'Team call', 'Soccer practice'])
 
@@ -117,7 +117,7 @@ class CalendarSourceTests(CalendarHarness):
         mode = self.open()
         self.press('Down', mode)
         app.handle('Where am I?', mode)
-        self.assertEqual(self.said(), 'Calendar. Showing all calendars. Today, Monday, October 26. 3 events. '
+        self.assertEqual(self.said(), 'Schedule manager. Showing all calendars. Today, Monday, October 26. 3 events. '
                                       'Two PM to three PM, Team call, Calendar, 2 of 3.')
         for words in ('repeat', 'Say that again.', 'what day is this'):
             with self.subTest(words=words):
@@ -154,7 +154,7 @@ class CalendarSourceTests(CalendarHarness):
         # Next time Calendar opens, the same calendar is shown, and said.
         app.handle('close calendar', mode)
         self.open()
-        self.assertTrue(self.said().startswith('Calendar. Showing Calendar, Outlook, vet@outlook.com. Today'))
+        self.assertTrue(self.said().startswith('Schedule manager. Showing Calendar, Outlook, vet@outlook.com. Today'))
 
     def test_escape_keeps_what_was_shown(self):
         mode = self.open()
@@ -176,7 +176,7 @@ class CalendarSourceTests(CalendarHarness):
                                                'Five PM to six PM, Soccer practice, Family'))
         app.handle('Where am I?', mode)
         # The screen's name first, as on Contacts.
-        self.assertTrue(self.said().startswith('Calendar. Showing Family, Gmail, me@gmail.com. Today, Monday, October 26.'))
+        self.assertTrue(self.said().startswith('Schedule manager. Showing Family, Gmail, me@gmail.com. Today, Monday, October 26.'))
         app.handle('Show Outlook.', mode)
         self.assertTrue(self.said().startswith('Showing Calendar, Outlook, vet@outlook.com.'))
         app.handle('Show all calendars.', mode)
@@ -197,12 +197,12 @@ class CalendarSourceTests(CalendarHarness):
         self.assertEqual(mode, 'calendar')
         # Said once, with the screen's name: a second message would cut off the first.
         self.assertEqual(self.speech.call_count, 1, self.everything_said())
-        self.assertTrue(self.said().startswith('Calendar. Showing Calendar, Outlook, vet@outlook.com. Today, Monday, October 26. 1 event.'))
+        self.assertTrue(self.said().startswith('Schedule manager. Showing Calendar, Outlook, vet@outlook.com. Today, Monday, October 26. 1 event.'))
         app.handle('main menu', mode)
         self.speech.reset_mock()
         app.handle('Show my Hotmail calendar.', 'awake')
         self.assertEqual(self.speech.call_count, 1, self.everything_said())
-        self.assertTrue(self.said().startswith('Calendar. No calendar is called hotmail. Choose the calendars to show.'), self.said())
+        self.assertTrue(self.said().startswith('Schedule manager. No calendar is called hotmail. Choose the calendars to show.'), self.said())
 
     def test_a_new_event_goes_to_the_calendar_shown(self):
         mode = self.open()
@@ -266,11 +266,11 @@ class CalendarSourceTests(CalendarHarness):
     def test_a_kept_calendar_that_is_gone_shows_all_and_says_so_once(self):
         pim_sources.remember(self.root, 'calendar', 'source:cal-gone', 'Calendar, Yahoo, old@yahoo.com')
         self.open()
-        self.assertEqual(self.said(), 'Calendar. Calendar, Yahoo, old@yahoo.com is no longer in Thunderbird, so all calendars are shown. '
+        self.assertEqual(self.said(), 'Schedule manager. Calendar, Yahoo, old@yahoo.com is no longer in Thunderbird, so all calendars are shown. '
                                       'Today, Monday, October 26. 3 events. Ten thirty AM to eleven AM, Doctor appointment, me@gmail.com, 1 of 3.')
         app.handle('close calendar', 'calendar')
         self.open()
-        self.assertTrue(self.said().startswith('Calendar. Showing all calendars. Today'))
+        self.assertTrue(self.said().startswith('Schedule manager. Showing all calendars. Today'))
 
 
 class CalendarSourceFailingTests(CalendarHarness):
@@ -309,7 +309,7 @@ class CalendarOneAccountTests(CalendarHarness):
         app.handle('which calendar am I in', mode)
         self.assertEqual(self.said(), 'All your calendars are shown.')
         app.handle('where am i', mode)
-        self.assertTrue(self.said().startswith('Calendar. Today, Monday, October 26.'))
+        self.assertTrue(self.said().startswith('Schedule manager. Today, Monday, October 26.'))
         self.press('Alt', mode)
         self.press('Letter:3', mode)
         self.assertNotIn('choose calendar', [entry[2] for entry in app.SCREEN_MENU.entries()])
@@ -321,7 +321,7 @@ class CalendarOldAddonTests(CalendarHarness):
 
     def test_an_add_on_without_accounts_shows_everything_as_before(self):
         mode = self.open()
-        self.assertTrue(self.said().startswith('Calendar. Today, Monday, October 26. 3 events.'))
+        self.assertTrue(self.said().startswith('Schedule manager. Today, Monday, October 26. 3 events.'))
         self.assertEqual(calendar_screen.hidden_commands(), ('choose calendar',))
 
 
@@ -337,7 +337,7 @@ class ContactsSourceHarness(CompanionHarness):
 class ContactsSourceTests(ContactsSourceHarness):
     def test_opening_says_what_is_shown(self):
         self.open()
-        self.assertEqual(self.said(), 'Contacts. Showing all address books. 6 contacts. Ann Brown, ann@example.com, 1 of 6.')
+        self.assertEqual(self.said(), 'Address manager. Showing all address books. 6 contacts. Ann Brown, ann@example.com, 1 of 6.')
 
     def test_control_l_chooses_and_a_person_in_two_accounts_is_in_both(self):
         mode = self.open()
@@ -362,7 +362,7 @@ class ContactsSourceTests(ContactsSourceHarness):
         self.assertEqual(self.said(), 'Saved in: Thunderbird address book Contacts, Outlook, vet@outlook.com, 4 of 6.')
         app.handle('close contacts', 'contacts')
         self.open()
-        self.assertTrue(self.said().startswith('Contacts. Showing Contacts, Outlook, vet@outlook.com. 2 contacts.'))
+        self.assertTrue(self.said().startswith('Address manager. Showing Contacts, Outlook, vet@outlook.com. 2 contacts.'))
 
     def test_voice_commands(self):
         mode = self.open()
@@ -371,7 +371,7 @@ class ContactsSourceTests(ContactsSourceHarness):
         app.handle('Which address book am I in?', mode)
         self.assertEqual(self.said(), 'Showing Address book, Gmail, me@gmail.com. To choose another, press Control+L.')
         app.handle('where am I', mode)
-        self.assertTrue(self.said().startswith('Contacts. Showing Address book, Gmail, me@gmail.com. 2 contacts.'))
+        self.assertTrue(self.said().startswith('Address manager. Showing Address book, Gmail, me@gmail.com. 2 contacts.'))
         app.handle('show the Outlook address book', mode)
         self.assertTrue(self.said().startswith('Showing Contacts, Outlook, vet@outlook.com.'))
         app.handle('show all contacts', mode)
@@ -388,12 +388,12 @@ class ContactsSourceTests(ContactsSourceHarness):
         mode = app.handle('show Outlook contacts', 'awake')
         self.assertEqual(mode, 'contacts')
         self.assertEqual(self.speech.call_count, 1, self.everything_said())
-        self.assertTrue(self.said().startswith('Contacts. Showing Contacts, Outlook, vet@outlook.com. 2 contacts.'))
+        self.assertTrue(self.said().startswith('Address manager. Showing Contacts, Outlook, vet@outlook.com. 2 contacts.'))
         app.handle('main menu', mode)
         self.speech.reset_mock()
         app.handle('show Hotmail contacts', 'awake')
         self.assertEqual(self.speech.call_count, 1, self.everything_said())
-        self.assertTrue(self.said().startswith('Contacts. No address book is called hotmail. Choose the address books to show.'), self.said())
+        self.assertTrue(self.said().startswith('Address manager. No address book is called hotmail. Choose the address books to show.'), self.said())
 
     def test_a_new_contact_goes_into_the_address_book_shown(self):
         mode = self.open()
@@ -445,10 +445,10 @@ class ContactsSourceTests(ContactsSourceHarness):
     def test_a_kept_address_book_that_is_gone_shows_all_and_says_so_once(self):
         pim_sources.remember(self.root, 'contacts', 'source:book-gone', 'Contacts, Yahoo, old@yahoo.com')
         self.open()
-        self.assertEqual(self.said(), 'Contacts. Contacts, Yahoo, old@yahoo.com is no longer in Thunderbird, so all address books '
+        self.assertEqual(self.said(), 'Address manager. Contacts, Yahoo, old@yahoo.com is no longer in Thunderbird, so all address books '
                                       'are shown. 6 contacts. Ann Brown, ann@example.com, 1 of 6.')
         app.handle('where am i', 'contacts')
-        self.assertTrue(self.said().startswith('Contacts. Showing all address books. 6 contacts.'))
+        self.assertTrue(self.said().startswith('Address manager. Showing all address books. 6 contacts.'))
 
 
 class ThunderbirdNotAnsweringSourceTests(ContactsSourceHarness):
@@ -474,7 +474,7 @@ class ThunderbirdNotAnsweringSourceTests(ContactsSourceHarness):
         self.assertEqual(pim_sources.saved(self.root, 'contacts')['choice'], chosen)
         app.handle('close contacts', mode)
         self.open()
-        self.assertTrue(self.said().startswith('Contacts. Showing Contacts, Outlook, vet@outlook.com. 2 contacts.'), self.said())
+        self.assertTrue(self.said().startswith('Address manager. Showing Contacts, Outlook, vet@outlook.com. 2 contacts.'), self.said())
 
     def test_control_l_says_why_when_the_address_books_could_not_be_read(self):
         with self.failing():
@@ -507,7 +507,7 @@ class ContactsFailingTests(ContactsSourceHarness):
         self.assertTrue(self.said().startswith('Showing Address book, Gmail, me@gmail.com. 2 contacts.'))
         app.handle('show Outlook contacts', mode)
         app.handle('refresh contacts', mode)
-        self.assertEqual(self.said(), 'Contacts. Showing Contacts, Outlook, vet@outlook.com. No contacts here. Press Control+L to show '
+        self.assertEqual(self.said(), 'Address manager. Showing Contacts, Outlook, vet@outlook.com. No contacts here. Press Control+L to show '
                                       'another address book, or Control+N to add a contact. Contacts, Outlook, vet@outlook.com could '
                                       'not be read. Try again in a minute.')
 
@@ -515,12 +515,12 @@ class ContactsFailingTests(ContactsSourceHarness):
 class ContactsOneAccountTests(CompanionHarness):
     def test_nothing_is_said_or_offered(self):
         mode = app.handle('Contacts', 'awake')
-        self.assertEqual(self.said(), 'Contacts. 5 contacts. Ann Brown, ann@example.com, 1 of 5.')
+        self.assertEqual(self.said(), 'Address manager. 5 contacts. Ann Brown, ann@example.com, 1 of 5.')
         self.press('Ctrl+L', mode)
         self.assertEqual(self.said(), 'You have one email account in Thunderbird, so all your contacts are shown.')
         self.assertEqual(contacts_screen.hidden_commands(), ('choose address book',))
         app.handle('show Gmail contacts', mode)
-        self.assertEqual(self.said(), 'Contacts. 5 contacts. Ann Brown, ann@example.com, 1 of 5.')
+        self.assertEqual(self.said(), 'Address manager. 5 contacts. Ann Brown, ann@example.com, 1 of 5.')
 
 
 class MainMenuWordsTests(CompanionHarness):

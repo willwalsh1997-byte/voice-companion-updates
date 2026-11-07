@@ -1,12 +1,21 @@
 name: Validate updater fixes and live browsers
 on:
   pull_request:
+    types: [opened, synchronize, reopened, labeled]
     paths: ['voice_companion/**', '.github/workflows/browser-fixes.yml']
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   live-browser-checks:
+    # Windows minutes are kept for release candidates (CLAUDE.md, November 7, 2026): a pull
+    # request from a claude/release-... or claude/try-... branch, or one labeled
+    # "release candidate". Merges to main, and Run workflow, always run.
+    if: >-
+      github.event_name != 'pull_request' ||
+      startsWith(github.head_ref, 'claude/release-') ||
+      startsWith(github.head_ref, 'claude/try-') ||
+      contains(github.event.pull_request.labels.*.name, 'release candidate')
     runs-on: windows-2022
     timeout-minutes: 25
     env:

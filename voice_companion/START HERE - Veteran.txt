@@ -1,6 +1,6 @@
 VOICE COMPANION USER GUIDE
 
-Guide version: 0.2.208-test.
+Guide version: 0.2.209-test.
 Voice Companion is a talking app for Windows. It speaks its own menus and messages. You can use your voice, your keyboard, or both. You do not need Microsoft Word or a screen reader to use it.
 This guide has numbered chapters. Each chapter has short numbered parts. Each part starts with the task, then tells you what to say or which key to press.
 Spoken commands are in quotation marks, such as "Help". Keys are written the way they are labeled, such as Control+F1 or Down Arrow. A plus sign means hold the first key, then press the next one.
@@ -93,7 +93,7 @@ Contents
   12.5 Create and manage folders
   12.6 Read links and load more mail
   12.7 Open and save attachments
-13 Contacts
+13 Address manager
   13.1 Open your contacts
   13.2 Hear a contact's details
   13.3 Email a contact
@@ -102,7 +102,7 @@ Contents
   13.6 Change a contact
   13.7 Get your Google or Outlook contacts
   13.8 Choose which address book you see
-14 Calendar
+14 Schedule manager
   14.1 Open your calendar
   14.2 Move to another day
   14.3 Add an event
@@ -179,6 +179,7 @@ Contents
   25.8 Radio and Podcasts options
   25.9 Auto-update and Startup and exit options
   25.10 Display options
+  25.11 My menu
 26 Sleep, Exit, And Computer Power
   26.1 Put the microphone to sleep
   26.2 Close Companion
@@ -236,7 +237,9 @@ If a key press stops the ready message, say "What version?", or press Control+V.
 
 1.3 Use the main menu
 The main menu is where every task starts. Its apps are in groups. It has these choices, in this order:
+- File manager
 - Office tools
+- Organizer
 - Web browser
 - Media
 - Options
@@ -245,17 +248,23 @@ The main menu is where every task starts. Its apps are in groups. It has these c
 - Shut down or restart
 - Exit Voice Companion
 Office tools has these apps:
-- Email
 - Word processor
 - Notepad
+- Email
 - Document reader
-- Calendar
-- Contacts
-- File manager
+Organizer has these apps:
+- Address manager. It keeps your contacts. It used to be called Contacts.
+- Schedule manager. It keeps your calendar. It used to be called Calendar.
+The old words still work. Say "Contacts" or "Calendar" to open them.
 Media has Radio, Podcasts, Media player, and YouTube. Shut down or restart has Shut down the computer and Restart the computer. Each one still asks first.
-To open Office tools, say "Office tools", or press Enter on it. Move and choose the same way as on the main menu.
-In Office tools or Shut down or restart, say "Help with main menu", or press F1, to hear this part of the guide.
-When you leave an app you opened from Office tools, you go back to Office tools. Escape on Office tools goes to the main menu. "Main menu" and Control+F1 always go straight to the main menu.
+To open Office tools, say "Office tools", or press Enter on it. To open Organizer, say "Organizer". Move and choose the same way as on the main menu.
+In Office tools, Organizer, or Shut down or restart, say "Help with main menu", or press F1 twice quickly, to hear this part of the guide.
+When you leave an app you opened from Office tools or Organizer, you go back to that menu. Escape there goes to the main menu. "Main menu" and F1 always go straight to the main menu.
+Favorite apps is your own short list of apps. To open it, press Control+F1 on any screen, or say "Favorite apps".
+- It lists the apps you chose. The last item is Change favorite apps.
+- Change favorite apps opens Options on My menu. Check each app you want in the list.
+- If you have not chosen any apps yet, Favorite apps says so.
+- When you leave an app you opened from Favorite apps, you go back to Favorite apps.
 You can still open any app by name from the main menu. For example, say "Email" or "File manager".
 To move, say "Next" or "Previous", or press Down Arrow or Up Arrow.
 To open the item you hear, say "That one", "Okay", or "Confirm", or press Enter.
@@ -267,18 +276,19 @@ Keys that only work on the main menu:
 - To hear the speech mode, say "What mode?", or press Control+M.
 - To open the guide folder, say "Open user guides", or press Control+G.
 - To start the lessons, say "Start tutorial", or press Control+T.
-- To open Help, say "Help", "Help me", or "What can I say?", or press F1.
+- To open Help, say "Help", "Help me", or "What can I say?", or press F1 twice quickly. On the main menu, Help is this user guide.
 The main menu is the first screen. "Go back" there tells you so.
-If the main menu does not know your words, it says "I did not understand that. You are on the main menu. Press F1 for help."
+If the main menu does not know your words, it says "I did not understand that. You are on the main menu. Press F1 twice for help."
 On the main menu, Alt says that you are in the main menu. The main menu is already a menu, so it has no Alt menu of its own.
 On most other screens, press Alt to open a menu of that screen's actions. Each item says its key and its voice command. Use the arrows and Enter to choose. Press a number to open a group or choose an item. Type a letter to find an item. Escape goes back one level. Press Alt again to close the menu.
 If a screen has no Alt menu, or you must answer a question first, Alt tells you why.
 
 1.4 Keys that work everywhere
 These keys work on every screen in Companion. Learn these first.
-- To go back to the main menu, say "Main menu", or press Control+F1. If a document has changes, Companion asks you to save it first.
+- To go back to the main menu, say "Main menu", or press F1. If a document has changes, Companion asks you to save it first.
 - To go back one step, press Escape.
-- To hear help for the screen you are on, press F1.
+- To hear help for the screen you are on, press F1 twice quickly.
+- To open Favorite apps, say "Favorite apps", or press Control+F1.
 - To open the menu for the screen you are on, press Alt.
 - To stop speech at once, press Control.
 - To type a command instead of saying it, press Alt+T.
@@ -310,10 +320,10 @@ You can keep using the keyboard if the microphone is not working.
 2. USING VOICE COMMANDS
 
 2.1 Give a command
-Say a command, then wait for the reply. For example, say "Help", or press F1, to open the guide.
+Say a command, then wait for the reply. For example, say "Help", or press F1 twice quickly, to open the guide.
 In a menu, say "Next", then "That one" to choose the item you hear. Or press Down Arrow, then Enter.
-To return to the start, say "Main menu", or press Control+F1.
-This guide gives each task as a spoken command, then a key. For example: say "Help", or press F1. The key does the same thing as the spoken command.
+To return to the start, say "Main menu", or press F1.
+This guide gives each task as a spoken command, then a key. For example: say "Help", or press F1 twice quickly. The key does the same thing as the spoken command.
 Names in the examples are sample names. Use your own document, contact, folder, or favorite name instead.
 If a command or key fails because of a problem in Voice Companion, you hear that it did not work. You stay where you were, so you can try again.
 
@@ -348,7 +358,7 @@ When Companion asks a question, listen to the item name and the action first.
 - To stop it, say "No" or "Cancel", or press Alt+N or Escape.
 - You can also use the arrows or Tab to choose Yes or No, then press Enter.
 - Home selects Yes. End selects No.
-- To hear the question again, press F1.
+- To hear the question again, press F1 twice quickly.
 
 2.6 Check the time and date
 - To hear the time, say "What time is it?", or press F12.
@@ -365,10 +375,10 @@ When Companion asks a question, listen to the item name and the action first.
 
 3.1 Open a Help topic
 Help reads this guide to you inside the app. Each chapter is a Help topic.
-To open Help, say "Help", or press F1 on the main menu. To choose a topic, say "Next", "Previous", and "That one", or use the arrows and Enter.
+To open Help, say "Help", or press F1 twice quickly on the main menu. To choose a topic, say "Next", "Previous", and "That one", or use the arrows and Enter.
 To go straight to a topic, say "Help with", followed by its name. For example, say "Help with documents", "Help with email", or "Help with web".
 Other useful requests are "Help with radio", "Help with podcasts", "Help with presets", and "Help with commands".
-On most screens, F1 opens the Help topic for that screen. Home and End reach the ends of a list.
+On most screens, F1 twice quickly opens the Help topic for that screen. Home and End reach the ends of a list.
 If Help does not know your words, it says so, and says what to say next. While Help reads aloud, it does not answer, so talk in the room does not stop the reading.
 Press Alt to open the help menu. It has Help topics, Subsections, Release notes, Lessons, the guide folder, Close help, and Main menu.
 
@@ -396,14 +406,14 @@ The tutorial is a set of spoken lessons. It waits for you between lessons. It ex
 3. Say a course name, such as "Email" or "Web browser". You can also use the arrows and Enter.
 4. Listen to the first lesson.
 5. When you are ready, say "Next lesson", or press Down Arrow.
-Courses cover Getting started, Word processor, Notepad, Email, Contacts and calendar, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager.
+Courses cover Getting started, Word processor, Notepad, Email, Address manager and Schedule manager, Web browser, Radio, Podcasts, YouTube, Options, Help and updates, and File manager.
 
 3.4 Find, repeat, and leave a lesson
 - To hear the same lesson, say "Repeat", or press Control+R.
 - To go back a lesson, say "Previous lesson", or press Up Arrow.
 - For the lesson names, say "Lesson list", or press Control+L. Use the arrows and Enter to choose one.
 - To find a lesson, say "Find lesson" followed by a topic, such as "Find lesson favorites". Or press Control+F, type the topic, and press Enter.
-- For the course's command list, say "List commands", or press F1.
+- For the course's command list, say "List commands", or press F1 twice quickly.
 - To learn about a command, say "Explain command", followed by the command, such as "Explain command send it". Or press Control+E, type the command, and press Enter.
 - If a long explanation pauses, say "Continue reading", or press Control+Down Arrow.
 - To go back one level, say "Go back", or press Escape. Say "Courses" to return to the course list.
@@ -535,7 +545,7 @@ Choose a matching place if asked. Then speak the words to add. In Commands only,
 6. FILE MANAGER
 
 6.1 Open File manager
-File manager is in Office tools on the main menu. Say "File manager", or choose it in Office tools. You start at the drive list. To start somewhere else, such as C drive or Documents, see File manager options in chapter 25.
+File manager is the first item on the main menu. Say "File manager", or press Enter on it. You start at the drive list. To start somewhere else, such as C drive or Documents, see File manager options in chapter 25.
 The drive list comes from Windows, the same as in File Explorer. It has your local drives, network drives, and cloud folders such as OneDrive.
 Desktop and Documents are folders inside a drive. They are not drives.
 A cloud file may need an internet connection to download before you can read it.
@@ -557,9 +567,9 @@ Programs and unknown file types are never run from here.
 6.4 Go to the parent folder
 - To go up one folder, say "Go back" or "Parent folder", or press Escape.
 - At the top of a drive, Escape goes to the drive list.
-- At the drive list, Escape goes back to where you came from: Office tools or the main menu.
+- At the drive list, Escape goes back to where you came from: Favorite apps or the main menu.
 - To go straight to the drive list, say "Drive list", or press Control+D.
-- To leave File manager, say "Main menu", or press Control+F1.
+- To leave File manager, say "Main menu", or press F1.
 For example, from Documents, then Voice Companion, Escape goes back to Documents.
 
 6.5 Tag several items
@@ -608,7 +618,7 @@ If Windows cannot finish, check the folder before you try again.
 - To open the File manager menu, say "File manager menu", or press Alt. It has four groups: Actions, Search, Sort, and Go to.
 - Press Enter to open a group. Each item says its key and its voice command. Escape goes back to the groups, then to your files.
 - Tab does not move anywhere on the File manager screen. Everything is in the list or on the Alt menu.
-- To hear the main commands, say "File manager help", or press F1.
+- To hear the main commands, say "File manager help", or press F1 twice quickly.
 - To type a command, press Alt+T.
 - If a slow location is loading, Escape stops that request.
 A file change that has started must finish. Do not repeat it until you hear the result.
@@ -679,8 +689,8 @@ Document reader is in Office tools on the main menu. Say "Document reader", or c
 - Open a document, Control+O. Browse to a file, then press Enter to read it.
 - Recent documents, Control+R. The files you read last, newest first. A file that is gone is taken off the list.
 - Options, Alt+O. Choose whether a file is read aloud as soon as it opens.
-- Help, F1.
-- Main menu, Control+F1.
+- Help, F1 twice quickly.
+- Main menu, F1.
 Escape in a document goes back to this menu. Escape on the menu goes back to Office tools, or to the main menu if you started there.
 
 7.2 Open supported files
@@ -701,12 +711,12 @@ A damaged file says what to do next. If Companion kept an earlier copy, say "Ope
 - To move by heading, table, link, or list, say "Next heading" or "Next table", or press H, T, K, or L. Hold Shift to move back.
 - To follow a link, press Enter on it.
 - To select and copy text, use the usual text keys.
-For reader help, say "Help with document reader", or press F1.
+For reader help, say "Help with document reader", or press F1 twice quickly.
 Press Alt to open the document menu. It has Read, Move by, and Leave and help.
 
 7.4 Return to your files
 To close the reader, say "Back to files", or press Escape. You return to where you opened the file, on that same file. That can be File manager, the file list from Open a document, or your recent documents.
-To go to the main menu, say "Main menu", or press Control+F1.
+To go to the main menu, say "Main menu", or press F1.
 You can open Options while you read. When you save Options, you return to the reader.
 
 7.5 Know the reading limits
@@ -728,7 +738,7 @@ Choose Word processor in Office tools to open its menu. You can also say "Word p
 - Open a document, or press Control+O. This starts at the File manager start place. That is the drive list unless you changed it.
 - Recent documents, or press Control+R. This lists files you used in the app. A file that is gone is taken off the list, and you hear how many were removed.
 - Options, or press Alt+O. This opens Word processor options.
-For help, say "Help with documents", or press F1 in the Word processor menu.
+For help, say "Help with documents", or press F1 twice quickly in the Word processor menu.
 To start a document:
 1. Say "Create a document". Or choose Word processor, then press Control+N.
 2. Companion says, "Please say or type the name for your document, then press Enter or say confirm."
@@ -856,7 +866,7 @@ Document keys:
 - Control+Enter makes a new paragraph.
 - Control+Shift+R reads the document.
 - F4 starts dictation. Shift+F4 pauses it.
-- F1 opens help. Alt+O opens Word processor options. Alt+T lets you type any voice command.
+- F1 twice quickly opens help. F1 once goes to the main menu. Alt+O opens Word processor options. Alt+T lets you type any voice command.
 - In a table, Tab and Shift+Tab move by cell. Alt+Up Arrow and Alt+Down Arrow move by row. Alt+Left Arrow and Alt+Right Arrow move by column.
 
 9. WRITE A NOTE
@@ -867,15 +877,15 @@ Choose Notepad in Office tools, or say "Notepad". The Notepad menu opens. It has
 - Create a note, or press Control+N.
 - Open a note, or press Control+O.
 - Options, or press Alt+O.
-- Main menu, or press Control+F1.
+- Main menu, or press F1.
 To write a note:
 1. Choose Create a note. From the main menu, you can also say "Write a note" to start one at once.
 2. Speak or type your note. Press Enter after typed words.
 3. To listen to it, say "Read from top", or press Control+R.
 4. To save it, say "Save note", or press Control+S.
 To save the note and go back to the Notepad menu, say "Go back", or press Escape. Escape on the Notepad menu goes back to Office tools, or to the main menu if you started there.
-To save the note and go straight to the main menu, say "Main menu", or press Control+F1. Going to sleep also saves your text.
-For Notepad help, say "Help with notepad", or press F1.
+To save the note and go straight to the main menu, say "Main menu", or press F1. Going to sleep also saves your text.
+For Notepad help, say "Help with notepad", or press F1 twice quickly.
 Press Alt to open the note menu. Its Notepad group has Save and close note, Read note, Saved notes, Notepad options, Notepad help, and Main menu. Its Edit group has New line, Undo, Redo, and Remove last words. Words you typed are added to the note first.
 
 9.2 Review or change a note
@@ -955,13 +965,13 @@ To connect the account again later, say "Add account".
 Accounts are also in the email menu. In email, press Alt, then 6. Choose Add account, Switch account, Which account, Remove account, or Add Thunderbird account.
 
 10.3 Add and find contacts
-A contact is a saved name with an email address or a phone number. Contacts has its own screen in Office tools. See chapter 13.
+A contact is a saved name with an email address or a phone number. Address manager keeps your contacts. It is in Organizer on the main menu. See chapter 13.
 - To save a contact, say "Add contact", the person's name, "as", and their email address. For example, say "Add contact Bob as bob@example.com". Or in the inbox, press Alt, 5, then 5. Type the name, the word as, and the address, then press Enter.
 - To hear saved names, say "List contacts", or press P in the inbox. While you write an email, press Control+K. Use the arrows to hear each name. Press Enter to hear the address.
 - To find a contact, say "Find contact", followed by the saved name, such as "Find contact Bob".
 - When Companion asks who to email, you can say a saved contact's name.
 Your Google and Outlook contacts come from Thunderbird. Contacts saved only on this computer are kept too. Contacts brought in from Google Contacts before are kept, and you can change them.
-Your Google calendar is on the Calendar screen. See chapter 14. Google Drive is not connected in this version.
+Your Google calendar is in Schedule manager. See chapter 14. Google Drive is not connected in this version.
 
 10.4 Add a Thunderbird account
 You can add an email account to Thunderbird without leaving Companion. Each address becomes its own account in Companion. You can add several, one after another.
@@ -1022,7 +1032,7 @@ The selection and formatting commands in chapters 5 and 8 work in the message bo
 - To write words that sound like commands, say "Type literally" first.
 - To reverse an edit, say "Undo", or press Control+Z. Undo also brings back an address or subject you changed. To put it back, say "Redo", or press Control+Y.
 - To hear the whole draft, say "Read email draft", or press Control+R.
-For help, say "Help with writing email", or press F1.
+For help, say "Help with writing email", or press F1 twice quickly.
 
 11.4 Save or cancel a draft
 - To keep a message for later, say "Save draft" or "Save", or press Control+S.
@@ -1189,7 +1199,7 @@ Email letter keys work in the message list and in an open message:
 - U: to remove all marks, say "Clear selection", or press U.
 - L: to hear the files sent with a message, say "What's attached" or "List attachments", or press L.
 - Space marks a message. Delete deletes. F2 renames a folder. F5 checks for new mail.
-For email help, say "Help with email", or press F1.
+For email help, say "Help with email", or press F1 twice quickly.
 The Messages per list setting is in Email options. Choices include 10, 20, 30, 40, 50, 100, 1000, and all.
 
 12.7 Open and save attachments
@@ -1211,7 +1221,7 @@ Keys and voice commands in the Attachments list:
 - Control+I: to hear what kind of file it is, its size, and where it is, say "Read attachment details", or press Control+I.
 - Delete: in an email you are writing, to take the file off, say "Remove attachment", or press Delete.
 - Control+O: in an email you are writing, to attach another file, say "Attach a file", or press Control+O.
-- F1: for help in the list, say "Help with attachments", or press F1.
+- F1 twice: for help in the list, say "Help with attachments", or press F1 twice quickly.
 Press Alt to open the attachments menu. It has the same choices.
 To save several files at once, tag them first. Then Control+S saves every tagged file in Downloads. Control+D saves them all in one folder you name. With nothing tagged, these keys save the file you are on. The tags clear once the files are saved.
 You can say a file's name the way you would say it:
@@ -1229,11 +1239,11 @@ A program or script asks first before it opens. Only open programs from people y
 A large file can take a while. Companion says how far it has got. Press Escape to stop. Nothing half saved is left behind.
 If a file is damaged, Companion says it could not be saved.
 
-13. CONTACTS
+13. ADDRESS MANAGER
 
 13.1 Open your contacts
-Choose Contacts in Office tools, or say "Open contacts".
-Contacts is one list of the people you saved. It joins two places:
+Choose Address manager in Organizer, or say "Address manager". Address manager used to be called Contacts, so "Open contacts" still works.
+Address manager is one list of the people you saved. It joins two places:
 - Thunderbird's address books. Thunderbird keeps your Google, Outlook, and other contacts up to date by itself.
 - Contacts saved only on this computer.
 A person saved in both places is in the list once. The list is in order by name.
@@ -1241,9 +1251,9 @@ A person saved in both places is in the list once. The list is in order by name.
 - Home and End reach the first and last contact. At either end you hear Start of list or End of list.
 - To jump to a name, type its first letter.
 - To hear the next or previous contact by voice, say "Next contact" or "Previous contact".
-- To leave Contacts, say "Close contacts", or press Escape. You go back to Office tools, or to the main menu if you started there.
-Press Alt to open the contacts menu. It lists every action with its key.
-For help on this screen, say "Help with contacts", or press F1.
+- To leave Address manager, say "Close contacts", or press Escape. You go back to Organizer, or to the main menu if you started there.
+Press Alt to open the Address manager menu. It lists every action with its key.
+For help on this screen, say "Help with contacts", or press F1 twice quickly.
 
 13.2 Hear a contact's details
 Press Enter on a contact to open its details. If it has an email address, the first choice is Email this person. Then you hear the name, each email address, each phone number, and where it is saved.
@@ -1256,7 +1266,7 @@ Press Enter on a contact to open its details. If it has an email address, the fi
 
 13.3 Email a contact
 - To email the contact you are on, say "Email contact", or press Control+E. A new email opens with the address filled in. Then Companion asks for the subject.
-- From the main menu or Contacts, say "Email", then a name. For example, say "Email John", "Send an email to John Smith", or "Write to Mary".
+- From the main menu or Address manager, say "Email", then a name. For example, say "Email John", "Send an email to John Smith", or "Write to Mary".
 - A first name works when only one contact has it.
 - If two contacts match, you hear a short list. If a contact has more than one email address, you hear its addresses. Use the arrows and Enter to choose.
 - If a contact has no email address, Companion says so.
@@ -1297,7 +1307,7 @@ If your account is in Thunderbird but its contacts are missing, a helper can add
 3. Type your email address, then choose Continue.
 4. Sign in if asked. Choose the address books to add.
 Then say "Refresh contacts" in Companion.
-If you hear that the Voice Companion connection must be updated, wait a moment. Companion updates it by itself. Then open Contacts again.
+If you hear that the Voice Companion connection must be updated, wait a moment. Companion updates it by itself. Then open Address manager again.
 
 13.8 Choose which address book you see
 This part is for people with two or more email accounts in Thunderbird, such as Gmail and Outlook. With one account, you always see all your contacts, and this choice is not offered.
@@ -1307,25 +1317,25 @@ You can see all your contacts. Or you can see only one account, or only one addr
 3. Press Enter to choose. Or press Escape to keep what you see.
 Each address book is named with its account, such as Contacts, Outlook, vet@outlook.com. So two address books with the same name are easy to tell apart.
 - To choose by voice, say "Show", then the name. For example, say "Show Gmail contacts", "Show Outlook contacts", or "Show all contacts". This works from the main menu too.
-- To hear what you see, say "Which address book am I in?" or "Where am I?". Companion also tells you when Contacts opens.
+- To hear what you see, say "Which address book am I in?" or "Where am I?". Companion also tells you when Address manager opens.
 - Companion remembers your choice for next time. If that address book is gone from Thunderbird, you see all of them. Companion tells you once.
 - A new contact goes into the address book you see. If you see all of them, or one that cannot be changed, it goes to the usual place. Companion tells you where it went.
 - A person saved in two accounts is in the list for each one.
 
-14. CALENDAR
+14. SCHEDULE MANAGER
 
 14.1 Open your calendar
-Choose Calendar in Office tools, or say "Open calendar". It opens on today. You hear the date, how many events there are, and the first event. For example: Today, Monday, October 26. 3 events.
+Choose Schedule manager in Organizer, or say "Schedule manager". Schedule manager used to be called Calendar, so "Open calendar" still works. It opens on today. You hear the date, how many events there are, and the first event. For example: Today, Monday, October 26. 3 events.
 The calendar comes from Thunderbird. Thunderbird keeps Google and other online calendars up to date by itself. Companion starts Thunderbird in the background when it needs it.
 Each event says its time, its name, and its calendar. For example: ten thirty AM to eleven AM, Doctor appointment, Google.
 - To hear the next event, say "Next event", or press Down Arrow.
 - To hear the previous event, say "Previous event", or press Up Arrow.
 - To hear the time, place, and notes, say "Read event", or press Enter.
 - To change the event, say "Edit event", or press F2. See part 14.4.
-- To leave Calendar, say "Close calendar", or press Escape. You go back to Office tools, or to the main menu if you started there.
+- To leave Schedule manager, say "Close calendar", or press Escape. You go back to Organizer, or to the main menu if you started there.
 A day with no events says No events. An event that goes past midnight is on both days. If the day could not be read, you hear only why, not No events.
-Press Alt to open the calendar menu. It lists every action with its key.
-For help on this screen, say "Help with calendar", or press F1.
+Press Alt to open the Schedule manager menu. It lists every action with its key.
+For help on this screen, say "Help with calendar", or press F1 twice quickly.
 
 14.2 Move to another day
 - To go to the next day, say "Next day", or press Right Arrow.
@@ -1350,7 +1360,7 @@ You can say times such as "half past two", "quarter past nine", or "quarter to t
 If Thunderbird could not save the event, its name and time are kept. Say "Yes" to try again, or "No" to cancel.
 To use another calendar, say "Change calendar" before you say Yes. Companion remembers the calendar you used last.
 If you chose to see one calendar, the event goes there. See part 14.8.
-You can also say it all at once, from the main menu or the calendar. For example, say "Add appointment tomorrow at 3 PM called doctor".
+You can also say it all at once, from the main menu or Schedule manager. For example, say "Add appointment tomorrow at 3 PM called doctor".
 
 14.4 Change an event
 1. Move to the event.
@@ -1378,7 +1388,7 @@ If the event repeats, such as every week, Companion asks: this one, or all of th
 Some calendars, such as a holiday calendar, cannot be changed. Companion tells you when an event cannot be deleted.
 
 14.6 Ask what is on your calendar
-You can ask about a day from the main menu and most other screens. Your calendar does not need to be open. For example, say "What's on my calendar today?", "What's on my calendar tomorrow?", or "What do I have Friday?". You hear the day and each event.
+You can ask about a day from the main menu and most other screens. Schedule manager does not need to be open. For example, say "What's on my calendar today?", "What's on my calendar tomorrow?", or "What do I have Friday?". You hear the day and each event.
 This always uses all your calendars.
 In a document, email, or note, these words are written as text.
 
@@ -1391,7 +1401,7 @@ If your account is in Thunderbird but its calendar is missing, a helper can add 
 4. Type your email address, then choose Find Calendars.
 5. Sign in if asked. Choose the calendars to add, then choose Subscribe.
 Then say "Refresh calendar" in Companion.
-If only Thunderbird's own Home calendar is there, Companion tells you how to add one when you open the calendar.
+If only Thunderbird's own Home calendar is there, Companion tells you how to add one when you open Schedule manager.
 Thunderbird keeps a copy of your calendar. Without internet access, you hear the events Thunderbird already has.
 
 14.8 Choose which calendar you see
@@ -1402,7 +1412,7 @@ You can see all your calendars. Or you can see only one account, or only one cal
 3. Press Enter to choose. Or press Escape to keep what you see.
 Each calendar is named with its account, such as Calendar, Outlook, vet@outlook.com. So two calendars with the same name are easy to tell apart.
 - To choose by voice, say "Show", then the name. For example, say "Show Gmail calendar", "Show the Family calendar", or "Show all calendars". This works from the main menu too.
-- To hear what you see, say "Which calendar am I in?" or "Where am I?". Companion also tells you when Calendar opens.
+- To hear what you see, say "Which calendar am I in?" or "Where am I?". Companion also tells you when Schedule manager opens.
 - Companion remembers your choice for next time. If that calendar is gone from Thunderbird, you see all of them. Companion tells you once.
 - A new event goes into the calendar you see. If you see all of them, or one that cannot be changed, such as a holiday calendar, Companion picks one. The question before you save names it.
 - If a calendar cannot be read, Companion names it. The other calendars still work.
@@ -1551,11 +1561,11 @@ To go back or forward a page:
 - To go back, say "Go back" or "Back", or press Alt+Left Arrow.
 - To go forward, say "Go forward" or "Forward", or press Alt+Right Arrow.
 Companion says "Going back" at once. Then it says the page title and puts you where you were, such as on the link you followed. If there is no page to go back to, you hear "There is no previous page." Ads that change by themselves do not stop you from going back.
-To reload the page, say "Refresh page", or press F5. For web help, say "Help with web", or press F1.
+To reload the page, say "Refresh page", or press F5. For web help, say "Help with web", or press F1 twice quickly.
 To leave the page:
 - Escape from page reading opens the web browser menu. If a text box, page dialog, or list is open, Escape closes that first.
 - "Leave website" also opens the web browser menu.
-- "Main menu" or Control+F1 leaves the web browser.
+- "Main menu" or F1 leaves the web browser.
 - To close the browser window, say "Close browser window", or press Control+Shift+W. This works even when Keep browser window open is on, and from the web browser menu. Companion then goes to the main menu.
 If you use your own Chrome with the extension, its tabs stay open. Companion just lets go of it.
 
@@ -1656,7 +1666,7 @@ To open the download manager, say "Download manager", or press Control+D on a we
 - To hear its size, folder, and website, say "Download details".
 - To go back, say "Close downloads", or press Escape. You return to the same place on the page.
 Press Alt to open the downloads menu. It lists every action with its key.
-For help on this screen, say "Help with downloads", or press F1.
+For help on this screen, say "Help with downloads", or press F1 twice quickly.
 
 17.3 Pause, resume, or cancel
 - To pause or resume the download you are on, say "Pause or resume download", or press Space. You can also say "Pause download" or "Resume download".
@@ -1740,7 +1750,7 @@ While a file plays, these keys control it:
 To move a different amount, say "Back" or "Forward", followed by the time, such as "Forward 2 minutes".
 When you move, you hear how far you moved and where you are, such as 1 minute 23 seconds of 4 minutes 5 seconds. At the start or end of the file, you hear that instead.
 To change the speed, say "Playback speed", or choose it in the player menu. Then type a number from 0.5 to 3 and press Enter.
-For player help, say "Help with media player", or press F1.
+For player help, say "Help with media player", or press F1 twice quickly.
 
 19.3 Use the player menu
 While a file plays, only Alt opens the player menu. You can also say "Player menu".
@@ -1788,7 +1798,7 @@ The radio screen has two lists: an actions list and a results list. Tab or Shift
 - To choose a list by voice, say "Radio menu", "Actions", or "Results".
 - To run an action by voice, say its name, such as "List stations" or "Record current station".
 When a station is selected, its actions include saving it, recording it, scheduling a recording, and playing or pausing.
-For radio help, say "Help with radio", or press F1.
+For radio help, say "Help with radio", or press F1 twice quickly.
 
 20.4 Control audio
 - Say "Pause audio", "Resume audio", "Play", or "Stop audio" to control playback.
@@ -1905,7 +1915,7 @@ The podcast screen has an actions list and a results list. Tab and Shift+Tab mov
 - Alt moves you to the podcasts menu, which is the actions list. Press Alt again to go back to the results.
 - To move by voice, say "Podcasts menu", "Actions", "Results", "Next action", or "Previous action".
 Actions also include downloads, playback, chapters, and the previous or next episode or show.
-For podcast help, say "Help with podcasts", or press F1.
+For podcast help, say "Help with podcasts", or press F1 twice quickly.
 
 23.3 Pause, seek, or move by chapter
 - Say "Pause audio", "Resume audio", "Play", or "Stop audio" to control playback.
@@ -2140,6 +2150,25 @@ Display options change how the Companion window looks. They help if you have low
 - Show the window full screen: the window fills the screen. It is on at first.
 Changes show as soon as you choose OK. They are kept after you close the app. To change the size or colors without Options, see chapter 30.
 
+25.11 My menu
+My menu chooses the apps in Favorite apps. It is the last category in Options.
+To open it, say "My menu" or "Change favorite apps". Or press Control+F1, then choose Change favorite apps.
+It has a check box for each app. Each one is named like Word processor in Favorite apps.
+- File manager
+- Word processor
+- Notepad
+- Email
+- Document reader
+- Address manager
+- Schedule manager
+- Web browser
+- Radio
+- Podcasts
+- Media player
+- YouTube
+Press Space to check or uncheck a box. Then press Enter, or choose OK, to save.
+The apps you check are in Favorite apps, in this order. Every box is unchecked at first.
+
 26. SLEEP, EXIT, AND COMPUTER POWER
 
 26.1 Put the microphone to sleep
@@ -2197,7 +2226,7 @@ Companion does not force Windows to restart. It tells you if a restart is needed
 
 27.3 Read the release notes
 Release notes tell you what changed in a version and how to use the changes.
-- To open them, say "What's new" or "Release notes". Or press F1 on the main menu, press End to reach What's new, then press Enter.
+- To open them, say "What's new" or "Release notes". Or press F1 twice quickly on the main menu, press End to reach What's new, then press Enter.
 - To review them, use "Continue reading", "Next paragraph", "Previous paragraph", and the other reading commands.
 - To go back to your task, say "Close help", or press Escape until Help closes.
 The notes name the current version and the earlier version they compare it with.
@@ -2274,11 +2303,11 @@ Thunderbird has its own record, always on. While Thunderbird starts, or while yo
 
 30.1 What the screen shows
 The Companion window shows what you hear. This helps if you have some sight, or if a helper is with you.
-- The name of the screen is at the top, in large letters. For example, Main menu, Email: Inbox, or Calendar: Today, Monday, October 26. In a list, your place comes next, such as 3 of 15.
+- The name of the screen is at the top, in large letters. For example, Main menu, Email: Inbox, or Schedule manager: Today, Monday, October 26. In a list, your place comes next, such as 3 of 15.
 - The last thing Companion said is under the name.
 - The list or menu you are in fills the middle. The selected item has an arrow in front of it. It is also bold and highlighted, so you can find it without seeing colors.
 - In a document, email, note, help topic, or web page, the text fills the middle. The line with the caret has its own background. The caret is wide and does not blink.
-- A short hint is under the typing box. It names the screen, says F1 for help, and gives the main keys. While Companion is asleep, it says how to wake it up. With the microphone off, it says to use the keys.
+- A short hint is under the typing box. It names the screen, says F1 twice for help, and gives the main keys. While Companion is asleep, it says how to wake it up. With the microphone off, it says to use the keys.
 - The window follows you as you move. It never takes your keys or adds speech.
 
 30.2 Change the text size
@@ -2426,7 +2455,7 @@ Google may also refuse to sign in a browser that a program controls. If Google s
 
 31.9 Keys, menus, and other audio
 - Press Alt to open the YouTube actions menu. It has every action, with its key.
-- For help, say "Help with YouTube", or press F1.
+- For help, say "Help with YouTube", or press F1 twice quickly.
 - When a video starts, radio, podcasts, and media files pause. If you start the radio again, the video pauses.
 - Control+P pauses or plays the video from any screen in Companion.
 - A video keeps playing when you go to the Media menu or another screen.

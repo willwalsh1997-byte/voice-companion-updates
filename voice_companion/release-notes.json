@@ -1,26 +1,37 @@
 {
-  "version": "0.2.208-test",
+  "version": "0.2.209-test",
   "status": "Testing build",
   "date": "November 6, 2026",
-  "baseline": "0.2.207-test",
-  "scope": "Many keys work better if you use only the keyboard.",
+  "baseline": "0.2.208-test",
+  "scope": "The main menu has a new order, and F1 is the main menu key.",
   "sections": [
     {
       "title": "New in this version",
       "topics": [
         {
-          "title": "Tags in the attachments menu",
+          "title": "A new main menu",
           "details": [
-            "The Alt menu in the attachments list now has a Tags group.",
-            "It has Tag or untag, Tag all, What is tagged, and Clear tags."
+            "File manager is first on the main menu.",
+            "Office tools comes next. It holds your writing apps and Email.",
+            "Then comes Organizer. It holds your contacts and your schedule.",
+            "Address manager used to be called Contacts. Schedule manager used to be called Calendar.",
+            "You can still say Contacts or Calendar to open them."
           ]
         },
         {
-          "title": "Type a command anywhere",
+          "title": "F1 is the main menu key",
           "details": [
-            "Press Alt+T on any screen, then type a command and press Enter.",
-            "Letters and spaces now go into the command box. They no longer jump in a menu.",
-            "Escape clears what you typed."
+            "Press F1 on any screen to go to the main menu.",
+            "Press F1 twice quickly to hear help for the screen you are on.",
+            "On the main menu, F1 twice opens the user guide."
+          ]
+        },
+        {
+          "title": "Favorite apps",
+          "details": [
+            "Press Control+F1 on any screen to open Favorite apps.",
+            "To choose your apps, open Options, then My menu. Check the apps you want.",
+            "You can also choose Change favorite apps at the end of the list."
           ]
         }
       ]
@@ -29,85 +40,19 @@
       "title": "What works better",
       "topics": [
         {
-          "title": "Main menu and setup",
+          "title": "Going back",
           "details": [
-            "F1 opens Help in Office tools and in Shut down or restart.",
-            "Alt+O opens Options from Office tools, Shut down or restart, and the Media menu.",
-            "No or Escape at \"Restart the computer?\" goes back to Shut down or restart.",
-            "The email account question is no longer cut off by the main menu.",
-            "Main menu, Help, the tutorial, and waking up now handle the account question the right way.",
-            "At the account question, Enter tells keyboard users to press T or Y.",
-            "The main menu no longer sends you into Office tools by mistake."
+            "Leave an app you opened from Office tools, Organizer, or Favorite apps. You go back to that list.",
+            "Escape on that list goes to the main menu."
           ]
         },
         {
-          "title": "Questions",
+          "title": "Updates come from a new place",
           "details": [
-            "F1 says a Yes or No question again on every screen.",
-            "Closing Help says what list or question is still open."
-          ]
-        },
-        {
-          "title": "Email",
-          "details": [
-            "Escape in the To, CC, BCC, or Subject box keeps what you typed.",
-            "Control+R, Control+Z, and Control+Y work in the CC and BCC boxes.",
-            "A subject like \"Save the date\" stays the subject.",
-            "Delete works in an open message. It asks first.",
-            "Keys no longer change your message while the send question is open.",
-            "In the attachments list, Delete and adding a file keep your tags.",
-            "An empty folder says the same words for every key.",
-            "Leaving a draft you never sent no longer warns about sending twice.",
-            "Control+F1 in the attachments list says only the main menu."
-          ]
-        },
-        {
-          "title": "Calendar and Contacts",
-          "details": [
-            "F1 says the add, edit, or delete question again and keeps your choice.",
-            "A new contact you cancel with Escape leaves nothing behind.",
-            "The guide now gives the right keys for Add contact: Alt, 5, then 5."
-          ]
-        },
-        {
-          "title": "Files and documents",
-          "details": [
-            "Y and N answer the Delete question in File manager. F1 says it again.",
-            "Typing \"help\" in a name box is now just text.",
-            "Saying \"Help\" while you rename a file gives help. It no longer renames the file.",
-            "File keys close Properties first.",
-            "One Escape after one letter now goes back.",
-            "Alt, Go to, Main menu now works.",
-            "A name that is already used keeps the rename box open.",
-            "Delete and rename say what they did, such as \"Deleted a.txt.\"",
-            "Each box says what to type, and each Escape says what was canceled.",
-            "A search says how many matches it found, or \"No matches.\"",
-            "Document menu items say in plain words what to type."
-          ]
-        },
-        {
-          "title": "Web",
-          "details": [
-            "Shift with a number from 1 to 6 goes back to a heading at that level.",
-            "A page that stayed open to save your changes opens on the next try.",
-            "Escape in a form question stays on the page.",
-            "The fields list says the keys once, then only each field.",
-            "The page menu shows Control+Home and Control+End for Top and Bottom of page."
-          ]
-        },
-        {
-          "title": "Media",
-          "details": [
-            "Space in a list menu tells you to press Enter.",
-            "Keys in Radio and Podcasts forms all say something.",
-            "Space presses OK or Cancel in a form.",
-            "An empty preset list no longer shows station actions.",
-            "Escape from a list of results first says \"Radio menu\" or \"Podcasts menu.\"",
-            "After you remove an item, the list stays near it and says where you are.",
-            "F5 in Radio uses plain words.",
-            "The player says \"Loudest\" or \"The audio is silent\" at the ends of the volume.",
-            "End and the Page keys in the YouTube player say what keys to use.",
-            "Escape from the Media player drive list goes back to Media player."
+            "Updates now come from updates.voicecompanionapp.com.",
+            "You install this version yourself, one time.",
+            "After that, new versions come to you on their own.",
+            "Your settings, email accounts and documents stay as they were."
           ]
         }
       ]

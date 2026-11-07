@@ -38,14 +38,17 @@ SKIP = ('', 'skip', 'none', 'no', 'no thanks', 'no email', 'no email address', '
         'leave it blank', 'nothing')
 PASS_THROUGH = ('help', 'options', 'open options', 'exit companion', 'go to sleep',
                 'wake up', 'user guide', 'open user guide', 'manual', 'open manual', 'release notes', 'what mode',
-                'what version', 'toggle audio', 'new email', 'contacts menu', 'menu', 'open menu')
+                'what version', 'toggle audio', 'new email', 'contacts menu', 'address manager menu', 'menu', 'open menu')
 # "Add a new contact": the words a new user says first.
 ADD = ('add contact', 'new contact', 'add a contact', 'create contact', 'add new contact', 'create a contact', 'add a new contact',
        'create a new contact', 'new contact please')
 OPEN = ('contacts', 'open contacts', 'my contacts', 'contact list', 'address book', 'open address book', 'show contacts',
         'show my contacts', 'go to contacts', 'go to my contacts', 'open my contacts', 'open the contacts', 'view contacts',
         'view my contacts', 'my address book', 'show address book', 'show my address book', 'open my address book',
-        'go to address book', 'phone book', 'my phone book', 'open phone book')
+        'go to address book', 'phone book', 'my phone book', 'open phone book',
+        # Its name on the menu since November 6, 2026.
+        'address manager', 'open address manager', 'go to address manager', 'open the address manager',
+        'show address manager', 'open my address manager', 'my address manager')
 # Names that are commands after "email", never a person ("email list size", "email the sender").
 RESERVED = ('commands', 'draft', 'drafts', 'help', 'list size', 'lists', 'sender', 'the sender', 'to sender', 'topics',
             'options', 'settings', 'menu', 'account', 'accounts', 'address', 'me', 'it', 'them', 'this person', 'contact',
@@ -177,12 +180,12 @@ def describe(index=None):
 
 
 def summary(notice=''):
-    """'Contacts. Showing all address books. 6 contacts. Ann Brown, ann@example.com, 1 of 6.'"""
+    """'Address manager. Showing all address books. 6 contacts. Ann Brown, ann@example.com, 1 of 6.'"""
     global SOURCE_NOTICE
     count = len(CONTACTS)
     lead = SOURCE_NOTICE + ' ' if SOURCE_NOTICE else showing() + ' ' if choosing() else ''
     SOURCE_NOTICE = ''
-    text = 'Contacts. ' + lead + (str(count) + (' contact. ' if count == 1 else ' contacts. ') if count else '') + describe()
+    text = 'Address manager. ' + lead + (str(count) + (' contact. ' if count == 1 else ' contacts. ') if count else '') + describe()
     return text + (' ' + notice if notice else '')
 
 
@@ -290,7 +293,7 @@ def _handle(m, raw, command, mode, typed):
             if not choosing_after_opening(m):
                 m.speak(summary(OPEN_NOTICE[0]))
                 return MODE
-            return show_source(m, wanted['what'], lead='Contacts. ')
+            return show_source(m, wanted['what'], lead='Address manager. ')
         if mode == 'awake' and command in ADD:
             open_screen(m, mode)
             return start_adding(m)
@@ -349,10 +352,10 @@ def command_here(m, raw, command):
         return 'awake'      # handle() says Main menu when the screen changes
     if command in ('back to contacts', 'back to list', 'contact list', 'escape', 'go back', 'back') and VIEW == 'details':
         VIEW = 'list'
-        m.speak('Contacts. ' + describe())
+        m.speak('Address manager. ' + describe())
         return MODE
     if command in ('where am i', 'repeat', 'say that again', 'repeat that') and VIEW == 'details' and DETAILS and current():
-        m.speak('Contacts. ' + current().name + '. ' + details_item())      # say it, and stay in the details
+        m.speak('Address manager. ' + current().name + '. ' + details_item())      # say it, and stay in the details
         return MODE
     if command in OPEN + ('where am i', 'list contacts', 'repeat', 'say that again', 'repeat that'):
         VIEW = 'list'
@@ -467,8 +470,8 @@ def command_here(m, raw, command):
         select(CONTACTS.index(matches[0]))
         m.speak(describe())
         return MODE
-    m.speak('Contacts. Say next contact, find and a name, email contact, add contact, edit contact, or delete contact. '
-            'Press F1 for help, or Escape for the main menu.')
+    m.speak('Address manager. Say next contact, find and a name, email contact, add contact, edit contact, or delete contact. '
+            'Press F1 twice for help, or Escape for the main menu.')
     return MODE
 
 
@@ -594,7 +597,7 @@ def choosing_after_opening(m):
 
 def show_source(m, words, lead=''):
     """'Show Gmail contacts': show them, or ask which when the words fit more than one.
-    lead: 'Contacts. ' when the screen opens with this."""
+    lead: 'Address manager. ' when the screen opens with this."""
     if not choosing():
         m.speak(summary())
         return MODE
@@ -836,7 +839,7 @@ def email_by_name(m, command, mode):
     if len(matches) == 1:
         contact = matches[0]
         if not contact.emails:
-            m.speak(contact.name + ' has no email address saved. Open Contacts to add one.')
+            m.speak(contact.name + ' has no email address saved. Open Address manager to add one.')
             return mode
         if len(contact.emails) == 1:
             return write_to(m, contact.emails[0], mode, contact.name)

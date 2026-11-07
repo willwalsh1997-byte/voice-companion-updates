@@ -236,7 +236,7 @@ class FileManagerUnknownWordsTests(FileActionWordsTests):
         # what it heard, or that F1 lists the commands.
         with self.assertRaises(ValueError) as caught:
             self.manager.command('Read document.')
-        self.assertEqual(str(caught.exception), 'No item is named Read document. Say an item name, or press F1 for help.')
+        self.assertEqual(str(caught.exception), 'No item is named Read document. Say an item name, or press F1 twice for help.')
         self.assertEqual(self.manager.command('a.txt'), 'Opening a.txt.')
 
     def test_a_spoken_name_with_a_recognizer_period_still_matches(self):

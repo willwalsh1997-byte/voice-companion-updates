@@ -41,7 +41,7 @@ class CalendarHarness(CompanionHarness):
 class CalendarScreenTests(CalendarHarness):
     def test_opens_on_today_with_the_count_then_the_first_event(self):
         self.open()
-        self.assertEqual(self.said(), 'Calendar. Today, Monday, October 26. 1 event. '
+        self.assertEqual(self.said(), 'Schedule manager. Today, Monday, October 26. 1 event. '
                          'Ten thirty AM to eleven AM, Doctor appointment, me@gmail.com, 1 of 1.')
 
     def test_everyday_words_open_the_calendar_from_the_main_menu(self):
@@ -49,7 +49,7 @@ class CalendarScreenTests(CalendarHarness):
                       'open my schedule', 'my appointments'):
             with self.subTest(words=words):
                 self.assertEqual(app.handle(words, 'awake'), 'calendar')
-                self.assertTrue(self.said().startswith('Calendar. Today, Monday, October 26. 1 event.'), self.said())
+                self.assertTrue(self.said().startswith('Schedule manager. Today, Monday, October 26. 1 event.'), self.said())
                 calendar_screen.reset()
 
     def test_days_and_weeks_with_the_arrow_and_page_keys(self):
@@ -151,7 +151,7 @@ class CalendarScreenTests(CalendarHarness):
                 app.handle('no', mode)
         # Without a day or time it is not an event.
         app.handle('add Bob', mode)
-        self.assertTrue(self.said().startswith('Calendar. Say next event'), self.said())
+        self.assertTrue(self.said().startswith('Schedule manager. Say next event'), self.said())
 
     def test_delete_it_deletes_the_event(self):
         mode = self.open()
@@ -224,7 +224,7 @@ class CalendarScreenTests(CalendarHarness):
             return answer
         with mock.patch.object(thunderbird_mailbox, 'call', damaged):
             mode = self.open()
-            self.assertTrue(self.said().startswith('Calendar. Today, Monday, October 26. 1 event.'), self.said())
+            self.assertTrue(self.said().startswith('Schedule manager. Today, Monday, October 26. 1 event.'), self.said())
             app.handle("What's on my calendar tomorrow?", 'awake')
         self.assertTrue(self.said().startswith('Tomorrow, Tuesday, October 27. 1 event.'), self.said())
 
@@ -296,7 +296,7 @@ class CalendarScreenTests(CalendarHarness):
         mode = app.handle('soon', mode)
         self.assertTrue(self.said().startswith('I did not catch a time.'))
         mode = self.press('Escape', mode)
-        self.assertEqual((mode, self.said()), ('calendar', 'Canceled. Back to calendar.'))
+        self.assertEqual((mode, self.said()), ('calendar', 'Canceled. Back to Schedule manager.'))
 
     def test_after_adding_the_new_event_is_selected_even_when_another_has_its_name(self):
         mode = self.press('Ctrl+N', self.open())
@@ -338,13 +338,13 @@ class CalendarScreenTests(CalendarHarness):
         self.assertEqual(self.events_on(date(2026, 11, 3)), [])
 
     def test_f1_says_each_yes_or_no_question_again_and_keeps_the_choice(self):
-        # Guide part 2.5: "To hear the question again, press F1." On Calendar it opened Help instead,
+        # Guide part 2.5: "To hear the question again, press F1." (F1 twice since November 6, 2026.) On Calendar it opened Help instead,
         # and the question was left open behind it (sweep, November 6, 2026).
         mode = self.open()
         self.press('Delete', mode)
         question = self.said()
         self.press('Up', mode)
-        self.assertIsNone(app.navigation_key('F1', mode))
+        self.assertIsNone(app.navigation_key('Double:F1', mode))
         self.assertEqual(self.said(), question)
         self.assertEqual((calendar_screen.PENDING[0], calendar_screen.CHOICE), ('delete', 'yes'))
         self.press('Escape', mode)
@@ -353,7 +353,7 @@ class CalendarScreenTests(CalendarHarness):
         mode = app.handle('tomorrow at 3 PM', mode)
         mode = app.handle('Dentist', mode)
         question = self.said()
-        self.assertIsNone(app.navigation_key('F1', mode))
+        self.assertIsNone(app.navigation_key('Double:F1', mode))
         self.assertEqual(self.said(), question)
         self.press('Escape', mode)
         # Changing: the question names the change, and a repeating event says this one or all.
@@ -362,33 +362,33 @@ class CalendarScreenTests(CalendarHarness):
         question = self.said()
         self.assertIn('repeats', question)
         self.press('Down', mode)
-        self.assertIsNone(app.navigation_key('F1', mode))
+        self.assertIsNone(app.navigation_key('Double:F1', mode))
         self.assertEqual(self.said(), question)
         self.assertEqual(calendar_screen.CHOICE, 'all')
-        # In the list of what to change, F1 is still Help.
+        # In the list of what to change, F1 twice is still Help.
         self.press('Escape', mode)
         self.press('F2', mode)
-        self.assertEqual(app.navigation_key('F1', mode), 'help with calendar')
+        self.assertEqual(app.navigation_key('Double:F1', mode), 'help with calendar')
 
     def test_closing_help_names_the_list_or_question_still_open(self):
-        # F1 in the list of what to change opens Help. Escape back said only "Back to calendar.",
+        # F1 twice in the list of what to change opens Help. Escape back said only "Back to Schedule manager.",
         # though the list was still open: the next Escape said "Not changed" (sweep, November 6, 2026).
         mode = self.open()
         self.press('F2', mode)
         self.press('Down', mode)
-        mode = self.press('F1', mode)
+        mode = self.press('Double:F1', mode)
         self.assertEqual(mode, 'help')
         while mode == 'help':
             mode = self.press('Escape', mode)
         self.assertEqual(mode, 'calendar')
-        self.assertEqual(self.said(), 'Help closed. Back to calendar. Day and time: Today, Monday, October 26, ten thirty AM to eleven AM, '
+        self.assertEqual(self.said(), 'Help closed. Back to Schedule manager. Day and time: Today, Monday, October 26, ten thirty AM to eleven AM, '
                                       '2 of 7. Use the arrows and Enter, or say what to change. Escape cancels.')
         self.press('Escape', mode)
         # With nothing open, the screen's name is enough, as everywhere else.
-        mode = self.press('F1', mode)
+        mode = self.press('Double:F1', mode)
         while mode == 'help':
             mode = self.press('Escape', mode)
-        self.assertEqual(self.said(), 'Help closed. Back to calendar.')
+        self.assertEqual(self.said(), 'Help closed. Back to Schedule manager.')
 
     def test_read_only_calendars_are_protected(self):
         mode = self.open()
@@ -402,11 +402,11 @@ class CalendarScreenTests(CalendarHarness):
     def test_an_unknown_command_names_what_to_say_including_edit(self):
         mode = self.open()
         app.handle('zebra quantum lantern', mode)
-        self.assertEqual(self.said(), 'Calendar. Say next event, next day, today, read event, add event, edit event, or delete event. '
-                                      'Press F1 for help, or Escape for the main menu.')
-        # F1 works while a question is open, as everywhere else.
+        self.assertEqual(self.said(), 'Schedule manager. Say next event, next day, today, read event, add event, edit event, or delete event. '
+                                      'Press F1 twice for help, or Escape for the main menu.')
+        # F1 twice works while a question is open, as everywhere else.
         self.press('F2', mode)
-        self.assertEqual(app.navigation_key('F1', mode), 'help with calendar')
+        self.assertEqual(app.navigation_key('Double:F1', mode), 'help with calendar')
 
     def test_whats_on_my_calendar_from_other_screens(self):
         self.assertEqual(app.handle("What's on my calendar today?", 'awake'), 'awake')
@@ -443,7 +443,7 @@ class GoToDateTests(CalendarHarness):
         self.assertEqual(self.said(), 'Friday, October 30. No events.')
         mode = self.press('Ctrl+G', mode)
         mode = self.press('Escape', mode)
-        self.assertEqual((mode, self.said()), ('calendar', 'Canceled. Back to calendar.'))
+        self.assertEqual((mode, self.said()), ('calendar', 'Canceled. Back to Schedule manager.'))
         self.assertEqual(calendar_screen.DAY, date(2026, 10, 30))
 
     def test_go_to_by_voice_in_every_form(self):
@@ -563,7 +563,7 @@ class EditEventTests(CalendarHarness):
         self.assertEqual((mode, self.said()), ('task_input', 'I did not catch a day or time. Say something like Friday at 2 PM, or 3 PM. '
                                                              'Escape cancels.'))
         mode = self.press('Escape', mode)
-        self.assertEqual((mode, self.said()), ('calendar', 'Canceled. Back to calendar.'))
+        self.assertEqual((mode, self.said()), ('calendar', 'Canceled. Back to Schedule manager.'))
         self.assertEqual(self.events_on(date(2026, 10, 26))[0][1], datetime(2026, 10, 26, 10, 30))
         # Escape on the list of what to change, and No on the question, change nothing.
         self.press('F2', mode)
@@ -767,7 +767,7 @@ class OnlyHomeCalendarTests(CalendarHarness):
 
     def test_guidance_when_only_thunderbirds_own_calendar_is_there(self):
         self.open()
-        self.assertEqual(self.said(), 'Calendar. Today, Monday, October 26. No events. ' + calendar_screen.GUIDANCE)
+        self.assertEqual(self.said(), 'Schedule manager. Today, Monday, October 26. No events. ' + calendar_screen.GUIDANCE)
 
 
 class BrokenCalendarTests(CalendarHarness):
@@ -775,7 +775,7 @@ class BrokenCalendarTests(CalendarHarness):
 
     def test_a_damaged_answer_is_said_plainly_and_the_screen_still_works(self):
         mode = self.open()
-        self.assertEqual(self.said(), 'Calendar. Today, Monday, October 26. Thunderbird could not list its calendars. '
+        self.assertEqual(self.said(), 'Schedule manager. Today, Monday, October 26. Thunderbird could not list its calendars. '
                                       'Close Thunderbird, then try again.')
         self.press('Right', mode)
         self.assertEqual(self.said(), 'Tomorrow, Tuesday, October 27. Thunderbird could not list its calendars. '
@@ -789,7 +789,7 @@ class OldAddonCalendarTests(CalendarHarness):
 
     def test_an_old_add_on_copy_asks_for_an_update(self):
         self.open()
-        self.assertEqual(self.said(), 'Calendar. Today, Monday, October 26. ' + thunderbird_pim.UPDATE_NEEDED)
+        self.assertEqual(self.said(), 'Schedule manager. Today, Monday, October 26. ' + thunderbird_pim.UPDATE_NEEDED)
 
 
 class NoThunderbirdCalendarTests(CalendarHarness):

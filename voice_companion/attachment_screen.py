@@ -793,7 +793,7 @@ def command_here(m, raw, command):
         INDEX = matches[0]
         m.speak(describe())
         return MODE
-    m.speak('Attachments. Press Enter to open, Control+S to save, or Escape to go back. Press F1 for help.')
+    m.speak('Attachments. Press Enter to open, Control+S to save, or Escape to go back. Press F1 twice for help.')
     return MODE
 
 

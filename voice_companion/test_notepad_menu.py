@@ -1,7 +1,7 @@
 """Opening Notepad lands on the Notepad menu (Will, October 2026).
 
 Items: Create a note (Control+N), Open a note (Control+O), Options (Alt+O), Main menu
-(Control+F1). Escape in a note saves it and goes back to this menu."""
+(F1; it was Control+F1 before November 6, 2026). Escape in a note saves it and goes back to this menu."""
 import unittest
 from unittest import mock
 
@@ -56,11 +56,11 @@ class NotepadMenuTests(CompanionTestCase):
         self.assertEqual(mode, 'notepad_menu')
         self.assertTrue(listing.called)
 
-    def test_enter_on_main_menu_and_control_f1(self):
+    def test_enter_on_main_menu_and_f1(self):
         mode = self.open_menu()
         for _ in range(3): mode = self.key('Down', mode)
         self.assertEqual(self.key('Enter', mode), 'awake')
-        self.assertEqual(self.key('Ctrl+F1', self.open_menu()), 'awake')
+        self.assertEqual(self.key('F1', self.open_menu()), 'awake')
 
     def test_saying_main_menu_in_a_note_still_goes_to_the_main_menu(self):
         mode = self.key('Ctrl+N', self.open_menu())

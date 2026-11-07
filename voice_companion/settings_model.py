@@ -3,6 +3,7 @@ from dataclasses import dataclass
 import copy
 import re
 import display_options
+from task_navigation import FAVORITE_APPS, favorite_key
 from audio_ducking import LEVEL_CHOICES as DUCK_LEVELS, spoken_level
 
 @dataclass(frozen=True)
@@ -12,10 +13,12 @@ class Field:
     kind: str = 'choice'
     choices: tuple = ()
 
-CATEGORIES = tuple(name+' options' for name in ('Verbosity', 'Voice', 'Synthesizer', 'Display', 'Input', 'Email', 'Word processor', 'Notepad', 'Document reader', 'File manager', 'Web browser', 'Radio', 'Podcasts', 'Auto-update'))+('Startup and exit options',)
+CATEGORIES = tuple(name+' options' for name in ('Verbosity', 'Voice', 'Synthesizer', 'Display', 'Input', 'Email', 'Word processor', 'Notepad', 'Document reader', 'File manager', 'Web browser', 'Radio', 'Podcasts', 'Auto-update'))+('Startup and exit options', 'My menu')
 DEFAULTS = {'dictation_echo':'phrase by phrase','dictation_type':'old school','web_search_engine':'google','web_keep_open':False,'keep_audio_playing':False,'duck_while_keys':True,'web_auto_read':True,'download_folder':'','email_format':'html','pitch':'0','verbosity':'high','capital_letters':'do nothing','typing_echo':'characters','phonetic_enabled':True,'phonetic_delay':'0.5','duck_audio':True,'duck_level':'strong, 75 percent quieter','duck_other_apps':False,'check_updates':True,'start_with_windows':False,'ask_before_exit':True,'ask_before_shutdown':True,'ask_before_restart':True,'email_header_names':False,'email_status_words':True,'email_header_order':'from, subject, date','document_font':'Calibri','document_size':'11','document_spacing':'single','document_alignment':'left','file_manager_start':'drive list','reader_auto_read':True,'speech_transcript':False,
             'thunderbird_window':'Minimized, as before','browser_window':'Show the browser window, as before',
             'own_chrome_window':'Show it, as before'}
+# Favorite apps start empty; you choose them in Options, My menu.
+DEFAULTS.update({favorite_key(name): False for name, _ in FAVORITE_APPS})
 # Display options (display_options.py): large, high-contrast text by default.
 DEFAULTS.update(display_options.DEFAULTS)
 
@@ -87,7 +90,7 @@ def all_fields(context):
 
 
 def fields(category, context):
-    if category!='Startup and exit options':category=category.removesuffix(' options')
+    if category not in ('Startup and exit options','My menu'):category=category.removesuffix(' options')
     category={'Word processor':'Documents','Auto-update':'Updates','Notes':'Notepad'}.get(category,category)
     definitions = {
         'Verbosity':[Field('verbosity','Verbosity','choice',('high','medium','low')),Field('punctuation','Spoken punctuation','choice',('none','some','most','all')),Field('dictation_echo','Echo dictated text','choice',('phrase by phrase','at the end of a sentence','do not echo dictated text')),Field('typing_echo','Typing echo','choice',('words','characters','characters and words','none')),Field('phonetic_enabled','Delayed phonetic pronunciation','check'),Field('phonetic_delay','Phonetic delay in seconds','choice',('0.5','1','2')),Field('capital_letters','When encountering capital letters','choice',('raise pitch','lower pitch','play a sound','say cap','do nothing'))],
@@ -107,6 +110,8 @@ def fields(category, context):
         'Podcasts':[Field('keep_audio_playing','Keep audio playing in the background','check'),Field('duck_while_keys','Lower the volume while I use the keyboard','check'),Field('podcast_feed','Podcast subscription','choice',tuple(context.get('podcasts',()))),Field('podcast_limit','Automatic downloads for this subscription','combo',('manual','all','1','2','3','5','10','20','50','100','1000')),Field('podcast_subscriptions','List subscriptions','action')],
         'Startup and exit options':[Field('start_with_windows','Start with Windows','check'),Field('ask_before_exit','Ask before exiting Voice Companion','check'),Field('ask_before_shutdown','Ask before shutting down the computer','check'),Field('ask_before_restart','Ask before restarting the computer','check'),Field('speech_transcript','Keep a transcript of everything Voice Companion says','check')],
         'Updates':[Field('check_updates','Check automatically at startup','check'),Field('check_now','Check for updates now','action')],
+        # My menu (Will, November 6, 2026): the apps in Favorite apps, which Control+F1 opens.
+        'My menu':[Field(favorite_key(name),name+' in Favorite apps','check') for name,_ in FAVORITE_APPS],
     }
     return definitions[category]
 

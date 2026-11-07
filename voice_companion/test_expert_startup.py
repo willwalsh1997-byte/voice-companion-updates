@@ -169,7 +169,7 @@ class HelpListWordsTests(KeyTestCase):
     item. The hint is now said when a list opens, and each move says only the item."""
 
     def test_moves_say_the_item_and_opening_a_list_says_how_to_choose(self):
-        mode = self.keys('awake', 'F1')
+        mode = self.keys('awake', 'Double:F1')          # F1 twice quickly: the user guide
         self.assertEqual(mode, 'help')
         count = str(len(companion.help_session.topics))  # 33 on Windows, where What's new is built
         self.assertTrue(self.said[0].endswith('1 of ' + count + '. Say next or previous, then that one. Say help with followed by '
@@ -213,7 +213,7 @@ class InputModeWordsTests(CompanionTestCase):
 class ClosedThenMainMenuTests(KeyTestCase):
     """Two messages in a row cut each other off; after a key only the last one is said. Escape at
     the exit question said "Canceled." and then "Main menu...", so "Canceled." was never heard.
-    Control+F1 or "Main menu" in Help said only "Main menu...", while the tutorial and Options
+    F1 (Control+F1 before November 6, 2026) or "Main menu" in Help said only "Main menu...", while the tutorial and Options
     say "Tutorial closed." and "Options closed." first."""
 
     def test_canceling_the_exit_or_power_question_is_one_message(self):
@@ -235,11 +235,11 @@ class ClosedThenMainMenuTests(KeyTestCase):
         self.assertEqual(self.said, ['Canceled. Back to help.'])
 
     def test_leaving_help_for_the_main_menu_says_help_closed(self):
-        for how in ('Ctrl+F1', 'main menu'):
+        for how in ('F1', 'main menu'):
             with self.subTest(how=how):
-                mode = self.keys('awake', 'F1')
+                mode = self.keys('awake', 'Double:F1')
                 self.said.clear()
-                mode = self.keys(mode, how) if how.startswith('Ctrl') else companion.handle(how, mode)
+                mode = self.keys(mode, how) if how == 'F1' else companion.handle(how, mode)
                 self.assertEqual(mode, 'awake')
                 self.assertEqual(self.said, ['Help closed. ' + companion.MAIN_MENU_PROMPT])
 

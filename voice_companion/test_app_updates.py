@@ -163,19 +163,31 @@ class UpdateHandoffTests(unittest.TestCase):
 
 
 class ConfiguredReleaseFeedTests(unittest.TestCase):
-    def test_check_uses_wills_bundled_repository(self):
+    FEED='https://updates.voicecompanionapp.com/voice-companion-update.json'
+
+    def test_check_uses_wills_update_bucket(self):
+        # Will, November 7, 2026: updates come from Cloudflare R2, not GitHub releases.
         with tempfile.TemporaryDirectory() as folder:
             service=AppUpdates(folder,'1.2.2-test')
-            # Updates come from the public releases-only repository; the source repository is the
-            # fallback while it is still public (November 2026, so the code can be made private).
-            expected='https://github.com/willwalsh14-hub/voice-companion-releases/releases/latest/download/voice-companion-update.json'
-            old='https://github.com/willwalsh14-hub/voice-companion-updates/releases/latest/download/voice-companion-update.json'
-            self.assertEqual(service.manifest_url,expected)
-            self.assertEqual(service.fallback_urls,[old])
+            self.assertEqual(service.manifest_url,self.FEED)
+            self.assertEqual(service.fallback_urls,[])
             with patch('app_updates.fetch_release',return_value=None) as fetch:
                 self.assertTrue(service.check())
                 self.assertEqual(service.events.get(timeout=2),('current',False))
-                self.assertEqual([c.args for c in fetch.call_args_list],[(expected,'1.2.2-test'),(old,'1.2.2-test')])
+                self.assertEqual([c.args for c in fetch.call_args_list],[(self.FEED,'1.2.2-test')])
+
+    def test_an_old_github_feed_in_the_data_folder_is_passed_over(self):
+        # The old account's GitHub feeds are no longer published to. A trainer's copy of the
+        # settings that still names one must not stop updates for good.
+        old='https://github.com/willwalsh14-hub/voice-companion-releases/releases/latest/download/voice-companion-update.json'
+        with tempfile.TemporaryDirectory() as folder:
+            (Path(folder)/'update-settings.json').write_text(json.dumps({'manifest_url':old,'fallback_urls':[old]}))
+            service=AppUpdates(folder,'1.2.2-test')
+            self.assertEqual((service.manifest_url,service.fallback_urls),(self.FEED,[]))
+        with tempfile.TemporaryDirectory() as folder:
+            (Path(folder)/'update-settings.json').write_text(json.dumps({'manifest_url':'https://example.org/feed','fallback_urls':[old,'https://example.org/second']}))
+            service=AppUpdates(folder,'1.2.2-test')
+            self.assertEqual((service.manifest_url,service.fallback_urls),('https://example.org/feed',['https://example.org/second']))
 
 
 class FeedFallbackTests(unittest.TestCase):
@@ -205,7 +217,7 @@ class FeedFallbackTests(unittest.TestCase):
 
 class DamagedUpdateFilesTests(unittest.TestCase):
     def test_damaged_settings_in_the_data_folder_use_the_bundled_feed(self):
-        bundled='https://github.com/willwalsh14-hub/voice-companion-releases/releases/latest/download/voice-companion-update.json'
+        bundled='https://updates.voicecompanionapp.com/voice-companion-update.json'
         for text in ('[]','null','"feed"','{"manifest_url":','{"manifest_url":["x"]}'):
             with self.subTest(text=text),tempfile.TemporaryDirectory() as folder:
                 (Path(folder)/'update-settings.json').write_text(text)
@@ -333,3 +345,28 @@ class StartupUpdatePromptTests(unittest.TestCase):
             for percentage in (1,4,5,7,10,12,15,99,100):service.events.put(('progress',percentage))
             companion.poll_app_updates('update_download')
             self.assertEqual([c.args[0] for c in say.call_args_list],[str(n)+' percent.' for n in range(5,101,5)])
+
+
+class InstallerKeepsUserDataTests(unittest.TestCase):
+    """0.2.209 is installed by hand over 0.2.208 on every tester's PC (the move to Cloudflare R2).
+    Settings, email accounts and documents must stay as they were."""
+    def test_setup_is_an_upgrade_that_never_touches_user_folders(self):
+        root=Path(__file__).parent
+        script=(root/'VoiceCompanion.iss').read_text()
+        # The same AppId makes Setup an upgrade of the installed copy, not a second app.
+        self.assertIn('AppId={{9DFB48ED-1D99-4230-A78D-FD727536AC40}',script)
+        self.assertNotIn('[InstallDelete]',script)
+        deleted=script[script.index('[UninstallDelete]'):]
+        deleted=deleted[:deleted.index('\n[',1)]
+        for line in deleted.splitlines()[1:]:
+            if line.strip():self.assertIn('Name: "{app}\\',line)
+        self.assertNotRegex(script,r'(?i)DelTree|RemoveDir')
+        self.assertNotRegex(script,r'(?i)\{localappdata\}\\VoiceCompanion[^\'"]*["\']?\s*;\s*Flags:[^\n]*uninsdelete')
+        # The data folder is where settings and email accounts live; it is not the program folder.
+        self.assertIn("Path(os.getenv('LOCALAPPDATA', str(Path.home()))) / 'VoiceCompanion'",(root/'companion.py').read_text())
+        self.assertIn('DefaultDirName={localappdata}\\Programs\\Voice Companion',script)
+
+    def test_the_windows_build_checks_user_files_survive_setup(self):
+        build=(Path(__file__).parent/'build-windows.ps1').read_text()
+        self.assertIn('Setup changed or removed a user file it must keep',build)
+        self.assertLess(build.index('upgrade-check-settings.json'),build.index("$installation = Start-Process -FilePath $setup -ArgumentList"))

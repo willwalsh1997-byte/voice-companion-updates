@@ -72,8 +72,9 @@ class DeleteQuestionKeys(FileManagerKeys):
 
     def test_f1_says_the_question_again(self):
         # Will, October 31, 2026: F1 in a yes or no question says the question again. Here it was silent.
+        # F1 twice quickly since November 6, 2026 (F1 once is the main menu).
         question = self.key('Delete')
-        self.assertEqual(self.key('F1'), question)
+        self.assertEqual(self.key('Double:F1'), question)
         self.assertEqual(self.fm.pending[0], 'delete')
         self.assertEqual(self.backend.actions, [])
 

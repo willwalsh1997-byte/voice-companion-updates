@@ -163,9 +163,9 @@ class ScreenMenuTests(unittest.TestCase):
         # The main menu is a menu already: Alt says so and where you are.
         self.said.clear()
         self.assertEqual(self.press('Alt', 'awake'), 'awake')
-        self.assertEqual(self.said[-1], 'Main menu. Office tools (O), 1 of 8.')
+        self.assertEqual(self.said[-1], 'Main menu. File manager (F), 1 of 10.')
         self.assertEqual(self.press('Down', 'awake'), 'awake')
-        self.assertIn('Web browser', self.said[-1])
+        self.assertIn('Office tools', self.said[-1])
 
     def test_alt_with_no_menu_always_says_why(self):
         from screen_menus import alt_unavailable
@@ -401,8 +401,8 @@ class ScreenMenuTests(unittest.TestCase):
         import re
         html = re.sub(r'</?kbd>', '', GUIDE_HTML.read_text(encoding='utf-8'))
         for mode, (title, groups) in MENUS.items():
-            # "the email menu", but "the YouTube menu": a name keeps its capital letters.
-            sentence = 'Press Alt to open the ' + (title if title.startswith('YouTube') else title[0].lower() + title[1:]) + '.'
+            # "the email menu", but "the YouTube menu" and "the Address manager menu": an app name keeps its capital letter.
+            sentence = 'Press Alt to open the ' + (title if title.startswith(('YouTube', 'Address manager', 'Schedule manager')) else title[0].lower() + title[1:]) + '.'
             with self.subTest(mode=mode):
                 self.assertIn(sentence, text)
                 self.assertIn(sentence, html)

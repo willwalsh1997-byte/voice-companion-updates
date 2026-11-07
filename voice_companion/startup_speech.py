@@ -37,8 +37,8 @@ HOW_TO = {
     'on': 'The microphone is on. Say wake up to control the app by voice, or use your Up and Down arrow keys, '
           'Enter and Escape to move through the menus. After you wake it, say start tutorial for spoken lessons that wait for you. '
           'Help is available.',
-    'off': MICROPHONE['off'] + ' ' + KEYS + ' Press F1 for help.',
-    'failed': MICROPHONE['failed'] + ' ' + KEYS + ' Press F1 for help. Check that a microphone is plugged in '
+    'off': MICROPHONE['off'] + ' ' + KEYS + ' Press F1 twice for help.',
+    'failed': MICROPHONE['failed'] + ' ' + KEYS + ' Press F1 twice for help. Check that a microphone is plugged in '
               'and allowed in Windows privacy settings. Voice commands start by themselves when it works.',
 }
 

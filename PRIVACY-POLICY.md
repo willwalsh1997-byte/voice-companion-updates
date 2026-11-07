@@ -4,7 +4,7 @@ Effective date: November 3, 2026
 
 ## Scope and publisher
 
-This policy covers the Voice Companion Browser Connection extension for Google Chrome and the browser connection it provides to the Voice Companion Windows application. The project is published through the willwalsh14-hub GitHub account. The extension requires the separately installed desktop application.
+This policy covers the Voice Companion Browser Connection extension for Google Chrome and the browser connection it provides to the Voice Companion Windows application. The project is published through the willwalsh1997-byte GitHub account. The extension requires the separately installed desktop application.
 
 ## Purpose
 

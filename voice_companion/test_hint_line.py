@@ -17,14 +17,15 @@ class HintLineTests(unittest.TestCase):
         self.assertEqual(hint('sleep', MICROPHONE_OFF=True), 'Microphone off. Press Control+F12 to wake up.')
 
     def test_microphone_off_or_broken_says_use_the_keys(self):
-        self.assertEqual(hint('mailbox', MICROPHONE_OFF=True), 'Microphone off. Use the keys. F1 for help.')
-        self.assertEqual(hint('awake', MICROPHONE_FAILED=True), 'Microphone not working. Use the keys. F1 for help.')
+        # F1 twice quickly is help; F1 once is the main menu (November 6, 2026).
+        self.assertEqual(hint('mailbox', MICROPHONE_OFF=True), 'Microphone off. Use the keys. F1 twice for help.')
+        self.assertEqual(hint('awake', MICROPHONE_FAILED=True), 'Microphone not working. Use the keys. F1 twice for help.')
 
     def test_each_screen_names_itself_f1_and_its_main_keys(self):
-        self.assertEqual(hint('awake'), 'Main menu. F1 for help. Arrows move. Enter opens.')
-        self.assertEqual(hint('mailbox'), 'Email. F1 for help. Enter opens. R replies. N writes new.')
+        self.assertEqual(hint('awake'), 'Main menu. F1 twice for help. Arrows move. Enter opens.')
+        self.assertEqual(hint('mailbox'), 'Email. F1 twice for help. Enter opens. R replies. N writes new.')
         self.assertEqual(hint('help'), 'Help. Arrows move. Escape goes back.')
-        self.assertEqual(hint('tutorial'), 'Tutorial. F1 lists commands.')
+        self.assertEqual(hint('tutorial'), 'Tutorial. F1 twice lists commands.')
         self.assertTrue(hint('word_processor').endswith('Arrows move. Enter chooses.'))
 
     def test_a_question_says_how_to_answer(self):

@@ -25,6 +25,15 @@ def https_url(value):
     return value
 
 
+# Feeds no longer published to: GitHub releases on the old account. Updates come from
+# Cloudflare R2 from 0.2.209 (November 2026).
+RETIRED_FEED = re.compile(r'https://github\.com/willwalsh14-hub/', re.I)
+
+
+def retired_feed(value):
+    return isinstance(value, str) and bool(RETIRED_FEED.match(value.strip()))
+
+
 def version_key(value):
     match = re.fullmatch(r'(\d+)\.(\d+)\.(\d+)(?:-(test|rc|beta)(?:\.(\d+))?)?', str(value))
     if not match: raise ValueError('Invalid update version')
@@ -207,17 +216,21 @@ class AppUpdates:
         self.percent = 0
         self.phase = 'idle'
         self.manifest_url = ''
-        # Feeds tried in order when the first cannot be read: updates moved to a releases-only
-        # repository (November 2026), and copies keep working while that move is under way.
+        # Feeds tried in order when the first cannot be read (fallback_urls), for a future move.
         self.fallback_urls = []
         for config in (self.folder/'update-settings.json', self.resources/'update-settings.json'):
             if config.exists():
                 try:
                     settings = json.loads(config.read_text(encoding='utf-8-sig'))
                     value = settings['manifest_url']
+                    if retired_feed(value):
+                        # A trainer's copy in the data folder that still names the old GitHub
+                        # feed would stop updates for good: the bundled feed is used instead.
+                        continue
                     if value: self.manifest_url = https_url(value)
                     fallbacks = settings.get('fallback_urls') or []
-                    self.fallback_urls = [https_url(item) for item in fallbacks if isinstance(item, str) and item][:3]
+                    self.fallback_urls = [https_url(item) for item in fallbacks
+                                          if isinstance(item, str) and item and not retired_feed(item)][:3]
                 except (ValueError,KeyError,OSError,TypeError):
                     # A damaged file in the data folder must not stop the app or turn
                     # updates off: the feed that came with the app is used instead.

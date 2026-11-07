@@ -367,7 +367,7 @@ def command_here(m, raw, command):
             select(records, matches[0])
             m.speak(describe(m))
             return MODE
-    m.speak('Downloads. Say pause download, cancel download, open download, or move to next. Press F1 for help, or Escape to go back.')
+    m.speak('Downloads. Say pause download, cancel download, open download, or move to next. Press F1 twice for help, or Escape to go back.')
     return MODE
 
 

@@ -1,10 +1,10 @@
 GITHUB AUTOMATED INSTALLER BUILDS
 
-The source folder voice_companion and the .github folder must both be placed at the root of willwalsh14-hub/voice-companion-updates. Keep .github/workflows/windows-installer.yml in that exact location. GitHub does not run a workflow stored only inside a ZIP or a release attachment.
+The source folder voice_companion and the .github folder must both be placed at the root of willwalsh1997-byte/voice-companion-updates. Keep .github/workflows/windows-installer.yml in that exact location. GitHub does not run a workflow stored only inside a ZIP or a release attachment.
 
-On GitHub, open the repository, then Actions, then Build and publish Windows installer, then Run workflow. The Windows build installs its tools, generates every manual, runs the release tests, packages the models and speech engines, creates Setup, and silently installs and checks it on the GitHub computer. Only after those checks pass does it publish the installer and update feed. It uses GitHub's temporary repository token, so no browser sign-in or personal access token is needed during a build.
+On GitHub, open the repository, then Actions, then Build and publish Windows installer, then Run workflow. The Windows build installs its tools, generates every manual, runs the release tests, packages the models and speech engines, creates Setup, and silently installs and checks it on the GitHub computer. Only after those checks pass does it publish the installer and update feed to the update bucket on Cloudflare R2. Installed copies read it from https://updates.voicecompanionapp.com. Publishing uses three repository secrets: R2_ACCOUNT_ID, R2_ACCESS_KEY_ID and R2_SECRET_ACCESS_KEY. The bucket is voice-companion-updates, or the R2_BUCKET repository variable when it is set. No browser sign-in is needed during a build.
 
-The run must be in the updates repository because the existing update feed points there. Source uploaded to a different repository needs separate permission to publish to the updates repository.
+The update feed is the file voice-companion-update.json at the top of the bucket. Each release has its own folder, releases/v<version>. The newest installer is also at https://updates.voicecompanionapp.com/VoiceCompanion-Setup.exe. A published release folder is never replaced.
 
 A failed run does not announce a successful update. Its build and publishing logs remain available in the Actions run for seven days. Updates committed to the source folder or the Windows build workflow on main automatically start a build. Run workflow remains available for manual retries. Only a passing build is published.
 

@@ -37,10 +37,13 @@ YES = ('yes', 'yes please', 'okay', 'ok', 'confirm', 'save', 'save it', 'yes sav
 NO = ('no', 'no thanks', 'cancel', 'escape', 'go back', 'back', 'do not save', 'keep it', 'do not delete')
 PASS_THROUGH = ('help', 'options', 'open options', 'exit companion', 'go to sleep',
                 'wake up', 'user guide', 'open user guide', 'manual', 'open manual', 'release notes', 'what mode',
-                'what version', 'toggle audio', 'calendar menu', 'menu', 'open menu')
+                'what version', 'toggle audio', 'calendar menu', 'schedule manager menu', 'menu', 'open menu')
 OPEN = ('calendar', 'open calendar', 'my calendar', 'show calendar', 'show my calendar', 'open my calendar', 'calendar app',
         'go to calendar', 'go to my calendar', 'open the calendar', 'view calendar', 'view my calendar', 'my schedule',
-        'show my schedule', 'open my schedule', 'my appointments', 'show my appointments')
+        'show my schedule', 'open my schedule', 'my appointments', 'show my appointments',
+        # Its name on the menu since November 6, 2026.
+        'schedule manager', 'open schedule manager', 'go to schedule manager', 'open the schedule manager',
+        'show schedule manager', 'open my schedule manager', 'my schedule manager')
 ADD_WORDS = r'(?:add|new|create|make|schedule|set up|book|put)(?: an?| new)?(?: (?:event|appointment|meeting|reminder))?'
 ADD = re.compile(r'(?:' + ADD_WORDS + r')(?:(?: to| on)(?: my)? calendar)?')
 # "Add an appointment", "schedule a doctor appointment", "add a reminder": up to two words may name it,
@@ -54,7 +57,7 @@ ASK = re.compile(r"(?:(?:what s|what is|whats) on (?:my )?(?:calendar|schedule)|
                  r"(?:my )?(?:calendar|schedule) for)(?: for)?(?: (?P<day>.+))?")
 GUIDANCE = ('Only the calendar kept on this computer is in Thunderbird. To hear your Google or other online calendar here, '
             'add it to Thunderbird: open Thunderbird, choose New Calendar, then On the Network, and sign in. '
-            'Press F1 for the steps.')
+            'Press F1 twice for the steps.')
 
 DAY = None             # the day on screen
 EVENTS = []
@@ -220,7 +223,7 @@ def open_screen(m, mode=None, day=None, quiet=False):
         return mode or 'awake'
     global OPENED
     words = show(m, day or today(m), opening=True)
-    OPENED = 'Calendar. ' + with_showing(words)
+    OPENED = 'Schedule manager. ' + with_showing(words)
     if not quiet:
         m.speak(OPENED)
     return MODE
@@ -346,7 +349,7 @@ def handle(m, text, mode, typed=False):
             if not choosing():
                 m.speak(OPENED)
                 return MODE
-            return show_source(m, wanted['what'], lead='Calendar. ')
+            return show_source(m, wanted['what'], lead='Schedule manager. ')
         if mode == 'awake' and (ADD.fullmatch(command) and command.split()[0] in ('add', 'new', 'create', 'schedule')
                                 and command not in ('add', 'new', 'create', 'schedule') or ADD_START.match(command)):
             opened = open_screen(m, mode, quiet=True)
@@ -387,7 +390,7 @@ def tell_day(m, words, mode):
     lines = [event.line(day) for event in events[:12]]
     more = len(events) - len(lines)
     m.speak(head + str(len(events)) + (' event. ' if len(events) == 1 else ' events. ') + '. '.join(lines) + '.' +
-            (' And ' + str(more) + ' more. Open Calendar to hear them.' if more > 0 else '') + missing)
+            (' And ' + str(more) + ' more. Open Schedule manager to hear them.' if more > 0 else '') + missing)
     return mode
 
 
@@ -405,12 +408,12 @@ def command_here(m, raw, command):
     if command in ('where am i', 'which day', 'what day is this', 'read day', 'repeat', 'say that again', 'repeat that'):
         # Said again where you are: the day, its count, and the event you are on (not the first one).
         words = spoken_day(DAY or today(m), today(m)) + '. ' + day_summary() + (' ' + NOTICE if NOTICE else '')
-        m.speak('Calendar. ' + (showing() + ' ' if choosing() else '') + words if command == 'where am i' else words)
+        m.speak('Schedule manager. ' + (showing() + ' ' if choosing() else '') + words if command == 'where am i' else words)
         return MODE
     if command in OPEN + ('refresh', 'refresh calendar'):
         words = show(m, DAY or today(m), opening=command.startswith('refresh'))
         if command in OPEN + ('where am i',):
-            words = 'Calendar. ' + with_showing(words)      # the screen's name first, as on Contacts
+            words = 'Schedule manager. ' + with_showing(words)      # the screen's name first, as in Address manager
         elif command in ('refresh', 'refresh calendar'):
             words = with_showing(words)
         m.speak(words)
@@ -483,8 +486,8 @@ def command_here(m, raw, command):
     if asked_for and looks_like_date(asked_for[1]) or missing_date(raw, today(m)):
         # "go to February 30", "What's on February 30?": a date was meant. Say why, and ask again.
         return ask(m, 'go-to', date_problem(m, raw))
-    m.speak('Calendar. Say next event, next day, today, read event, add event, edit event, or delete event. '
-            'Press F1 for help, or Escape for the main menu.')
+    m.speak('Schedule manager. Say next event, next day, today, read event, add event, edit event, or delete event. '
+            'Press F1 twice for help, or Escape for the main menu.')
     return MODE
 
 
@@ -566,7 +569,7 @@ def start_choosing(m, first=None, lead=''):
 
 def show_source(m, words, lead=''):
     """'Show Gmail calendar': show it, or ask which when the words fit more than one.
-    lead: 'Calendar. ' when the screen opens with this."""
+    lead: 'Schedule manager. ' when the screen opens with this."""
     if not choosing():
         m.speak(show(m, DAY or today(m)))
         return MODE
@@ -719,8 +722,8 @@ def ask(m, action, words, optional=False):
     return 'task_input'
 
 
-NOTHING_TO_CHANGE = 'Thunderbird has no calendar that can be changed. Press F1 to learn how to add one.'
-NO_CALENDARS = 'Thunderbird has no calendars turned on. Press F1 to learn how to add one.'
+NOTHING_TO_CHANGE = 'Thunderbird has no calendar that can be changed. Press F1 twice to learn how to add one.'
+NO_CALENDARS = 'Thunderbird has no calendars turned on. Press F1 twice to learn how to add one.'
 WHEN_PROMPT = 'New event. When is it? For example, say tomorrow at 3 PM, or Friday all day. Escape cancels.'
 
 

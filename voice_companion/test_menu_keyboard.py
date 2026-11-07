@@ -11,10 +11,13 @@ from mail_voice import MailSession
 class MenuKeyboardTests(unittest.TestCase):
     def test_repeated_letters_stop_at_last_matching_main_item_without_activation(self):
         with patch.object(app,'MAIN_MENU_INDEX',None),patch.object(app,'SYNTH_PICK_INDEX',None),patch.object(app,'VOICE_PICK_INDEX',None),patch.object(app,'account_setup',False),patch.object(app,'speak') as say:
-            # O: Office tools, then Options, then it stops there.
+            # O: Office tools, then Organizer, then Options, then it stops there.
             app.navigation_key('Letter:o','awake')
             self.assertEqual(app.MAIN_MENU_CHOICES[app.MAIN_MENU_INDEX][0],'Office tools')
-            say.assert_called_with('Office tools (O), 1 of 8.')
+            say.assert_called_with('Office tools (O), 2 of 10.')
+            app.navigation_key('Letter:o','awake')
+            self.assertEqual(app.MAIN_MENU_CHOICES[app.MAIN_MENU_INDEX][0],'Organizer')
+            say.assert_called_with('Organizer (O), 3 of 10.')
             app.navigation_key('Letter:o','awake')
             self.assertEqual(app.MAIN_MENU_CHOICES[app.MAIN_MENU_INDEX][0],'Options')
             app.navigation_key('Letter:o','awake')
@@ -71,7 +74,8 @@ class MenuKeyboardTests(unittest.TestCase):
         self.assertIsNone(next_match(['Email','Exit'],0,'z'))
 
     def test_main_escape_confirms_and_second_escape_cancels(self):
-        with patch.object(app,'PREFERENCES',{'ask_before_exit':True}),patch.object(app,'document',None),patch.object(app,'speak'),patch.object(app,'finish_exit') as finish:
+        # _handle alone leaves "Canceled." for handle() to say; patched so no later test hears it.
+        with patch.object(app,'PREFERENCES',{'ask_before_exit':True}),patch.object(app,'document',None),patch.object(app,'speak'),patch.object(app,'finish_exit') as finish,patch.object(app,'MAIN_MENU_LEAD',''):
             self.assertEqual(app.navigation_key('Escape','awake'),'exit companion')
             mode=app._handle('exit companion','awake')
             self.assertEqual(mode,'exit_confirm');self.assertEqual(app.CONFIRM_CHOICE,'no')
